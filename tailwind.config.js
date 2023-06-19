@@ -5,7 +5,10 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Quicksand"],
-      },
+       },
+       colors: {
+        'primary': '#A872EE',
+      }
     },
   },
   plugins: [require("daisyui")],
