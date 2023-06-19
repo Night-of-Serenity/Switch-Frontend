@@ -6,7 +6,10 @@ export default {
       fontFamily: {
         sans: ["Quicksand"],
       },
+      colors: {
+        Primary: "#A872EE",
+      },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/forms")],
 };
