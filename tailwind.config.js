@@ -5,11 +5,11 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Quicksand"],
-       },
-       colors: {
-        'primary': '#A872EE',
-      }
+      },
+      colors: {
+        Primary: "#A872EE",
+      },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/forms")],
 };
