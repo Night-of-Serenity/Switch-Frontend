@@ -1,0 +1,25 @@
+onClick={() => window.my_modal_create.showModal()}
+onClick={() => window.my_modal_login.showModal()}
+onClick={() => window.my_modal_signup.showModal()}
+
+
+
+
+
+<div className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2 ">
+      <img
+        src="https://source.unsplash.com/100x100/?portrait"
+        alt=""
+        className="w-12 h-12 rounded-full dark:bg-gray-500"
+      />
+      <div>
+        <div className="flex flex-row">
+          <h2 className="text-lg font-semibold ">Leroy Jenkins &nbsp;</h2>
+        </div>
+        <div>
+          <h2 className="text-xl font-light ">
+            Lorem ipsum dolor, sit amet consectetur
+          </h2>
+        </div>
+      </div>
+    </div>
