@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../images/logoBlack.png";
-
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import SuggestFollow from "../components/common/SuggestFollow";
 function Footer() {
   return (
     <div>
@@ -33,11 +35,11 @@ function Footer() {
           </button> */}
           <button
             className="btn btn-outline rounded-3xl  text-white items-center bg-none border-white"
-            onClick={() => window.my_modal_2.showModal()}
+            onClick={() => window.my_modal_login.showModal()}
           >
             Log in
           </button>
-          <dialog id="my_modal_2" className="modal">
+          <dialog id="my_modal_login" className="modal">
             <form method="dialog" className="modal-box">
               {/* ****************************************** */}
               <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -47,9 +49,19 @@ function Footer() {
                     src={logo}
                     alt="Your Company"
                   />
-                  <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                  <h2 className="mt-4 mb-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Sign in to your Switch
                   </h2>
+                  <div className="flex  gap-4 flex-col justify-center items-center pt-2">
+                    <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <FcGoogle className="text-2xl mr-2" />
+                      Log in with Google
+                    </button>
+                    <button className="flex  items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <FaFacebook className="text-2xl mr-2 text-blue-600" />
+                      Log in with Facebook
+                    </button>
+                  </div>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -117,6 +129,7 @@ function Footer() {
                     <a
                       href="#"
                       className="font-semibold leading-6 text-Primary hover:text-indigo-500"
+                      onClick={() => window.my_modal_signup.showModal()}
                     >
                       Sign up
                     </a>
@@ -130,10 +143,316 @@ function Footer() {
               <button>close</button>
             </form>
           </dialog>
+          {/* ***************sign up  */}
 
-          <button className="btn btn-outline rounded-3xl  text-Primary items-center bg-white border-none ">
+          {/* Open the modal using ID.showModal() method */}
+          <button
+            className="btn btn-outline rounded-3xl  text-Primary items-center bg-white border-none"
+            onClick={() => window.my_modal_signup.showModal()}
+          >
             Sign up
           </button>
+          <dialog id="my_modal_signup" className="modal">
+            <form method="dialog" className="modal-box">
+              <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                  <img
+                    className="mx-auto h-24 w-auto"
+                    src={logo}
+                    alt="Your Company"
+                  />
+                  <h2 className="mt-4 mb-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    Sign in to your Switch
+                  </h2>
+                  <div className="flex  gap-4 flex-col justify-center items-center pt-2">
+                    <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <FcGoogle className="text-2xl mr-2" />
+                      Sign up with Google
+                    </button>
+                    <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <FaFacebook className="text-2xl mr-2 text-blue-600" />
+                      Sign with Facebook
+                    </button>
+
+                    {/* Open the modal using ID.showModal() method */}
+                    <button
+                      className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-bold leading-6 text-black border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      onClick={() => window.my_modal_create.showModal()}
+                    >
+                      Create account
+                    </button>
+                    <dialog id="my_modal_create" className="modal">
+                      <form method="dialog" className="modal-box">
+                        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                            <img
+                              className="mx-auto h-24 w-auto"
+                              src={logo}
+                              alt="Your Company"
+                            />
+                          </div>
+
+                          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                            <form
+                              className="space-y-2"
+                              action="#"
+                              method="POST"
+                            >
+                              <div>
+                                <label
+                                  htmlFor="email"
+                                  className="block text-sm font-medium leading-6 text-gray-900"
+                                >
+                                  Email address
+                                </label>
+                                <div className="mt-2">
+                                  <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    autoComplete="email"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <label
+                                  htmlFor="email"
+                                  className="block text-sm font-medium leading-6 text-gray-900"
+                                >
+                                  Username @
+                                </label>
+                                <div className="mt-2">
+                                  <input
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    autoComplete="email"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                  />
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex items-center justify-between">
+                                  <label
+                                    htmlFor="password"
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Password
+                                  </label>
+                                </div>
+                                <div className="mt-2">
+                                  <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="current-password"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <div className="flex items-center justify-between">
+                                  <label
+                                    htmlFor="password"
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Confrim Password
+                                  </label>
+                                </div>
+                                <div className="mt-2">
+                                  <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="current-password"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                  />
+                                </div>
+                                <div>
+                                  <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Firstname
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      id="email"
+                                      name="email"
+                                      type="text"
+                                      autoComplete="email"
+                                      required
+                                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div>
+                                  <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Lastname
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      id="email"
+                                      name="email"
+                                      type="text"
+                                      autoComplete="email"
+                                      required
+                                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div>
+                                {/* Open the modal using ID.showModal() method */}
+                                <button
+                                  className="flex w-full mt-8 justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                  onClick={() => window.my_modal_2.showModal()}
+                                >
+                                  Sign up
+                                </button>
+                                <dialog id="my_modal_2" className="modal">
+                                  <form method="dialog" className="modal-box">
+                                    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                                      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                                        <img
+                                          className="mx-auto h-24 w-auto"
+                                          src={logo}
+                                          alt="Your Company"
+                                        />
+                                        <h2 className="mt-2 mb-1  text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                                          Don’t miss out
+                                        </h2>
+                                        <h2 className=" mb-1  text-sm font-light  text-gray-900">
+                                          When you follow someone, you’ll see
+                                          their Switch in your Timeline. You’ll
+                                          also get move relevant
+                                          recommendations.
+                                        </h2>
+                                        <h2 className=" mb-1  text-sm font-medium  text-gray-900">
+                                          Follow 3 or more accounts
+                                        </h2>
+                                      </div>
+
+                                      <div className=" sm:mx-auto sm:w-full sm:max-w-sm">
+                                        {/* <form
+                                          className="space-y-6"
+                                          action="#"
+                                          method="POST"
+                                        >
+                                          <div>
+                                            <label
+                                              htmlFor="email"
+                                              className="block text-sm font-medium leading-6 text-gray-900"
+                                            >
+                                              Email address
+                                            </label>
+                                            <div className="mt-2">
+                                              <input
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                autoComplete="email"
+                                                required
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div>
+                                            <div className="flex items-center justify-between">
+                                              <label
+                                                htmlFor="password"
+                                                className="block text-sm font-medium leading-6 text-gray-900"
+                                              >
+                                                Password
+                                              </label>
+                                              <div className="text-sm">
+                                                <a
+                                                  href="#"
+                                                  className="font-semibold text-Primary hover:text-indigo-500"
+                                                >
+                                                  Forgot password?
+                                                </a>
+                                              </div>
+                                            </div>
+                                            <div className="mt-2">
+                                              <input
+                                                id="password"
+                                                name="password"
+                                                type="password"
+                                                autoComplete="current-password"
+                                                required
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                              />
+                                            </div>
+                                          </div>
+
+                                          <div>
+                                            <button
+                                              type="submit"
+                                              className="flex w-full justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            >
+                                              Sign in
+                                            </button>
+                                          </div>
+                                        </form> */}
+                                        <SuggestFollow />
+                                        <SuggestFollow />
+                                        <SuggestFollow />
+                                        <SuggestFollow />
+                                        <SuggestFollow />
+                                        <SuggestFollow />
+
+                                        <button className="flex w-full mt-8 justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                          Next
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  <form
+                                    method="dialog"
+                                    className="modal-backdrop"
+                                  >
+                                    <button>close</button>
+                                  </form>
+                                </dialog>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </form>
+                      <form method="dialog" className="modal-backdrop">
+                        <button>close</button>
+                      </form>
+                    </dialog>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-10 text-center text-sm text-gray-500">
+                Have an account already?{" "}
+                <a
+                  href="#"
+                  className="font-semibold leading-6 text-Primary hover:text-indigo-500 "
+                  onClick={() => window.my_modal_login.showModal()}
+                >
+                  Log in
+                </a>
+              </p>
+            </form>
+            <form method="dialog" className="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog>
         </div>
       </footer>
     </div>
