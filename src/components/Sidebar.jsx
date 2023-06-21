@@ -2,7 +2,7 @@ import React from "react";
 import LogoSideBar from "../Common/LogoSideBar";
 import { BsBell } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiSettings } from "react-icons/fi";
 import SwitchPost from "../Common/SwitchPost";
 import { Link } from "react-router-dom";
 
@@ -91,6 +91,16 @@ function Sidebar() {
                   <span>Profile</span>
                 </Link>
               </li>
+              <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
+                <a
+                  rel="noopener noreferrer"
+                  href="#"
+                  className="flex items-center p-2 space-x-3 rounded-md"
+                >
+                  <FiSettings className="text-xl" />
+                  <span>Setting</span>
+                </a>
+              </li>
             </ul>
             {/* <div className="w-full h-12 bg-Primary text-white rounded-full text-center flex justify-center items-center my-10">
               <button>Switch</button>
@@ -99,12 +109,12 @@ function Sidebar() {
             {/* *************** */}
             {/* You can open the modal using ID.showModal() method */}
             <button
-              className="w-full h-12 bg-Primary text-white text-lg font-bold rounded-full text-center flex justify-center items-center my-10"
-              onClick={() => window.my_modal_3.showModal()}
+              className="w-full h-12 bg-Primary text-white text-lg font-bold rounded-full text-center hover:bg-stone-700  flex justify-center items-center my-10"
+              onClick={() => window.my_modal_switch.showModal()}
             >
               Switch
             </button>
-            <dialog id="my_modal_3" className="modal">
+            <dialog id="my_modal_switch" className="modal">
               <form method="dialog" className="modal-box">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                   ✕
