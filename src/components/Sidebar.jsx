@@ -48,7 +48,7 @@ function Sidebar() {
                   <span>Explore</span>
                 </a>
               </li>
-              <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
+              {/* <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                 <a
                   rel="noopener noreferrer"
                   href="#"
@@ -58,7 +58,7 @@ function Sidebar() {
 
                   <span>Notification</span>
                 </a>
-              </li>
+              </li> */}
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                 <a
                   rel="noopener noreferrer"
@@ -111,13 +111,40 @@ function Sidebar() {
             </button>
             <dialog id="my_modal_switch" className="modal">
               <form method="dialog" className="modal-box">
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                {/* <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                   ✕
+                </button> */}
+                {/* *************** */}
+                {/* Open the modal using ID.showModal() method */}
+                <button
+                  className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                  onClick={() => window.my_modal_Delete.showModal()}
+                >
+                  X
                 </button>
-                {/* <h3 className="font-bold text-lg">Hello!</h3>
-                <p className="py-4">
-                  Press ESC key or click on ✕ button to close
-                </p> */}
+                <dialog id="my_modal_Delete" className="modal">
+                  <form method="dialog" className="modal-box">
+                    <h3 className="font-bold text-lg">Delete Switch?</h3>
+                    <p className="py-4">
+                      This can’t be undone and it will be removed from your
+                      profile, the timeline of any accounts that follow you, and
+                      from Switch search results.
+                    </p>
+                    <div className="flex justify-end gap-2">
+                      <button className="bg-red-500 hover:font-extrabold rounded-md p-1 px-2 ">
+                        Delete
+                      </button>
+                      <button className="bg-slate-200 hover:font-extrabold rounded-md p-1 px-2">
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                  <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                  </form>
+                </dialog>
+                {/* *************** */}
+
                 <SwitchPost />
               </form>
             </dialog>
@@ -129,11 +156,13 @@ function Sidebar() {
             <img
               src="https://source.unsplash.com/100x100/?portrait"
               alt=""
-              className="w-12 h-12 rounded-full dark:bg-gray-500"
+              className="w-12 h-12 rounded-full dark:bg-gray-500 cursor-pointer"
             />
             <div>
-              <h2 className="text-lg font-semibold ">Leroy Jenkins</h2>
-              <a className="text-sm font-semibold flex flex-row justify-end cursor-pointer">
+              <h2 className="text-lg font-semibold cursor-pointer ">
+                Leroy Jenkins
+              </h2>
+              <a className="text-sm font-semibold flex flex-row justify-end hover:font-extrabold cursor-pointer">
                 Log out <FiLogOut className="text-lg ml-1 pt-1" />
               </a>
             </div>

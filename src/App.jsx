@@ -9,6 +9,7 @@ import ExplorePage from "./pages/ExplorePage";
 import SettingPage from "./pages/SettingPage";
 import MessagePage from "./pages/MessagePage";
 import ProfilePage from "./pages/ProfilePage";
+import FriendProfilePage from "./pages/FriendProfilePage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       {/* <SettingPage /> */}
       {/* <MessagePage /> */}
       <ProfilePage />
+      {/* <FriendProfilePage /> */}
     </>
   );
 }

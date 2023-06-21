@@ -15,7 +15,7 @@ function GuestPage() {
           {/* <Sidebar /> */}
           <SideBarGuest />
         </div>
-        <div className=" col-span-2 border-r-2 border-l-2">
+        <div className=" col-span-2 border-r-2 border-l-2 overflow-scroll">
           <div>
             <h1 className="text-3xl font-bold mt-4 ml-4 mb-8">Explore</h1>
           </div>

@@ -11,7 +11,7 @@ const stats = [
   { id: 2, name: "Follower", value: "100k" },
   { id: 3, name: "Following", value: "0" },
 ];
-function ProfilePage() {
+function FriendProfilePage() {
   return (
     <div className="h-screen  flex flex-col justify-between">
       <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">
@@ -27,13 +27,14 @@ function ProfilePage() {
           <div className="flex items-center bg-Primary opacity-90 justify-center border-b-2 pb-4">
             <img src={logoCover} className="w-2/5  "></img>
           </div>
-          <div className="grid grid-cols-4 py-2 ">
-            <div className="flex justify-center">
+          <div className="grid grid-cols-4 border-b-2 py-2 ">
+            <div className="flex flex-col items-center justify-center">
               <img
                 src="https://source.unsplash.com/100x100/?portrait"
                 alt=""
                 className="w-36 h-36 rounded-full dark:bg-gray-500  "
               />
+              <div className=" text-base font-extrabold pt-4 ">Switch</div>
             </div>
             <div className="col-span-2">
               <h1 className="text-xl font-semibold mx-1 text-slate-600">
@@ -73,19 +74,19 @@ function ProfilePage() {
             <div className="flex justify-end px-2 ">
               <div>
                 <button
-                  className="border-Primary border-2 rounded-full p-1 hover:bg-Primary hover:text-white
+                  className="border-Primary border-2 rounded-full p-1 px-2 hover:bg-Primary hover:text-white
                text-Primary  font-medium"
                 >
-                  Set up proflie
+                  Follow
                 </button>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-3 text-center font-semibold border-b-2 py-2">
-            <div className="cursor-pointer hover:font-extrabold ">Switch</div>
-            <div className="cursor-pointer hover:font-extrabold">Media</div>
-            <div className="cursor-pointer hover:font-extrabold">Likes</div>
-          </div>
+          {/* <div className="  font-semibold border-b-2 py-2">
+            <div className="cursor-pointer pl-24 text-base hover:font-extrabold ">
+              Switch
+            </div>
+          </div> */}
           <div>
             <Content />
             <Content />
@@ -107,4 +108,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default FriendProfilePage;
