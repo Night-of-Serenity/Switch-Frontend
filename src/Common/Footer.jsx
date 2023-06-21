@@ -3,7 +3,22 @@ import logo from "../images/logoBlack.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import SuggestFollow from "../components/common/SuggestFollow";
+import { useState } from "react";
 function Footer() {
+
+  // const [user,setUser] = useState(null) 
+
+  // const [input, setInput] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+
+  // const hdlChangeInput = (e) => {
+  //   setInput({ ...input, [e.target.name]: e.target.value });
+  // };
+
+
+  
   return (
     <div>
       <footer className="footer flex justify-between  p-4 bg-Primary text-neutral-content">
@@ -77,6 +92,8 @@ function Footer() {
                         <input
                           id="email"
                           name="email"
+                //           onChange={hdlChangeInput}
+                // value={input.email}
                           type="email"
                           autoComplete="email"
                           required
@@ -106,6 +123,8 @@ function Footer() {
                         <input
                           id="password"
                           name="password"
+                          // onChange={hdlChangeInput}
+                          // value={input.password}
                           type="password"
                           autoComplete="current-password"
                           required

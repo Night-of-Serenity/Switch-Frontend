@@ -1,15 +1,6 @@
 import React from "react";
 import LogoSideBar from "../Common/LogoSideBar";
 import Sidebar from "../components/Sidebar";
-<<<<<<< HEAD
-
-function GuestPage() {
-  return (
-    <div className="grid grid-cols-4">
-      <div>
-        {/* <LogoSideBar /> */}
-        <Sidebar/>
-=======
 import SideBarGuest from "../components/SideBarGuest";
 import Content from "../components/common/Content";
 import Footer from "../Common/Footer";
@@ -60,7 +51,6 @@ function GuestPage() {
             </div>
           </div>
         </div>
->>>>>>> ui
       </div>
       <Footer />
     </div>

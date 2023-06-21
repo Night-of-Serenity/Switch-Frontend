@@ -4,8 +4,14 @@ import { BsBell } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import SwitchPost from "../Common/SwitchPost";
+import { Link } from "react-router-dom";
+
+
+
 
 function Sidebar() {
+
+
   return (
     <div className="h-full border-r-2 ">
       <div className="flex flex-col h-full p-3 w-full items-center dark:bg-gray-900 dark:text-gray-100">
@@ -17,9 +23,8 @@ function Sidebar() {
           <div className="flex-1 font-semibold">
             <ul className="pt-2 pb-4  text-lg ">
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <a
+                <Link to='/'
                   rel="noopener noreferrer"
-                  href="#"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -30,13 +35,13 @@ function Sidebar() {
                     <path d="M469.666,216.45,271.078,33.749a34,34,0,0,0-47.062.98L41.373,217.373,32,226.745V496H208V328h96V496H480V225.958ZM248.038,56.771c.282,0,.108.061-.013.18C247.9,56.832,247.756,56.771,248.038,56.771ZM448,464H336V328a32,32,0,0,0-32-32H208a32,32,0,0,0-32,32V464H64V240L248.038,57.356c.013-.012.014-.023.024-.035L448,240Z"></path>
                   </svg>
                   <span>Home</span>
-                </a>
+                </Link>
               </li>
               <li className="text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <a
+                <Link to = '/explore'
                   rel="noopener noreferrer"
-                  href="#"
                   className="flex items-center p-2 space-x-3 rounded-md"
+                
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -46,23 +51,23 @@ function Sidebar() {
                     <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
                   </svg>
                   <span>Explore</span>
-                </a>
+                </Link>
               </li>
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <a
+                <Link to = 'notification'
                   rel="noopener noreferrer"
-                  href="#"
+                 
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <BsBell className="text-xl" />
 
                   <span>Notification</span>
-                </a>
+                </Link>
               </li>
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <a
+                <Link to = '/message'
                   rel="noopener noreferrer"
-                  href="#"
+                 
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -74,17 +79,17 @@ function Sidebar() {
                     <path d="M60.185,317.476a220.491,220.491,0,0,0,34.808-63.023l4.22-11.975-9.207-7.066C62.918,214.626,48,186.728,48,156.857,48,96.833,109.009,48,184,48c55.168,0,102.767,26.43,124.077,64.3,3.957-.192,7.931-.3,11.923-.3q12.027,0,23.834,1.167c-8.235-21.335-22.537-40.811-42.2-56.961C270.072,30.279,228.3,16,184,16S97.928,30.279,66.364,56.206C33.886,82.885,16,118.63,16,156.857c0,35.8,16.352,70.295,45.25,96.243a188.4,188.4,0,0,1-40.563,60.729L16,318.515V352H32a190.643,190.643,0,0,0,85.231-20.125,157.3,157.3,0,0,1-5.071-33.645A158.729,158.729,0,0,1,60.185,317.476Z"></path>
                   </svg>
                   <span>Message</span>
-                </a>
+                </Link>
               </li>
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <a
+                <Link to = 'profile'
                   rel="noopener noreferrer"
-                  href="#"
+                 
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <CgProfile className="text-xl" />
                   <span>Profile</span>
-                </a>
+                </Link>
               </li>
             </ul>
             {/* <div className="w-full h-12 bg-Primary text-white rounded-full text-center flex justify-center items-center my-10">
