@@ -54,7 +54,7 @@ function Sidebar() {
                 </Link>
               </li>
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <Link to = 'notification'
+                <Link to = '/notification'
                   rel="noopener noreferrer"
                  
                   className="flex items-center p-2 space-x-3 rounded-md"
@@ -82,7 +82,7 @@ function Sidebar() {
                 </Link>
               </li>
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <Link to = 'profile'
+                <Link to = '/profile'
                   rel="noopener noreferrer"
                  
                   className="flex items-center p-2 space-x-3 rounded-md"
@@ -92,14 +92,14 @@ function Sidebar() {
                 </Link>
               </li>
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <a
+                <Link to = '/setting'
                   rel="noopener noreferrer"
                   href="#"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <FiSettings className="text-xl" />
                   <span>Setting</span>
-                </a>
+                </Link>
               </li>
             </ul>
             {/* <div className="w-full h-12 bg-Primary text-white rounded-full text-center flex justify-center items-center my-10">

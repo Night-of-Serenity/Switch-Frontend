@@ -4,21 +4,16 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import SuggestFollow from "../components/common/SuggestFollow";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 function Footer() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-  // const [user,setUser] = useState(null) 
+  const values = useAuth();
+  const { onSubmitLogin } = values;
+  // console.log(user)
 
-  // const [input, setInput] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const hdlChangeInput = (e) => {
-  //   setInput({ ...input, [e.target.name]: e.target.value });
-  // };
-
-
-  
   return (
     <div>
       <footer className="footer flex justify-between  p-4 bg-Primary text-neutral-content">
@@ -55,7 +50,11 @@ function Footer() {
             Log in
           </button>
           <dialog id="my_modal_login" className="modal">
-            <form method="dialog" className="modal-box">
+            <form
+              method="dialog"
+              className="modal-box"
+              onSubmit={(e) => onSubmitLogin(user, e)}
+            >
               {/* ****************************************** */}
               <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -80,7 +79,7 @@ function Footer() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                  <form className="space-y-6" action="#" method="POST">
+                  <div className="space-y-6" action="#" method="POST">
                     <div>
                       <label
                         htmlFor="email"
@@ -92,8 +91,9 @@ function Footer() {
                         <input
                           id="email"
                           name="email"
-                //           onChange={hdlChangeInput}
-                // value={input.email}
+                          onChange={(e) =>
+                            setUser({ ...user, email: e.target.value })
+                          }
                           type="email"
                           autoComplete="email"
                           required
@@ -123,8 +123,9 @@ function Footer() {
                         <input
                           id="password"
                           name="password"
-                          // onChange={hdlChangeInput}
-                          // value={input.password}
+                          onChange={(e) =>
+                            setUser({ ...user, password: e.target.value })
+                          }
                           type="password"
                           autoComplete="current-password"
                           required
@@ -137,30 +138,31 @@ function Footer() {
                       <button
                         type="submit"
                         className="flex w-full justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        // onClick={() => onSubmitLogin(user)}
                       >
                         Sign in
                       </button>
                     </div>
-                  </form>
+                  </div>
 
                   <p className="mt-10 text-center text-sm text-gray-500">
                     Not a member?{" "}
-                    <a
-                      href="#"
+                    <div
+                      role="button"
                       className="font-semibold leading-6 text-Primary hover:text-indigo-500"
                       onClick={() => window.my_modal_signup.showModal()}
                     >
                       Sign up
-                    </a>
+                    </div>
                   </p>
                 </div>
               </div>
 
               {/* ****************************************** */}
             </form>
-            <form method="dialog" className="modal-backdrop">
+            <div method="dialog" className="modal-backdrop">
               <button>close</button>
-            </form>
+            </div>
           </dialog>
           {/* ***************sign up  */}
 
@@ -201,7 +203,7 @@ function Footer() {
                       Create account
                     </button>
                     <dialog id="my_modal_create" className="modal">
-                      <form method="dialog" className="modal-box">
+                      <div method="dialog" className="modal-box">
                         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <img
@@ -212,11 +214,7 @@ function Footer() {
                           </div>
 
                           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <form
-                              className="space-y-2"
-                              action="#"
-                              method="POST"
-                            >
+                            <div className="space-y-2" action="#" method="POST">
                               <div>
                                 <label
                                   htmlFor="email"
@@ -340,7 +338,7 @@ function Footer() {
                                   Sign up
                                 </button>
                                 <dialog id="my_modal_2" className="modal">
-                                  <form method="dialog" className="modal-box">
+                                  <div method="dialog" className="modal-box">
                                     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                                       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                                         <img
@@ -437,40 +435,40 @@ function Footer() {
                                         </button>
                                       </div>
                                     </div>
-                                  </form>
-                                  <form
+                                  </div>
+                                  <div
                                     method="dialog"
                                     className="modal-backdrop"
                                   >
                                     <button>close</button>
-                                  </form>
+                                  </div>
                                 </dialog>
                               </div>
-                            </form>
+                            </div>
                           </div>
                         </div>
-                      </form>
-                      <form method="dialog" className="modal-backdrop">
+                      </div>
+                      <div method="dialog" className="modal-backdrop">
                         <button>close</button>
-                      </form>
+                      </div>
                     </dialog>
                   </div>
                 </div>
               </div>
               <p className="mt-10 text-center text-sm text-gray-500">
                 Have an account already?{" "}
-                <a
-                  href="#"
+                <div
+                  role="button"
                   className="font-semibold leading-6 text-Primary hover:text-indigo-500 "
                   onClick={() => window.my_modal_login.showModal()}
                 >
                   Log in
-                </a>
+                </div>
               </p>
             </form>
-            <form method="dialog" className="modal-backdrop">
+            <div method="dialog" className="modal-backdrop">
               <button>close</button>
-            </form>
+            </div>
           </dialog>
         </div>
       </footer>

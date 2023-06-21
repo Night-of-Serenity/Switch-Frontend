@@ -6,6 +6,9 @@ import Content from "../components/common/Content";
 import Footer from "../Common/Footer";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 function GuestPage() {
   return (
