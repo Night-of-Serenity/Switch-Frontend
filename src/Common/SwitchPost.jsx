@@ -75,14 +75,14 @@ export default function SwitchPost() {
         <form action="#" className="relative my-4">
           <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-Primary">
             <label htmlFor="comment" className="sr-only">
-              Add your comment
+              Add your Switch
             </label>
             <textarea
               rows={3}
               name="comment"
               id="comment"
               className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-              placeholder="Add your comment..."
+              placeholder="Add your Switch..."
               defaultValue={""}
             />
 
