@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import Content from "../components/common/Content";
 import TrendsForYou from "../components/TrendsForYou";
+import Search from "../Common/Search";
 
 function HomePage() {
   return (
@@ -30,13 +31,14 @@ function HomePage() {
           </div>
         </div>
         <div className="border-l-2">
-          <div className="form-control pt-2 pr-2 pl-2">
+          {/* <div className="form-control pt-2 pr-2 pl-2">
             <input
               type="text"
               placeholder="Search"
               className="input border-2 input-bordered w-full rounded-full md:w-auto"
             />
-          </div>
+          </div> */}
+          <Search />
 
           <TrendsForYou />
         </div>
