@@ -1,63 +1,6 @@
-import { Fragment, useState } from "react";
-import {
-  FaceFrownIcon,
-  FaceSmileIcon,
-  FireIcon,
-  HandThumbUpIcon,
-  HeartIcon,
-  PaperClipIcon,
-  XMarkIcon,
-} from "@heroicons/react/20/solid";
-import { Listbox, Transition } from "@headlessui/react";
-
-const moods = [
-  {
-    name: "Excited",
-    value: "excited",
-    icon: FireIcon,
-    iconColor: "text-white",
-    bgColor: "bg-red-500",
-  },
-  {
-    name: "Loved",
-    value: "loved",
-    icon: HeartIcon,
-    iconColor: "text-white",
-    bgColor: "bg-pink-400",
-  },
-  {
-    name: "Happy",
-    value: "happy",
-    icon: FaceSmileIcon,
-    iconColor: "text-white",
-    bgColor: "bg-green-400",
-  },
-  {
-    name: "Sad",
-    value: "sad",
-    icon: FaceFrownIcon,
-    iconColor: "text-white",
-    bgColor: "bg-yellow-400",
-  },
-  {
-    name: "Thumbsy",
-    value: "thumbsy",
-    icon: HandThumbUpIcon,
-    iconColor: "text-white",
-    bgColor: "bg-blue-500",
-  },
-  {
-    name: "I feel nothing",
-    value: null,
-    icon: XMarkIcon,
-    iconColor: "text-gray-400",
-    bgColor: "bg-transparent",
-  },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// import { Fragment, useState } from "react";
+import { PaperClipIcon } from "@heroicons/react/20/solid";
+// import { Listbox, Transition } from "@headlessui/react";
 
 export default function SwitchPost() {
   //   const [selected, setSelected] = useState(moods[5]);
@@ -196,7 +139,7 @@ export default function SwitchPost() {
                 type="submit"
                 className="inline-flex items-center rounded-md bg-Primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Post
+                Switch!
               </button>
             </div>
           </div>
