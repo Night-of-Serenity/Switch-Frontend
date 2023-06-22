@@ -14,12 +14,12 @@ import FriendProfilePage from "./pages/FriendProfilePage";
 function App() {
   return (
     <>
-      {/* <GuestPage /> */}
+      <GuestPage />
       {/* <Home /> */}
       {/* <ExplorePage /> */}
       {/* <SettingPage /> */}
       {/* <MessagePage /> */}
-      <ProfilePage />
+      {/* <ProfilePage /> */}
       {/* <FriendProfilePage /> */}
     </>
   );
