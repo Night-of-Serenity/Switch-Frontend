@@ -6,13 +6,24 @@ import SuggestFollow from "../components/common/SuggestFollow";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { getAccessToken } from "../utils/localstroge";
+
 function Footer() {
     const [user, setUser] = useState(null);
 
     const values = useAuth();
-    const { onSubmitLogin } = values;
+    const { onSubmitLogin, user: myUser } = values;
     const { onSubmitRegister } = values;
 
+    const handleSubmit = async () => {
+        await onSubmitRegister(user);
+        // const token = getAccessToken()
+
+        if (!myUser) return;
+        window.my_modal_2.showModal();
+    };
+
+    console.log(user);
     return (
         <div>
             <footer className="footer flex justify-between  p-4 bg-Primary text-neutral-content">
@@ -289,6 +300,19 @@ function Footer() {
                                                                     autoComplete="username"
                                                                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                                                     placeholder="Username"
+                                                                    onChange={(
+                                                                        e
+                                                                    ) =>
+                                                                        setUser(
+                                                                            {
+                                                                                ...user,
+                                                                                username:
+                                                                                    e
+                                                                                        .target
+                                                                                        .value,
+                                                                            }
+                                                                        )
+                                                                    }
                                                                 />
                                                             </div>
 
@@ -428,9 +452,7 @@ function Footer() {
                                                                     className="flex w-full mt-8 justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                                                     // onClick={() => window.my_modal_2.showModal()}
                                                                     onClick={() =>
-                                                                        onSubmitRegister(
-                                                                            user
-                                                                        )
+                                                                        handleSubmit()
                                                                     }
                                                                 >
                                                                     Sign up
