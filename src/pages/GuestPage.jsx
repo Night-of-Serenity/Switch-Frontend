@@ -66,7 +66,10 @@ function GuestPage() {
                             Sign up now to get your own personalized timeline!
                         </h1>
                         <div className="flex  gap-4 flex-col justify-center items-center p-4 ">
-                            <button className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            <button
+                                id="signInDiv"
+                                className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
                                 <FcGoogle className="text-2xl mr-2" />
                                 Sign up with Google
                             </button>
@@ -74,7 +77,7 @@ function GuestPage() {
                                 <FaFacebook className="text-2xl mr-2 text-blue-600" />
                                 Sign up with Facebook
                             </button>
-                            <div id="signInDiv"></div>
+                            {/* <div id="signInDiv"></div> */}
                             <button
                                 className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-bold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 onClick={() =>
