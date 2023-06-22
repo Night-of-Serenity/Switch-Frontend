@@ -7,59 +7,64 @@ import ProfilePage from "../pages/ProfilePage";
 import NotificationPage from "../pages/NotificationPage";
 import SettingPage from "../pages/SettingPage";
 import ProtectedRoute from "../pages/ProtectRoute";
+import RedirectIfAuthenticate from "../pages/RedirectIfAuthenticate";
 
 export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/guest",
-      element: <GuestPage />,
+      element: (
+        <RedirectIfAuthenticate>
+      <GuestPage />
+      </RedirectIfAuthenticate>
+      ),
     },
     {
       path: "/",
       element: (
-        // <ProtectedRoute>
+        <ProtectedRoute>
         <HomePage />
-      // </ProtectedRoute>
+       </ProtectedRoute>
       ),
     },
     {
       path: "/explore",
       element: (
-      // <ProtectedRoute>
+      <ProtectedRoute>
         <ExplorePage />
-      // </ProtectedRoute>
+       </ProtectedRoute>
       ),
     },
     {
       path: "/notification",
       element: (
-        // <ProtectedRoute>
+         <ProtectedRoute>
         <NotificationPage />
-      // </ProtectedRoute>
+       </ProtectedRoute>
       ),
     },
     {
       path: "/message",
       element: (
-        // <ProtectedRoute>
+         <ProtectedRoute>
         <MessagePage />
-      // </ProtectedRoute>
+       </ProtectedRoute>
       ),
     },
     {
       path: "/profile",
       element: (
-        // <ProtectedRoute>
+         <ProtectedRoute>
         <ProfilePage />
-      // </ProtectedRoute>
+       </ProtectedRoute>
       ),
     },
     {
       path: "/setting",
       element: (
-        // <ProtectedRoute>
+         <ProtectedRoute>
         <SettingPage />
-      // </ProtectedRoute>
+       </ProtectedRoute>
       ),
     },
   ]);

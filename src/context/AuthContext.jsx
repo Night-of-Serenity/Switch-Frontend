@@ -1,20 +1,24 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import * as authService from "../api/auth-api";
-import { setAccessToken } from "../utils/localstroge";
+import { setAccessToken,removeAccessToken } from "../utils/localstroge";
 import axios from "axios";
+
+
 
 const AuthContext = createContext(null);
 
 function AuthContextProvider({ children }) {
     const [user, setUser] = useState(null);
 
-    //   useEffect(() => {
-    //     const run = async () => {
-    //       const res = await authService.fetchMe();
-    //       setUser(res.data.user);
-    //     };
-    //     run();
-    //   }, []);
+   
+ 
+      useEffect(() => {
+        const run = async () => {
+          const res = await authService.fetchMe();
+          setUser(res.data.user);
+        };
+        run();
+      }, []);
 
     // const onChangeRegister = (field, value) => {
     //   const cloneUser = { ...newUser };
@@ -72,8 +76,7 @@ function AuthContextProvider({ children }) {
 
         const token = res.data.accessToken;
         setAccessToken(token);
-
-        // fetchMe();
+        fetchMe();
     };
 
     const glogin = async (credential) => {
@@ -81,10 +84,15 @@ function AuthContextProvider({ children }) {
             token: credential,
         });
         addAccessToken(res.data.token);
-        // fetchMe(res.data.token)
+        fetchMe()
     };
 
-    const values = { user, glogin, onSubmitRegister, onSubmitLogin };
+    const logout = () => {
+      removeAccessToken('token')
+      setUser(null)
+    }
+
+    const values = { user, glogin,logout, onSubmitRegister, onSubmitLogin };
 
     return (
         <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

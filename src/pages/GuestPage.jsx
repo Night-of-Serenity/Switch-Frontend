@@ -16,11 +16,6 @@ function GuestPage() {
     const { glogin } = useAuth();
 
     function hdlCallbackResponse(response) {
-        // console.log("Encoded JWT ID token: " + response.credential)
-        // var userObject = jwt_decode(response.credential)
-        // console.log(userObject)
-        // setUser(userObject)
-        // document.getElementById("signInDiv").hidden = true
         console.log(response.credential);
         glogin(response.credential);
     }

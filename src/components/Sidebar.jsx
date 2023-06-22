@@ -5,13 +5,18 @@ import { CgProfile } from "react-icons/cg";
 import { FiLogOut, FiSettings } from "react-icons/fi";
 import SwitchPost from "../Common/SwitchPost";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 
 function Sidebar() {
 
+  const { logout } = useAuth();
 
-
+  const hdlLogout = () => {
+    logout();
+    navigate("/guest");
+  };
   return (
     <div className="h-full border-r-2 ">
       <div className="flex flex-col h-full p-3 w-full items-center dark:bg-gray-900 dark:text-gray-100">
@@ -54,11 +59,7 @@ function Sidebar() {
                 </Link>
               </li>
               {/* <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-<<<<<<< HEAD
                 <Link to = '/notification'
-=======
-                <a
->>>>>>> ui
                   rel="noopener noreferrer"
                  
                   className="flex items-center p-2 space-x-3 rounded-md"
@@ -66,11 +67,7 @@ function Sidebar() {
                   <BsBell className="text-xl" />
 
                   <span>Notification</span>
-<<<<<<< HEAD
                 </Link>
-=======
-                </a>
->>>>>>> ui
               </li> */}
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                 <Link to = '/message'
@@ -175,9 +172,9 @@ function Sidebar() {
               <h2 className="text-lg font-semibold cursor-pointer ">
                 Leroy Jenkins
               </h2>
-              <a className="text-sm font-semibold flex flex-row justify-end hover:font-extrabold cursor-pointer">
+              <div className="text-sm font-semibold flex flex-row justify-end hover:font-extrabold cursor-pointer" onClick={hdlLogout}>
                 Log out <FiLogOut className="text-lg ml-1 pt-1" />
-              </a>
+              </div>
             </div>
           </div>
         </div>

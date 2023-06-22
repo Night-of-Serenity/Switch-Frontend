@@ -3,8 +3,11 @@ import Sidebar from "../components/Sidebar";
 import Content from "../components/common/Content";
 import TrendsForYou from "../components/TrendsForYou";
 import Search from "../Common/Search";
+import { useAuth } from "../context/AuthContext";
 
 function HomePage() {
+
+  
   return (
     <div className="h-screen  flex flex-col justify-between">
       <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">

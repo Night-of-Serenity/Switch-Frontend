@@ -6,13 +6,21 @@ import SuggestFollow from "../components/common/SuggestFollow";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
+
 function Footer() {
   
   const [user, setUser] = useState(null);
 
+  const navigate = useNavigate()
+
   const values = useAuth();
+
+
   const { onSubmitLogin } = values;
   const { onSubmitRegister } = values;
+
+
 
 
   return (
@@ -140,6 +148,8 @@ function Footer() {
                         type="submit"
                         className="flex w-full justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         // onClick={() => onSubmitLogin(user)}
+                       
+                        
                       >
                         Sign in
                       </button>
