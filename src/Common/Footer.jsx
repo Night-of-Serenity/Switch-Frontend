@@ -7,12 +7,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 function Footer() {
-  const navigate = useNavigate();
+  
   const [user, setUser] = useState(null);
 
   const values = useAuth();
   const { onSubmitLogin } = values;
-  // console.log(user)
+  const { onSubmitRegister } = values;
+
 
   return (
     <div>
@@ -160,9 +161,9 @@ function Footer() {
 
               {/* ****************************************** */}
             </form>
-            <div method="dialog" className="modal-backdrop">
+            <form method="dialog" className="modal-backdrop">
               <button>close</button>
-            </div>
+            </form>
           </dialog>
           {/* ***************sign up  */}
 
@@ -230,6 +231,7 @@ function Footer() {
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                    onChange={(e) => setUser({ ...user, email: e.target.value })}
                                   />
                                 </div>
                               </div>
@@ -238,17 +240,18 @@ function Footer() {
                                   htmlFor="email"
                                   className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                  Username @
+                                  Username 
                                 </label>
                                 <div className="mt-2">
                                   <input
-                                    id="email"
-                                    name="email"
+                                    id="username"
+                                    name="username"
                                     type="text"
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
-                                  />
+                                    onChange={(e) => setUser({ ...user, username: e.target.value })}
+                                 />
                                 </div>
                               </div>
 
@@ -269,7 +272,8 @@ function Footer() {
                                     autoComplete="current-password"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
-                                  />
+                                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                 />
                                 </div>
                               </div>
                               <div>
@@ -283,13 +287,14 @@ function Footer() {
                                 </div>
                                 <div className="mt-2">
                                   <input
-                                    id="password"
-                                    name="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
                                     type="password"
                                     autoComplete="current-password"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
-                                  />
+                                    onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
+                                 />
                                 </div>
                                 <div>
                                   <label
@@ -300,13 +305,14 @@ function Footer() {
                                   </label>
                                   <div className="mt-2">
                                     <input
-                                      id="email"
-                                      name="email"
+                                      id="firstName"
+                                      name="firstName"
                                       type="text"
                                       autoComplete="email"
                                       required
                                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
-                                    />
+                                      onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+                                   />
                                   </div>
                                 </div>
                                 <div>
@@ -318,13 +324,14 @@ function Footer() {
                                   </label>
                                   <div className="mt-2">
                                     <input
-                                      id="email"
-                                      name="email"
+                                      id="lastName"
+                                      name="lastName"
                                       type="text"
                                       autoComplete="email"
                                       required
                                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
-                                    />
+                                      onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                                   />
                                   </div>
                                 </div>
                               </div>
@@ -333,7 +340,8 @@ function Footer() {
                                 {/* Open the modal using ID.showModal() method */}
                                 <button
                                   className="flex w-full mt-8 justify-center rounded-md bg-Primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                  onClick={() => window.my_modal_2.showModal()}
+                                  // onClick={() => window.my_modal_2.showModal()}
+                                  onClick={() => onSubmitRegister(user)}
                                 >
                                   Sign up
                                 </button>
@@ -436,21 +444,21 @@ function Footer() {
                                       </div>
                                     </div>
                                   </div>
-                                  <div
+                                  <form
                                     method="dialog"
                                     className="modal-backdrop"
                                   >
                                     <button>close</button>
-                                  </div>
+                                  </form>
                                 </dialog>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div method="dialog" className="modal-backdrop">
+                      <form method="dialog" className="modal-backdrop">
                         <button>close</button>
-                      </div>
+                      </form>
                     </dialog>
                   </div>
                 </div>
@@ -466,9 +474,9 @@ function Footer() {
                 </div>
               </p>
             </form>
-            <div method="dialog" className="modal-backdrop">
+            <form method="dialog" className="modal-backdrop">
               <button>close</button>
-            </div>
+            </form>
           </dialog>
         </div>
       </footer>

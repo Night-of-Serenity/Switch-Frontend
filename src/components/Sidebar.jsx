@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 
 
-
 function Sidebar() {
+
 
 
   return (
@@ -53,7 +53,7 @@ function Sidebar() {
                   <span>Explore</span>
                 </Link>
               </li>
-              <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
+              {/* <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                 <Link to = '/notification'
                   rel="noopener noreferrer"
                  
@@ -63,7 +63,7 @@ function Sidebar() {
 
                   <span>Notification</span>
                 </Link>
-              </li>
+              </li> */}
               <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                 <Link to = '/message'
                   rel="noopener noreferrer"
@@ -138,9 +138,9 @@ function Sidebar() {
             />
             <div>
               <h2 className="text-lg font-semibold ">Leroy Jenkins</h2>
-              <a className="text-sm font-semibold flex flex-row justify-end cursor-pointer">
+              <div className="text-sm font-semibold flex flex-row justify-end cursor-pointer" >
                 Log out <FiLogOut className="text-lg ml-1 pt-1" />
-              </a>
+              </div>
             </div>
           </div>
         </div>

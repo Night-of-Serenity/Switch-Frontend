@@ -1,83 +1,98 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import * as authService from '../api/auth-api'
+import * as authService from "../api/auth-api";
 import { setAccessToken } from "../utils/localstroge";
-
-
+import axios from "axios";
 
 const AuthContext = createContext(null);
 
 function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
-  
-//   useEffect(() => {
-//     const run = async () => {
-//       const res = await authService.fetchMe();
-//       setUser(res.data.user);
-//     };
-//     run();
-//   }, []);
+    //   useEffect(() => {
+    //     const run = async () => {
+    //       const res = await authService.fetchMe();
+    //       setUser(res.data.user);
+    //     };
+    //     run();
+    //   }, []);
 
-  // const onChangeRegister = (field, value) => {
-  //   const cloneUser = { ...newUser };
-  //   cloneUser[field] = value;
-  //   setNewUser(cloneUser);
-  // };
+    // const onChangeRegister = (field, value) => {
+    //   const cloneUser = { ...newUser };
+    //   cloneUser[field] = value;
+    //   setNewUser(cloneUser);
+    // };
 
-  const fetchMe = async () => {
-    const res = await authService.fetchMe();
-    setUser(res.data.user);
-  };
+    const fetchMe = async () => {
+        const res = await authService.fetchMe();
+        setUser(res.data.user);
+    };
 
-  const onSubmitRegister = async (newUser) => {
-    const { email, password, confirmPassword,firstName, lastName } =
-      newUser;
+    const onSubmitRegister = async (newUser) => {
+        const {
+            email,
+            password,
+            username,
+            confirmPassword,
+            firstName,
+            lastName,
+        } = newUser;
 
-    if (
-     
-      !email ||
-      !password ||
-      !confirmPassword ||
-      !firstName ||
-      !lastName 
-    ) {
-      return;
-    }
+        if (
+            !email ||
+            !password ||
+            !username ||
+            !confirmPassword ||
+            !firstName ||
+            !lastName
+        ) {
+            return;
+        }
 
-    if (password !== confirmPassword) {
-      return;
-    }
+        if (password !== confirmPassword) {
+            return;
+        }
 
-    const res = await authService.register(newUser);
+        const res = await authService.register(newUser);
 
-    const token = res.data.accessToken;
-    setAccessToken(token);
+        const token = res.data.accessToken;
+        setAccessToken(token);
 
-    fetchMe();
-  };
+        // fetchMe();
+    };
 
-  const onSubmitLogin = async (user,e) => {
-    e.preventDefault()
-    console.log(user)
-    const { email, password } = user;
-    
-    if (!email || !password) {
-      return;
-    }
-    const res = await authService.login(user);
+    const onSubmitLogin = async (user, e) => {
+        e.preventDefault();
+        console.log(user);
+        const { email, password } = user;
 
-    const token = res.data.accessToken;
-    setAccessToken(token);
-    // fetchMe();
-  };
+        if (!email || !password) {
+            return;
+        }
+        const res = await authService.login(user);
 
-  const values = { user, onSubmitRegister, onSubmitLogin };
+        const token = res.data.accessToken;
+        setAccessToken(token);
 
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+        // fetchMe();
+    };
+
+    const glogin = async (credential) => {
+        const res = await axios.post(`http://localhost:8000/auth/logingoogle`, {
+            token: credential,
+        });
+        addAccessToken(res.data.token);
+        // fetchMe(res.data.token)
+    };
+
+    const values = { user, glogin, onSubmitRegister, onSubmitLogin };
+
+    return (
+        <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
+    );
 }
 
 export default AuthContextProvider;
 
 export const useAuth = () => {
-    return useContext(AuthContext)
-}
+    return useContext(AuthContext);
+};
