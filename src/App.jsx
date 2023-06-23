@@ -1,5 +1,6 @@
 import "./App.css";
 import AuthContextProvider from "./context/AuthContext";
+import FeedContextProvider from "./context/FeedContext";
 
 import Router from "./routes/Router";
 
@@ -7,7 +8,9 @@ function App() {
     return (
         <>
             <AuthContextProvider>
-                <Router />
+                <FeedContextProvider>
+                    <Router />
+                </FeedContextProvider>
             </AuthContextProvider>
         </>
     );

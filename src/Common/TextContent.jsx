@@ -5,16 +5,12 @@ import { SlOptions } from "react-icons/sl";
 
 import { useNavigate } from "react-router-dom";
 
-function TextContent() {
+function TextContent({ feed }) {
     const navigate = useNavigate();
     return (
         <>
             <div>
-                <h2 className="text-lg font-light ">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Corrupti vero nostrum, quia explicabo voluptatem saepe
-                    dolorem tempora quo, sequi minus obcaecati.
-                </h2>
+                <h2 className="text-lg font-light ">{feed.textcontent}</h2>
             </div>
             <div className="flex gap-20 flex-row mt-2">
                 <FaRegComment
