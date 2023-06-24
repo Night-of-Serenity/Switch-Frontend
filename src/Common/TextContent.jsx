@@ -11,6 +11,9 @@ function TextContent({ feed }) {
         <>
             <div>
                 <h2 className="text-lg font-light ">{feed.textcontent}</h2>
+                {feed.imgUrl ? (
+                    <img className="h-80 p-2" src={feed.imgUrl} />
+                ) : null}
             </div>
             <div className="flex gap-20 flex-row mt-2">
                 <FaRegComment
