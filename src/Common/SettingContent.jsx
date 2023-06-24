@@ -18,7 +18,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
         e.preventDefault();
         const res = await userService.editProfile(user);
         setUser(res.data.user);
-        console.log("testttt");
+        console.log("testttt"); 
         navigate("/profile");
     };
 
