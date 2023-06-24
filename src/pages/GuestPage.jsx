@@ -20,19 +20,34 @@ function GuestPage() {
         glogin(response.credential);
     }
 
-    useEffect(() => {
-        /* global google */
-        google.accounts.id.initialize({
-            client_id:
-                "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
-            callback: hdlCallbackResponse,
-        });
+    // useEffect(() => {
+    //     /* global google */
+    //     google.accounts.id.initialize({
+    //         client_id:
+    //             "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
+    //         callback: hdlCallbackResponse,
+    //     });
 
-        google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-            theme: "outline",
-            size: "large",
-        });
-    }, []);
+    //     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+    //         theme: "outline",
+    //         size: "large",
+    //     });
+    // }, []);
+
+    useEffect(()=> {
+        /* global google */
+    
+        window.google?.accounts.id.initialize({
+          client_id: "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
+          callback: hdlCallbackResponse
+        })
+    
+        window.google?.accounts.id.renderButton(
+          document.getElementById("signInDiv"),
+          { theme: "outline", size: "large"}
+        )
+    
+      },[])
 
     return (
         <div className="h-screen  flex flex-col justify-between ">

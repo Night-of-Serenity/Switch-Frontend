@@ -1,6 +1,13 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { useRef,useState } from "react";
 
-export default function SettingContent() {
+
+export default function SettingContent({profileImageUrl,username}) {
+  const inputRef = useRef()
+
+  const [file,setFile] = useState("")
+
+
   return (
     <form>
       <div className="space-y-6 p-8 ">
@@ -21,16 +28,23 @@ export default function SettingContent() {
               Photo
             </label>
             <div className="mt-2 flex items-center gap-x-3">
-              <UserCircleIcon
+              {/* <UserCircleIcon
                 className="h-12 w-12 text-gray-300"
                 aria-hidden="true"
-              />
-              <button
+              /> */}
+              {profileImageUrl}
+
+               <input type="file" className="hidden" ref={inputRef} onChange={e => {
+                console.log(e.target.value)
+                setFile(e.target.files[0])
+               
+              }}/>
+              <button onClick={() => inputRef.current.click()}
                 type="button"
                 className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
               >
                 Change
-              </button>
+              </button>  
             </div>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -46,14 +60,16 @@ export default function SettingContent() {
                   <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
                     @
                   </span>
-                  <input
+                  {/* <input
                     type="text"
                     name="username"
                     id="username"
                     autoComplete="username"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Username"
-                  />
+                    
+                  /> */}
+                  {username}
                 </div>
               </div>
             </div>
@@ -105,6 +121,7 @@ export default function SettingContent() {
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
                 />
+                
               </div>
             </div>
             <div className="w-2/5">
