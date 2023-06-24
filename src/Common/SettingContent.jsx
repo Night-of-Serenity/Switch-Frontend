@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 
-export default function SettingContent({ profileImageUrl, username, bio }) {
+export default function SettingContent({ profileImageUrl,username, bio }) {
     
     const inputRef = useRef();
     const [user, setUser] = useState(null);
@@ -16,13 +16,17 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
 
     const hdlSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('profileImageUrl', file[0]);
         const res = await userService.editProfile(user);
         setUser(res.data.user);
         console.log("testttt"); 
         navigate("/profile");
     };
 
+
     return (
+
         <form onSubmit={hdlSubmit}>
             <div className="space-y-6 p-8 ">
                 <div className="border-b border-gray-900/10 pb-12">
@@ -49,6 +53,9 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                 className="h-28 w-28 text-gray-300"
                 aria-hidden="true"
               />)  }
+
+              
+
 
                             <input
                                 type="file"
