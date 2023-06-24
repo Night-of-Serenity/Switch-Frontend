@@ -5,6 +5,7 @@ import SuggestContent from "../Common/SuggestContent";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
+
 function SettingPage() {
     const { user } = useAuth();
 
@@ -21,6 +22,7 @@ function SettingPage() {
                             key={user.id}
                             profileImageUrl={user.profileImageUrl}
                             username={user.username}
+                            bio={user.bio}
                         />
                     }
                 </div>

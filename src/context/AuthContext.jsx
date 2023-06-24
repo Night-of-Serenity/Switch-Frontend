@@ -16,12 +16,6 @@ function AuthContextProvider({ children }) {
         run();
     }, []);
 
-    // const onChangeRegister = (field, value) => {
-    //   const cloneUser = { ...newUser };
-    //   cloneUser[field] = value;
-    //   setNewUser(cloneUser);
-    // };
-
     const fetchMe = async () => {
         const res = await authService.fetchMe();
         setUser(res.data.user);

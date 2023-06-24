@@ -10,6 +10,7 @@ import { useAuth } from "../context/AuthContext";
 
 
 function Sidebar() {
+  const {user} = useAuth()
     
   const { logout } = useAuth();
 
@@ -172,13 +173,13 @@ function Sidebar() {
                 <div className="flex justify-self-end h-full">
                     <div className="flex  p-2 mt-24 space-x-4 justify-end items-end  ">
                         <img
-                            src="https://source.unsplash.com/100x100/?portrait"
+                            src={user.profileImageUrl}
                             alt=""
                             className="w-12 h-12 rounded-full dark:bg-gray-500 cursor-pointer"
                         />
                         <div>
                             <h2 className="text-lg font-semibold cursor-pointer ">
-                                Leroy Jenkins
+                            {user.username}
                             </h2>
                             <a className="text-sm font-semibold flex flex-row justify-end hover:font-extrabold cursor-pointer" onClick={hdlLogout}>
                                 Log out
