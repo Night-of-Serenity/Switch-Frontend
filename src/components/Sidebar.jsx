@@ -6,58 +6,70 @@ import { FiLogOut, FiSettings } from "react-icons/fi";
 import SwitchPost from "../Common/SwitchPost";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
-
+import { useFeed } from "../context/FeedContext";
 
 function Sidebar() {
-    
-  const { logout } = useAuth();
+    const { logout } = useAuth();
+    const { post, setPost, file, setFile } = useFeed();
 
-  const hdlLogout = () => {
-    logout();
-  };
-  return (
-    <div className="h-full border-r-2 ">
-      <div className="flex flex-col h-full p-3 w-full items-center dark:bg-gray-900 dark:text-gray-100">
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <LogoSideBar />
-          </div>
+    const hdlLogout = () => {
+        logout();
+    };
 
-          <div className="flex-1 font-semibold">
-            <ul className="pt-2 pb-4  text-lg ">
-              <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <Link to='/'
-                  rel="noopener noreferrer"
-                  className="flex items-center p-2 space-x-3 rounded-md"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="w-5 h-5 fill-current dark:text-gray-400"
-                  >
-                    <path d="M469.666,216.45,271.078,33.749a34,34,0,0,0-47.062.98L41.373,217.373,32,226.745V496H208V328h96V496H480V225.958ZM248.038,56.771c.282,0,.108.061-.013.18C247.9,56.832,247.756,56.771,248.038,56.771ZM448,464H336V328a32,32,0,0,0-32-32H208a32,32,0,0,0-32,32V464H64V240L248.038,57.356c.013-.012.014-.023.024-.035L448,240Z"></path>
-                  </svg>
-                  <span>Home</span>
-                </Link>
-              </li>
-              <li className="text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <Link to = '/explore'
-                  rel="noopener noreferrer"
-                  className="flex items-center p-2 space-x-3 rounded-md"
-                
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="w-5 h-5 fill-current dark:text-gray-400"
-                  >
-                    <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-                  </svg>
-                  <span>Explore</span>
-                </Link>
-              </li>
-              {/* <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
+    const handleCancelPost = () => {
+        setPost("");
+        setFile(null);
+    };
+
+    const handleCloseModal = () => {
+        if (post || file) {
+            window.my_modal_Delete.showModal();
+        }
+    };
+
+    return (
+        <div className="h-full border-r-2 ">
+            <div className="flex flex-col h-full p-3 w-full items-center dark:bg-gray-900 dark:text-gray-100">
+                <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                        <LogoSideBar />
+                    </div>
+
+                    <div className="flex-1 font-semibold">
+                        <ul className="pt-2 pb-4  text-lg ">
+                            <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
+                                <Link
+                                    to="/"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center p-2 space-x-3 rounded-md"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 512 512"
+                                        className="w-5 h-5 fill-current dark:text-gray-400"
+                                    >
+                                        <path d="M469.666,216.45,271.078,33.749a34,34,0,0,0-47.062.98L41.373,217.373,32,226.745V496H208V328h96V496H480V225.958ZM248.038,56.771c.282,0,.108.061-.013.18C247.9,56.832,247.756,56.771,248.038,56.771ZM448,464H336V328a32,32,0,0,0-32-32H208a32,32,0,0,0-32,32V464H64V240L248.038,57.356c.013-.012.014-.023.024-.035L448,240Z"></path>
+                                    </svg>
+                                    <span>Home</span>
+                                </Link>
+                            </li>
+                            <li className="text-gray-700 hover:text-Primary hover:bg-gray-50">
+                                <Link
+                                    to="/explore"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center p-2 space-x-3 rounded-md"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 512 512"
+                                        className="w-5 h-5 fill-current dark:text-gray-400"
+                                    >
+                                        <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
+                                    </svg>
+                                    <span>Explore</span>
+                                </Link>
+                            </li>
+                            {/* <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                 <Link to = '/notification'
                   rel="noopener noreferrer"
                  
@@ -128,9 +140,7 @@ function Sidebar() {
                                 {/* Open the modal using ID.showModal() method */}
                                 <button
                                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                                    onClick={() =>
-                                        window.my_modal_Delete.showModal()
-                                    }
+                                    onClick={() => handleCloseModal()}
                                 >
                                     X
                                 </button>
@@ -146,11 +156,16 @@ function Sidebar() {
                                             you, and from Switch search results.
                                         </p>
                                         <div className="flex justify-end gap-2">
-                                            <button className="bg-red-500 hover:font-extrabold rounded-md p-1 px-2 ">
+                                            <button
+                                                className="bg-red-500 hover:font-extrabold rounded-md p-1 px-2 "
+                                                onClick={() =>
+                                                    handleCancelPost()
+                                                }
+                                            >
                                                 Delete
                                             </button>
                                             <button className="bg-slate-200 hover:font-extrabold rounded-md p-1 px-2">
-                                                Cancel
+                                                Save draft
                                             </button>
                                         </div>
                                     </form>
@@ -180,7 +195,10 @@ function Sidebar() {
                             <h2 className="text-lg font-semibold cursor-pointer ">
                                 Leroy Jenkins
                             </h2>
-                            <a className="text-sm font-semibold flex flex-row justify-end hover:font-extrabold cursor-pointer" onClick={hdlLogout}>
+                            <a
+                                className="text-sm font-semibold flex flex-row justify-end hover:font-extrabold cursor-pointer"
+                                onClick={hdlLogout}
+                            >
                                 Log out
                                 <FiLogOut className="text-lg ml-1 pt-1" />
                             </a>
