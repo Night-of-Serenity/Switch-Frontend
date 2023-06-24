@@ -6,6 +6,7 @@ const FeedContext = createContext(null);
 function FeedContextProvider({ children }) {
     const [feeds, setFeeds] = useState([]);
 
+    const [trends, setTrends] = useState([]);
     console.log(feeds);
 
     const fetchAllFeed = async () => {
@@ -13,7 +14,12 @@ function FeedContextProvider({ children }) {
         setFeeds(res.data);
     };
 
-    const values = { fetchAllFeed, feeds };
+    const fetchTrends = async () => {
+        const res = await feedService.fetchTrends();
+        setTrends(res.data);
+    };
+
+    const values = { fetchAllFeed, feeds, fetchTrends, trends };
 
     return (
         <FeedContext.Provider value={values}>{children}</FeedContext.Provider>
