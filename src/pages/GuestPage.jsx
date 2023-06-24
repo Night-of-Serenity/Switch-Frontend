@@ -36,7 +36,7 @@ function GuestPage() {
 
     return (
         <div className="h-screen  flex flex-col justify-between ">
-            <div className="grid grid-cols-4 overflow-y-scroll">
+            <div className="grid grid-cols-4 overflow-y-scroll h-full">
                 <div>
                     {/* <Sidebar /> */}
                     <SideBarGuest />

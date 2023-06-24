@@ -29,7 +29,7 @@ function HomePage() {
                         {feeds.map((el) => (
                             <Content feed={el} />
                         ))}
-                        x
+
                         {/* <Content />
             <Content />
             <Content />
