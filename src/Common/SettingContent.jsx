@@ -5,7 +5,9 @@ import { fetchMe } from "../api/auth-api";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+
 export default function SettingContent({ profileImageUrl, username, bio }) {
+    
     const inputRef = useRef();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();

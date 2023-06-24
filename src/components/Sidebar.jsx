@@ -6,6 +6,7 @@ import { FiLogOut, FiSettings } from "react-icons/fi";
 import SwitchPost from "../Common/SwitchPost";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { UserCircleIcon } from "@heroicons/react/20/solid";
 
 
 
@@ -172,11 +173,11 @@ function Sidebar() {
                 </div>
                 <div className="flex justify-self-end h-full">
                     <div className="flex  p-2 mt-24 space-x-4 justify-end items-end  ">
-                        <img
-                            src={user.profileImageUrl}
-                            alt=""
-                            className="w-12 h-12 rounded-full dark:bg-gray-500 cursor-pointer"
-                        />
+              
+                        {user.profileImageUrl? (<img className=" w-12 h-12 rounded-full" src={user.profileImageUrl}/>):(<UserCircleIcon
+                className="h-12 w-12 text-gray-300"
+                aria-hidden="true"
+              />)  }
                         <div>
                             <h2 className="text-lg font-semibold cursor-pointer ">
                             {user.username}
