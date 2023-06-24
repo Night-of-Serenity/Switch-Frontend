@@ -1,22 +1,53 @@
 // import { Fragment, useState } from "react";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
+import { useState, useRef } from "react";
+
+import { useFeed } from "../context/FeedContext";
+
 // import { Listbox, Transition } from "@headlessui/react";
 
 export default function SwitchPost() {
     //   const [selected, setSelected] = useState(moods[5]);
 
+    // console.log(file);
+
+    // const values = usePost()
+    // const {createPost} = values
+
+    const { createPost, file, setFile, post, setPost } = useFeed();
+
+    const ref = useRef();
+
+    const handleOnClick = () => {
+        ref.current.click();
+    };
+
+    const onSubmitPost = () => {
+        const formData = new FormData();
+        if (file) {
+            formData.append("postImage", file[0]);
+        }
+        if (post) {
+            formData.append("textcontent", post);
+        }
+
+        createPost(formData);
+        setFile(null);
+        setPost("");
+    };
+
     return (
-        <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0 m-4">
+        <div className="flex items-start space-x-4 w-full">
+            <div className="flex-shrink-0  m-4">
                 <img
                     className="inline-block h-10 w-10 rounded-full"
                     src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
                 />
             </div>
-            <div className="min-w-0 flex-1">
-                <form action="#" className="relative my-4">
-                    <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-Primary">
+            <div className="min-w-0 w-full pr-2 ">
+                <div className="relative my-4 ">
+                    <div className="overflow-hidden rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-Primary">
                         <label htmlFor="comment" className="sr-only">
                             Add your Switch
                         </label>
@@ -27,7 +58,17 @@ export default function SwitchPost() {
                             className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="Add your Switch..."
                             defaultValue={""}
+                            value={post}
+                            onChange={(e) => setPost(e.target.value)}
                         />
+                        <div>
+                            {file ? (
+                                <img
+                                    className="p-4 "
+                                    src={URL.createObjectURL(file[0])}
+                                />
+                            ) : null}
+                        </div>
 
                         {/* Spacer element to match the height of the toolbar */}
                         <div className="py-2" aria-hidden="true">
@@ -44,6 +85,7 @@ export default function SwitchPost() {
                                 <button
                                     type="button"
                                     className="-m-2.5 flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
+                                    onClick={handleOnClick}
                                 >
                                     <PaperClipIcon
                                         className="h-5 w-5"
@@ -53,18 +95,24 @@ export default function SwitchPost() {
                                         Attach a file
                                     </span>
                                 </button>
+                                <input
+                                    type="file"
+                                    ref={ref}
+                                    className="hidden"
+                                    onChange={(e) => setFile(e.target.files)}
+                                />
                             </div>
                         </div>
                         <div className="flex-shrink-0">
                             <button
-                                type="submit"
                                 className="inline-flex items-center rounded-md bg-Primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                onClick={() => onSubmitPost()}
                             >
                                 Switch!
                             </button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );

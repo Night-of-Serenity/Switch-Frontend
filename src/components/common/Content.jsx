@@ -4,6 +4,8 @@ import { FcLike } from "react-icons/fc";
 import { SlOptions } from "react-icons/sl";
 import TextContent from "../../Common/TextContent";
 import EditContent from "../../Common/EditContent";
+import { useAuth } from "../../context/AuthContext";
+import { useLocation } from "react-router-dom";
 
 function Content({ feed }) {
     const [isEdit, setIsEdit] = useState(false);
@@ -16,12 +18,19 @@ function Content({ feed }) {
         dateString = date.toLocaleDateString();
     }
 
+    const location = useLocation();
+    console.log(location);
+
     return (
         <>
             {!feed ? null : (
                 <div className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2 ">
                     <img
-                        src="https://source.unsplash.com/100x100/?portrait"
+                        src={
+                            feed.User.profileImageUrl
+                                ? feed.User.profileImageUrl
+                                : "https://source.unsplash.com/100x100/?portrait"
+                        }
                         alt=""
                         className="w-12 h-12 rounded-full dark:bg-gray-500 cursor-pointer"
                     />
@@ -38,33 +47,39 @@ function Content({ feed }) {
                             </div>
                             <div className="justify-self-end">
                                 {/* **** */}
-                                <div className="dropdown dropdown-end px-4">
-                                    <label
-                                        tabIndex={0}
-                                        className="cursor-pointer "
-                                    >
-                                        <SlOptions />
-                                    </label>
-                                    <ul
-                                        tabIndex={0}
-                                        className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-20"
-                                    >
-                                        <li>
-                                            <a onClick={() => setIsEdit(true)}>
-                                                Edit
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                onClick={() =>
-                                                    window.my_modal_Delete.showModal()
-                                                }
-                                            >
-                                                Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {location.pathname === "/profile" && (
+                                    <div className="dropdown dropdown-end px-4">
+                                        <label
+                                            tabIndex={0}
+                                            className="cursor-pointer "
+                                        >
+                                            <SlOptions />
+                                        </label>
+                                        <ul
+                                            tabIndex={0}
+                                            className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-20"
+                                        >
+                                            <li>
+                                                <a
+                                                    onClick={() =>
+                                                        setIsEdit(true)
+                                                    }
+                                                >
+                                                    Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    onClick={() =>
+                                                        window.my_modal_Delete.showModal()
+                                                    }
+                                                >
+                                                    Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
                                 {/* **** */}
                             </div>
                         </div>
