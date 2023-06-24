@@ -1,13 +1,29 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
+import * as userService from "../api/user-api";
+import { fetchMe } from "../api/auth-api";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export default function SettingContent({ profileImageUrl, username }) {
+
+export default function SettingContent({ profileImageUrl, username, bio }) {
+    
     const inputRef = useRef();
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
 
     const [file, setFile] = useState("");
 
+    const hdlSubmit = async (e) => {
+        e.preventDefault();
+        const res = await userService.editProfile(user);
+        setUser(res.data.user);
+        console.log("testttt");
+        navigate("/profile");
+    };
+
     return (
-        <form>
+        <form onSubmit={hdlSubmit}>
             <div className="space-y-6 p-8 ">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-xl font-semibold leading-7 text-gray-900">
@@ -26,11 +42,13 @@ export default function SettingContent({ profileImageUrl, username }) {
                             Photo
                         </label>
                         <div className="mt-2 flex items-center gap-x-3">
-                            {/* <UserCircleIcon
-                className="h-12 w-12 text-gray-300"
+           
+
+
+                    {profileImageUrl? (<img className=" w-28 h-28 rounded-full" src={profileImageUrl}/>):(<UserCircleIcon
+                className="h-28 w-28 text-gray-300"
                 aria-hidden="true"
-              /> */}
-                            {profileImageUrl}
+              />)  }
 
                             <input
                                 type="file"
@@ -63,16 +81,21 @@ export default function SettingContent({ profileImageUrl, username }) {
                                     <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
                                         @
                                     </span>
-                                    {/* <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    autoComplete="username"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="Username"
-                    
-                  /> */}
-                                    {username}
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        id="username"
+                                        autoComplete="username"
+                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                        placeholder="Username"
+                                        defaultValue={username}
+                                        onChange={(e) =>
+                                            setUser({
+                                                ...user,
+                                                username: e.target.value,
+                                            })
+                                        }
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -90,7 +113,13 @@ export default function SettingContent({ profileImageUrl, username }) {
                                     name="about"
                                     rows={3}
                                     className="block w-3/5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
-                                    defaultValue={""}
+                                    defaultValue={bio}
+                                    onChange={(e) =>
+                                        setUser({
+                                            ...user,
+                                            bio: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                             <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -119,10 +148,16 @@ export default function SettingContent({ profileImageUrl, username }) {
                             <div className="mt-2">
                                 <input
                                     id="password"
-                                    name="password"
+                                    name="oldPassword"
                                     type="password"
                                     autoComplete="password"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                    onChange={(e) =>
+                                        setUser({
+                                            ...user,
+                                            oldPassword: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                         </div>
@@ -136,10 +171,16 @@ export default function SettingContent({ profileImageUrl, username }) {
                             <div className="mt-2">
                                 <input
                                     type="password"
-                                    name="password"
+                                    name="newPassword"
                                     id="password"
                                     autoComplete="password"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                    onChange={(e) =>
+                                        setUser({
+                                            ...user,
+                                            newPassword: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                         </div>
@@ -154,10 +195,16 @@ export default function SettingContent({ profileImageUrl, username }) {
                             <div className="mt-2">
                                 <input
                                     type="password"
-                                    name="password"
+                                    name="newPassword"
                                     id="password"
                                     autoComplete="password"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Primary sm:text-sm sm:leading-6"
+                                    onChange={(e) =>
+                                        setUser({
+                                            ...user,
+                                            newPassword: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                         </div>
