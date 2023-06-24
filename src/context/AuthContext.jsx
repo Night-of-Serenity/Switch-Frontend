@@ -6,7 +6,7 @@ import axios from "axios";
 const AuthContext = createContext(null);
 
 function AuthContextProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         const run = async () => {
@@ -47,7 +47,6 @@ function AuthContextProvider({ children }) {
         ) {
             return;
         }
-        console.log("testtttt");
         if (password !== confirmPassword) {
             return;
         }
@@ -77,10 +76,11 @@ function AuthContextProvider({ children }) {
     };
 
     const glogin = async (credential) => {
-        const res = await axios.post(`http://localhost:8000/auth/logingoogle`, {
+        const res = await axios.post("http://localhost:8000/auth/logingoogle", {
             token: credential,
         });
-        addAccessToken(res.data.token);
+        const token = res.data.accessToken;
+        setAccessToken(token);
         fetchMe();
     };
 

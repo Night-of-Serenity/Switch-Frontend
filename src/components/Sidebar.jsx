@@ -7,13 +7,14 @@ import SwitchPost from "../Common/SwitchPost";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+
+
 function Sidebar() {
     
   const { logout } = useAuth();
 
   const hdlLogout = () => {
     logout();
-    navigate("/guest");
   };
   return (
     <div className="h-full border-r-2 ">
