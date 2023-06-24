@@ -23,7 +23,7 @@ function Footer() {
         window.my_modal_2.showModal();
     };
 
-    console.log(user);
+    // console.log(user);
     return (
         <div>
             <footer className="footer flex justify-between  p-4 bg-Primary text-neutral-content">
