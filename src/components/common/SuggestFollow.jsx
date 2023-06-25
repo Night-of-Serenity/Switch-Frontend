@@ -1,6 +1,7 @@
 import React from "react";
 
 function SuggestFollow() {
+
   return (
     <div>
       <div className=" items-start p-2 mt-2 mb-2 space-x-4 justify-self-center flex ">
@@ -11,7 +12,7 @@ function SuggestFollow() {
         />
         <div className="w-64">
           <div className="flex flex-row">
-            <h2 className="text-sm font-semibold ">Leroy Jenkins &nbsp;</h2>
+            <h2 className="text-sm font-semibold ">Leroy Jenkins &nbsp;</h2>  
           </div>
           <div>
             <h2 className="text-sm font-light ">Lorem ipsum dolor, sit amet</h2>

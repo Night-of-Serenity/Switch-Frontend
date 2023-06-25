@@ -27,7 +27,7 @@ export default function SettingContent({ profileImageUrl,username, bio }) {
 
     return (
 
-        <form onSubmit={hdlSubmit}>
+        <form onSubmit={hdlSubmit} >
             <div className="space-y-6 p-8 ">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-xl font-semibold leading-7 text-gray-900">
@@ -54,8 +54,6 @@ export default function SettingContent({ profileImageUrl,username, bio }) {
                 aria-hidden="true"
               />)  }
 
-              
-
 
                             <input
                                 type="file"
@@ -65,6 +63,7 @@ export default function SettingContent({ profileImageUrl,username, bio }) {
                                     console.log(e.target.value);
                                     setFile(e.target.files[0]);
                                 }}
+                              
                             />
                             <button
                                 onClick={() => inputRef.current.click()}
