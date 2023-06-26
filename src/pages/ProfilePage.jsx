@@ -16,7 +16,7 @@ function ProfilePage() {
     const nevigate = useNavigate();
 
     let dateString = "";
-
+    console.log(profile);
     if (profile) {
         const date = new Date(user.createdAt);
         // {profile[0]?.User?.createdAt}

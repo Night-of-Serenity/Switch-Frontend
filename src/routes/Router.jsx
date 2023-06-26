@@ -71,7 +71,7 @@ export default function Router() {
             ),
         },
         {
-            path: "/profile",
+            path: "/profile/",
             element: (
                 <ProtectedRoute>
                     <ProfilePage />

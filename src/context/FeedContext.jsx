@@ -11,7 +11,8 @@ function FeedContextProvider({ children }) {
     const [postByTag, setPostByTag] = useState([]);
     const [trends, setTrends] = useState([]);
     const [profile, setProfile] = useState([]);
-    const [userSuggest,setUserSuggest] = useState([])
+    const [userSuggest, setUserSuggest] = useState([]);
+    // const [following,setFollowing] = useState()
 
     console.log(feeds);
 
@@ -23,7 +24,7 @@ function FeedContextProvider({ children }) {
     const fetchAllFeed = async () => {
         const res = await feedService.fetchAllFeed();
         setFeeds(res.data);
-        console.log(res.data)
+        console.log(res.data);
     };
 
     const fetchTrends = async () => {
@@ -48,6 +49,10 @@ function FeedContextProvider({ children }) {
         setUserSuggest(res.data);
     };
 
+    const updateFollowing = async (followingId) => {
+        await feedService.updateFollowing(followingId);
+    };
+
     const values = {
         fetchAllFeed,
         feeds,
@@ -63,7 +68,8 @@ function FeedContextProvider({ children }) {
         fetchUserProfile,
         profile,
         fetchUserSuggest,
-        userSuggest
+        userSuggest,
+        updateFollowing,
     };
 
     return (
