@@ -33,6 +33,7 @@ function FeedContextProvider({ children }) {
         await postService.createPost(input);
         fetchAllFeed();
         fetchTrends();
+        fetchUserProfile();
     };
 
     const fetchUserProfile = async () => {

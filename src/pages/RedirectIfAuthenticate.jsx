@@ -4,7 +4,7 @@ export default function RedirectIfAuthenticate({ children }) {
     const values = useAuth();
 
     const { user } = values;
-    console.log(Object.keys(user));
+    // console.log(Object.keys(user));
 
     const isAuthenticated = Object.keys(user).length > 0 ? true : false;
     // Object.keys(user).length > 0
