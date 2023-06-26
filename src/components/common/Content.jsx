@@ -15,7 +15,7 @@ function Content({ feed }) {
     if (feed) {
         const date = new Date(feed.updatedAt);
 
-        dateString = date.toLocaleDateString();
+        dateString = date.toLocaleString();
     }
 
     const location = useLocation();
