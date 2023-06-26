@@ -31,7 +31,7 @@ function ProfilePage() {
     // console.log(profile);
 
     useEffect(() => {
-        // fetchMe();
+        fetchMe();
         fetchUserProfile();
     }, []);
 
@@ -54,20 +54,19 @@ function ProfilePage() {
                     </div>
                     <div className="grid grid-cols-4 py-2 ">
                         <div className="flex justify-center">
-                            { user.profileImageUrl? (<img
-                                src={user.profileImageUrl}
-                                // src={profile[0]?.User?.profileImageUrl}
-                                alt=""
-                                className="w-36 h-36 rounded-full dark:bg-gray-500  "
-                            />):(<UserCircleIcon
-                                className="h-36 w-36 text-gray-300"
-                                aria-hidden="true"
-                            />)}
-                            
-
-
-                            
-                            
+                            {user.profileImageUrl ? (
+                                <img
+                                    src={user.profileImageUrl}
+                                    // src={profile[0]?.User?.profileImageUrl}
+                                    alt=""
+                                    className="w-36 h-36 rounded-full dark:bg-gray-500  "
+                                />
+                            ) : (
+                                <UserCircleIcon
+                                    className="h-36 w-36 text-gray-300"
+                                    aria-hidden="true"
+                                />
+                            )}
                         </div>
                         <div className="col-span-2">
                             <h1 className="text-xl font-semibold mx-1 text-slate-600">
