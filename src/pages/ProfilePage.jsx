@@ -7,15 +7,17 @@ import SuggestContent from "../Common/SuggestContent";
 import Search from "../Common/Search";
 import { useNavigate, Link } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
+import { useAuth } from "../context/AuthContext";
 
 function ProfilePage() {
     const { fetchUserProfile, profile } = useFeed();
+    const { fetchMe, user } = useAuth();
     const nevigate = useNavigate();
 
     let dateString = "";
 
     if (profile) {
-        const date = new Date(profile[0]?.User?.createdAt);
+        const date = new Date(user.createdAt);
         // {profile[0]?.User?.createdAt}
         dateString = date.toLocaleDateString();
     }
@@ -28,9 +30,11 @@ function ProfilePage() {
     // console.log(profile);
 
     useEffect(() => {
+        // fetchMe();
         fetchUserProfile();
     }, []);
 
+    console.log(profile);
     return (
         <div className="h-screen  flex flex-col justify-between">
             <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">
@@ -40,7 +44,8 @@ function ProfilePage() {
                 <div className=" col-span-2 h-screen overflow-scroll">
                     <div>
                         <h1 className="text-3xl font-bold py-4 pl-2 pb-1  border-b-2">
-                            @ {profile[0]?.User?.username}
+                            {/* @ {profile[0]?.User?.username} */}@{" "}
+                            {user.username}
                         </h1>
                     </div>
                     <div className="flex items-center bg-Primary opacity-90 justify-center border-b-2 pb-4">
@@ -49,14 +54,16 @@ function ProfilePage() {
                     <div className="grid grid-cols-4 py-2 ">
                         <div className="flex justify-center">
                             <img
-                                src={profile[0]?.User?.profileImageUrl}
+                                src={user.profileImageUrl}
+                                // src={profile[0]?.User?.profileImageUrl}
                                 alt=""
                                 className="w-36 h-36 rounded-full dark:bg-gray-500  "
                             />
                         </div>
                         <div className="col-span-2">
                             <h1 className="text-xl font-semibold mx-1 text-slate-600">
-                                @ {profile[0]?.User?.username}
+                                @ {user.username}
+                                {/* @ {profile[0]?.User?.username} */}
                             </h1>
                             <h1 className="flex flex-row text-slate-500">
                                 <BsFillCalendar2HeartFill className="text-sm my-1 mx-1" />

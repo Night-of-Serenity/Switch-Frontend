@@ -10,10 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import jwt_decode from "jwt-decode";
+import { useFeed } from "../context/FeedContext";
 
 function GuestPage() {
     const [user, setUser] = useState({});
     const { glogin } = useAuth();
+    const { fetchAllFeed, feeds } = useFeed();
 
     function hdlCallbackResponse(response) {
         console.log(response.credential);
@@ -34,20 +36,20 @@ function GuestPage() {
     //     });
     // }, []);
 
-    useEffect(()=> {
+    useEffect(() => {
         /* global google */
-    
+
         window.google?.accounts.id.initialize({
-          client_id: "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
-          callback: hdlCallbackResponse
-        })
-    
+            client_id:
+                "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
+            callback: hdlCallbackResponse,
+        });
+
         window.google?.accounts.id.renderButton(
-          document.getElementById("signInDiv"),
-          { theme: "outline", size: "large"}
-        )
-    
-      },[])
+            document.getElementById("signInDiv"),
+            { theme: "outline", size: "large" }
+        );
+    }, []);
 
     return (
         <div className="h-screen  flex flex-col justify-between ">
@@ -62,15 +64,11 @@ function GuestPage() {
                             Explore
                         </h1>
                     </div>
+
                     <Content />
-                    <Content />
-                    <Content />
-                    <Content />
-                    <Content />
-                    <Content />
-                    <Content />
-                    <Content />
-                    <Content />
+                    {/* {feeds.map((el) => (
+                        <Content feed={el} />
+                    ))} */}
                 </div>
                 <div className="mt-4 ">
                     <div className="border-2 m-6 rounded-xl p-4">
