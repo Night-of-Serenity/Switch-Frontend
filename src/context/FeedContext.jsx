@@ -8,9 +8,16 @@ function FeedContextProvider({ children }) {
     const [feeds, setFeeds] = useState([]);
     const [file, setFile] = useState(null);
     const [post, setPost] = useState("");
-
+    const [postByTag, setPostByTag] = useState([]);
     const [trends, setTrends] = useState([]);
+    const [profile, setProfile] = useState([]);
+
     console.log(feeds);
+
+    const fetchPostsByTag = async (tagId) => {
+        const res = await feedService.fetchPostsByTag(tagId);
+        setPostByTag(res.data);
+    };
 
     const fetchAllFeed = async () => {
         const res = await feedService.fetchAllFeed();
@@ -28,6 +35,11 @@ function FeedContextProvider({ children }) {
         fetchTrends();
     };
 
+    const fetchUserProfile = async () => {
+        const res = await feedService.fetchUserProfile();
+        setProfile(res.data);
+    };
+
     const values = {
         fetchAllFeed,
         feeds,
@@ -38,6 +50,10 @@ function FeedContextProvider({ children }) {
         setFile,
         post,
         setPost,
+        fetchPostsByTag,
+        postByTag,
+        fetchUserProfile,
+        profile,
     };
 
     return (
