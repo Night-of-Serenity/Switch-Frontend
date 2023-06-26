@@ -5,18 +5,29 @@ import { fetchMe } from "../api/auth-api";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-
 export default function SettingContent({ profileImageUrl, username, bio }) {
-    
     const inputRef = useRef();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+
+    const [showImage, setShowImage] = useState(null);
+    const [image, setImage] = useState(null);
 
     const [file, setFile] = useState("");
 
     const hdlSubmit = async (e) => {
         e.preventDefault();
-        const res = await userService.editProfile(user);
+ 
+
+        const formData = new FormData();
+        for (let key in user) {
+            formData.append(key, user[key]);
+        }
+        if (image) {
+            formData.append("profileImageUrl", image);
+        }
+
+        const res = await userService.editProfile(formData);
         setUser(res.data.user);
         console.log("testttt");
         navigate("/profile");
@@ -42,21 +53,28 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                             Photo
                         </label>
                         <div className="mt-2 flex items-center gap-x-3">
-           
-
-
-                    {profileImageUrl? (<img className=" w-28 h-28 rounded-full" src={profileImageUrl}/>):(<UserCircleIcon
-                className="h-28 w-28 text-gray-300"
-                aria-hidden="true"
-              />)  }
+                            {profileImageUrl ? (
+                                <img
+                                    className=" w-28 h-28 rounded-full"
+                                    src={profileImageUrl}
+                                />
+                            ) : (
+                                <UserCircleIcon
+                                    className="h-28 w-28 text-gray-300"
+                                    aria-hidden="true"
+                                />
+                            )}
 
                             <input
                                 type="file"
                                 className="hidden"
                                 ref={inputRef}
+                               
                                 onChange={(e) => {
-                                    console.log(e.target.value);
-                                    setFile(e.target.files[0]);
+                                    setImage(e.target.files[0]);
+                                    setShowImage(
+                                        URL.createObjectURL(e.target.files[0])
+                                    );
                                 }}
                             />
                             <button
@@ -67,6 +85,9 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                                 Change
                             </button>
                         </div>
+
+
+                      
                     </div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4">

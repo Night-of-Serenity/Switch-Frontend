@@ -8,6 +8,7 @@ import Search from "../Common/Search";
 import { useNavigate, Link } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import { useAuth } from "../context/AuthContext";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 function ProfilePage() {
     const { fetchUserProfile, profile } = useFeed();
@@ -53,12 +54,20 @@ function ProfilePage() {
                     </div>
                     <div className="grid grid-cols-4 py-2 ">
                         <div className="flex justify-center">
-                            <img
+                            { user.profileImageUrl? (<img
                                 src={user.profileImageUrl}
                                 // src={profile[0]?.User?.profileImageUrl}
                                 alt=""
                                 className="w-36 h-36 rounded-full dark:bg-gray-500  "
-                            />
+                            />):(<UserCircleIcon
+                                className="h-36 w-36 text-gray-300"
+                                aria-hidden="true"
+                            />)}
+                            
+
+
+                            
+                            
                         </div>
                         <div className="col-span-2">
                             <h1 className="text-xl font-semibold mx-1 text-slate-600">
