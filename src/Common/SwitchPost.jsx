@@ -3,6 +3,7 @@ import { PaperClipIcon } from "@heroicons/react/20/solid";
 import { useState, useRef } from "react";
 
 import { useFeed } from "../context/FeedContext";
+import { useAuth } from "../context/AuthContext";
 
 // import { Listbox, Transition } from "@headlessui/react";
 
@@ -15,6 +16,7 @@ export default function SwitchPost() {
     // const {createPost} = values
 
     const { createPost, file, setFile, post, setPost } = useFeed();
+    const {user} = useAuth()
 
     const ref = useRef();
 
@@ -41,7 +43,7 @@ export default function SwitchPost() {
             <div className="flex-shrink-0  m-4">
                 <img
                     className="inline-block h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src={user.profileImageUrl}
                     alt=""
                 />
             </div>

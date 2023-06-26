@@ -31,7 +31,7 @@ function ProfilePage() {
     // console.log(profile);
 
     useEffect(() => {
-        // fetchMe();
+        fetchMe();
         fetchUserProfile();
     }, []);
 
