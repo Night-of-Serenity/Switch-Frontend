@@ -83,7 +83,14 @@ function AuthContextProvider({ children }) {
         setUser(null);
     };
 
-    const values = { user, glogin, logout, onSubmitRegister, onSubmitLogin };
+    const values = {
+        user,
+        glogin,
+        fetchMe,
+        logout,
+        onSubmitRegister,
+        onSubmitLogin,
+    };
 
     return (
         <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
