@@ -10,6 +10,7 @@ import ProtectedRoute from "../pages/ProtectRoute";
 import RedirectIfAuthenticate from "../pages/RedirectIfAuthenticate";
 import FriendProfilePage from "../pages/FriendProfilePage";
 import CommentPage from "../pages/CommentPage";
+import TrendsByIdPage from "../pages/TrendsByIdPage";
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -34,6 +35,14 @@ export default function Router() {
             element: (
                 <ProtectedRoute>
                     <ExplorePage />
+                </ProtectedRoute>
+            ),
+        },
+        {
+            path: "/trend/:tagId",
+            element: (
+                <ProtectedRoute>
+                    <TrendsByIdPage />
                 </ProtectedRoute>
             ),
         },
