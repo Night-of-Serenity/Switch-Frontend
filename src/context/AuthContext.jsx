@@ -6,7 +6,7 @@ import axios from "axios";
 const AuthContext = createContext(null);
 
 function AuthContextProvider({ children }) {
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         const run = async () => {
@@ -79,8 +79,8 @@ function AuthContextProvider({ children }) {
     };
 
     const logout = () => {
-        removeAccessToken("token");
-        setUser(null);
+        removeAccessToken();
+        setUser({});
     };
 
     const values = {
