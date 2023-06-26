@@ -24,7 +24,7 @@ function Content({ feed }) {
     return (
         <>
             {!feed ? null : (
-                <div className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2 ">
+                <div className="flex items-start p-2  mt-2 mb-2 space-x-4 justify-self-end border-b-2 ">
                     <img
                         src={
                             feed.User.profileImageUrl
@@ -32,9 +32,9 @@ function Content({ feed }) {
                                 : "https://source.unsplash.com/100x100/?portrait"
                         }
                         alt=""
-                        className="w-12 h-12 rounded-full dark:bg-gray-500 cursor-pointer"
+                        className="w-12 h-12 object-cover rounded-full dark:bg-gray-500 cursor-pointer"
                     />
-                    <div className=" w-full">
+                    <div className=" w-11/12 ">
                         <div className="grid grid-cols-2 ">
                             <div className="flex flex-row">
                                 <h2 className="text-lg font-semibold cursor-pointer ">

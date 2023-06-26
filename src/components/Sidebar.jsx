@@ -189,7 +189,7 @@ function Sidebar() {
                     <div className="flex  p-2 mt-24 space-x-4 justify-end items-end  ">
                         {user.profileImageUrl ? (
                             <img
-                                className=" w-12 h-12 rounded-full"
+                                className=" w-12 h-12 rounded-full object-cover"
                                 src={user.profileImageUrl}
                             />
                         ) : (
