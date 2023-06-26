@@ -4,11 +4,13 @@ import * as userService from "../api/user-api";
 import { fetchMe } from "../api/auth-api";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function SettingContent({ profileImageUrl, username, bio }) {
     const inputRef = useRef();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const {fetchMe} = useAuth()
 
     const [showImage, setShowImage] = useState(null);
     const [image, setImage] = useState(null);
@@ -31,6 +33,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
         setUser(res.data.user);
         console.log("testttt");
         navigate("/profile");
+        fetchMe()
     };
 
     return (
