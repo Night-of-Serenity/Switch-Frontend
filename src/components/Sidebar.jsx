@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { useFeed } from "../context/FeedContext";
+import * as postService from "../api/post-api"
 
 function Sidebar() {
     const { logout, user } = useAuth();
@@ -21,6 +22,15 @@ function Sidebar() {
         setPost("");
         setFile(null);
     };
+    // const handleDelete = (e) => {
+    //     e.preventDefault()    
+    //     console.log("testtt",post,postId)  
+    //      postService.deletePost(postId,post)
+    //      setPost(null);
+    //     setFile(null);         
+    // };
+
+    
 
     const handleCloseModal = () => {
         if (post || file) {
@@ -158,10 +168,14 @@ function Sidebar() {
                                         </p>
                                         <div className="flex justify-end gap-2">
                                             <button
+                                            // id="postId"
+                                            // name="postId"
                                                 className="bg-red-500 hover:font-extrabold rounded-md p-1 px-2 "
                                                 onClick={() =>
                                                     handleCancelPost()
                                                 }
+                                                // defaultValue={postId}
+                                                // onClick={handleDelete}
                                             >
                                                 Delete
                                             </button>

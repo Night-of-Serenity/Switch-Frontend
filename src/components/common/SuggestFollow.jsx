@@ -22,6 +22,14 @@ function SuggestFollow({ userSuggest }) {
                         className="w-10 h-10 object-cover text-center rounded-full dark:bg-gray-500"
                     />
                 </div>
+                {/* <div className=" items-start p-2 mt-2 mb-2 space-x-4 justify-self-center flex ">
+                <img
+                    src={userSuggest?.profileImageUrl?userSuggest.profileImageUrl:"https://source.unsplash.com/100x100/?portrait"}
+                    alt=""
+                    className="w-10 h-10 object-cover rounded-full dark:bg-gray-500"
+                />
+                <div className="w-64"> */}
+
                 <div className=" col-span-3 ">
                     <div className="flex flex-row">
                         {/* <h2 className="text-sm font-semibold ">Leroy Jenkins &nbsp;</h2>   */}
