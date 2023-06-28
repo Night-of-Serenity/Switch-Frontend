@@ -100,7 +100,7 @@ function Sidebar() {
                             </li>
                             <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                                 <Link
-                                    to="/profile"
+                                    to="/profile/switch"
                                     rel="noopener noreferrer"
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >

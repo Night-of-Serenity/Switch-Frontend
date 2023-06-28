@@ -13,8 +13,26 @@ function FeedContextProvider({ children }) {
     const [profile, setProfile] = useState([]);
     const [userSuggest, setUserSuggest] = useState([]);
     // const [following,setFollowing] = useState()
+    const [mediaProfile, setMediaProfile] = useState([]);
+    const [followers, setFollowers] = useState([]);
+    const [followings, setFollowings] = useState([]);
+    const [likes, setLikes] = useState([]);
 
-    console.log(feeds);
+    // console.log(feeds);
+    const fetchLikes = async () => {
+        const res = await feedService.fetchLike();
+        setLikes(res.data);
+    };
+
+    const fetchFollowers = async () => {
+        const res = await feedService.fetchUserDetail();
+        console.log(res);
+        setFollowers(res.data.followers);
+    };
+    const fetchFollowings = async () => {
+        const res = await feedService.fetchUserDetail();
+        setFollowings(res.data.followings);
+    };
 
     const fetchPostsByTag = async (tagId) => {
         const res = await feedService.fetchPostsByTag(tagId);
@@ -24,7 +42,7 @@ function FeedContextProvider({ children }) {
     const fetchAllFeed = async () => {
         const res = await feedService.fetchAllFeed();
         setFeeds(res.data);
-        console.log(res.data);
+        // console.log(res.data);
     };
 
     const fetchTrends = async () => {
@@ -53,6 +71,11 @@ function FeedContextProvider({ children }) {
         await feedService.updateFollowing(followingId);
     };
 
+    const fetchMediaProfile = async () => {
+        const res = await feedService.fetchMedia();
+        setMediaProfile(res.data);
+    };
+
     const values = {
         fetchAllFeed,
         feeds,
@@ -70,6 +93,14 @@ function FeedContextProvider({ children }) {
         fetchUserSuggest,
         userSuggest,
         updateFollowing,
+        fetchMediaProfile,
+        mediaProfile,
+        fetchFollowers,
+        fetchFollowings,
+        followers,
+        followings,
+        fetchLikes,
+        likes,
     };
 
     return (
