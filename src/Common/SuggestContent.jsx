@@ -8,19 +8,21 @@ function SuggestContent() {
     useEffect(() => {
         fetchUserSuggest();
     }, []);
-    console.log(userSuggest);
+    // console.log(userSuggest);
     return (
         <div>
-            <div className=" p-4 ">
-                <div className="border-2  rounded-xl ">
+            <div className=" p-4  ">
+                <div className="border-2  rounded-xl  ">
                     <div className="border-b-2">
                         <h1 className="text-xl font-semibold p-2 ml-1 ">
                             Who to follow
                         </h1>
                     </div>
+                    {/* <div className="overflow-y-scroll"> */}
                     {userSuggest.map((el) => (
-                        <SuggestFollow userSuggest={el} />
+                        <SuggestFollow key={el.id} userSuggest={el} />
                     ))}
+                    {/* </div> */}
                 </div>
             </div>
         </div>

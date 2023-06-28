@@ -18,11 +18,11 @@ function GuestPage() {
     const { fetchAllFeed, feeds } = useFeed();
 
     function hdlCallbackResponse(response) {
-        console.log(response.credential);
+        // console.log(response.credential);
         glogin(response.credential);
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         /* global google */
 
         window.google?.accounts.id.initialize({

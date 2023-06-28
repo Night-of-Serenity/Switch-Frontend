@@ -1,22 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import logoCover from "../images/Cover.png";
 import { BsFillCalendar2HeartFill } from "react-icons/bs";
 import Content from "../components/common/Content";
 import SuggestContent from "../Common/SuggestContent";
 import Search from "../Common/Search";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
+import PostContainer from "../components/profile/PostContainer";
+import FollowContainer from "../components/profile/FollowContainer";
 
 function ProfilePage() {
-    const { fetchUserProfile, profile } = useFeed();
-    const { fetchMe, user } = useAuth();
+    const {
+        fetchUserProfile,
+        profile,
+        fetchMediaProfile,
+        mediaProfile,
+        likes,
+        fetchLikes,
+    } = useFeed();
+    const { fetchMe, user, userDetail } = useAuth();
     const nevigate = useNavigate();
 
+    const [active, setActive] = useState("switch");
+    // console.log(active);
+
     let dateString = "";
-    console.log(profile);
+    // console.log(profile);
+    // console.log(user);
     if (profile) {
         const date = new Date(user.createdAt);
         // {profile[0]?.User?.createdAt}
@@ -24,18 +37,56 @@ function ProfilePage() {
     }
     // console.log(date);
     const stats = [
-        { id: 1, name: "Switch", value: "88.2k" },
-        { id: 2, name: "Follower", value: "100k" },
-        { id: 3, name: "Following", value: "0" },
+        {
+            id: 1,
+            name: "Switch",
+            value: profile?.length ? profile.length : 0,
+        },
+        {
+            id: 2,
+            name: "Follower",
+            value: userDetail?.followers?.length
+                ? userDetail.followers.length
+                : 0,
+        },
+        {
+            id: 3,
+            name: "Following",
+            value: userDetail?.followings?.length
+                ? userDetail.followings.length
+                : 0,
+        },
     ];
+    // console.log(user?.followings);
+    // console.log(user);
     // console.log(profile);
 
     useEffect(() => {
         fetchMe();
         fetchUserProfile();
+        fetchMediaProfile();
+        fetchLikes();
     }, []);
 
-    console.log(profile);
+    const { tab } = useParams();
+    let contents = [];
+    let isPost = false;
+    if (tab === "switch") {
+        // console.log(profile);
+        contents = profile;
+        isPost = true;
+    } else if (tab === "media") {
+        // console.log(mediaProfile);
+        contents = mediaProfile;
+        isPost = true;
+    } else if (tab === "like") {
+        if (likes.reslike) {
+            contents = [...likes.reslike];
+            isPost = true;
+        }
+    }
+
+    // console.log(profile);
     return (
         <div className="h-screen  flex flex-col justify-between">
             <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">
@@ -93,17 +144,22 @@ function ProfilePage() {
                                             </div>
                                             <dl className="mt-2 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-3">
                                                 {stats.map((stat) => (
-                                                    <div
+                                                    <Link
+                                                        to={`/profile/${stat.name.toLowerCase()}`}
                                                         key={stat.id}
-                                                        className="flex flex-col bg-gray-400/5 "
                                                     >
-                                                        <dt className="text-sm font-semibold leading-6 text-gray-600">
-                                                            {stat.name}
-                                                        </dt>
-                                                        <dd className="order-first text-lg font-semibold tracking-tight text-gray-900">
-                                                            {stat.value}
-                                                        </dd>
-                                                    </div>
+                                                        <div
+                                                            key={stat.id}
+                                                            className="flex flex-col bg-gray-400/5 "
+                                                        >
+                                                            <dt className="text-sm font-semibold leading-6 text-gray-600">
+                                                                {stat.name}
+                                                            </dt>
+                                                            <dd className="order-first text-lg font-semibold tracking-tight text-gray-900">
+                                                                {stat.value}
+                                                            </dd>
+                                                        </div>
+                                                    </Link>
                                                 ))}
                                             </dl>
                                         </div>
@@ -127,22 +183,52 @@ function ProfilePage() {
                     </div>
                     <div className="grid grid-cols-3 text-center font-semibold border-b-2 py-2">
                         <Link to="/profile/switch">
-                            <div className="cursor-pointer hover:font-extrabold ">
+                            <div
+                                className={`cursor-pointer hover:font-extrabold ${
+                                    active === "switch"
+                                        ? "text-Primary underline"
+                                        : ""
+                                }`}
+                                onClick={() => setActive("switch")}
+                            >
                                 Switch
                             </div>
                         </Link>
-                        <div className="cursor-pointer hover:font-extrabold">
-                            Media
-                        </div>
-                        <div className="cursor-pointer hover:font-extrabold">
-                            Likes
-                        </div>
+
+                        {/* <Link to={`/trend/${trend.id}`}>
+                    <h1 className="text-base"># {trend.tagName}</h1>
+                </Link> */}
+
+                        <Link to="/profile/media">
+                            <div
+                                className={`cursor-pointer hover:font-extrabold ${
+                                    active === "media"
+                                        ? "text-Primary  underline"
+                                        : ""
+                                }`}
+                                onClick={() => setActive("media")}
+                            >
+                                Media
+                            </div>
+                        </Link>
+                        <Link to="/profile/like">
+                            <div
+                                className={`cursor-pointer hover:font-extrabold ${
+                                    active === "like"
+                                        ? "text-Primary underline"
+                                        : ""
+                                }`}
+                                onClick={() => setActive("like")}
+                            >
+                                Likes
+                            </div>
+                        </Link>
                     </div>
-                    <div>
-                        {profile.map((el) => (
-                            <Content feed={el} />
-                        ))}
-                    </div>
+                    {isPost ? (
+                        <PostContainer contents={contents} />
+                    ) : (
+                        <FollowContainer />
+                    )}
                 </div>
                 <div className="border-l-2">
                     <Search />
