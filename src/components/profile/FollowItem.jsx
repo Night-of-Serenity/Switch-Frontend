@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useFeed } from "../../context/FeedContext";
+import { useEffect } from "react";
 
 function FollowItem({ content }) {
     const { updateFollowing } = useFeed();
-    const [isFollowing, setIsFollowing] = useState(content.isFollowing);
+    const [isFollowing, setIsFollowing] = useState(false);
 
+    useEffect(() => {
+        setIsFollowing(content.isFollowing);
+    }, [content]);
     const handleOnClickFollow = () => {
         updateFollowing(content.id);
         setIsFollowing(!isFollowing);

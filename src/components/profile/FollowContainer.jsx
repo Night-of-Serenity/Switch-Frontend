@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import FollowItem from "./FollowItem";
 import { useFeed } from "../../context/FeedContext";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 function FollowContainer() {
     const { fetchFollowers, followers, fetchFollowings, followings } =
         useFeed();
+    const { user } = useAuth();
 
     const { tab } = useParams();
 
@@ -18,19 +20,27 @@ function FollowContainer() {
 
     if (tab === "follower") {
         const cloneFollowers = [...followers];
-        // console.log(cloneFollowers);
+        console.log(followings);
         for (let i = 0; i < cloneFollowers.length; i++) {
             // console.log(cloneFollowers[i]);
-
-            for (let following of cloneFollowers[i].Following) {
-                if (following.id === following.followerUserId) {
-                    cloneFollowers[i].isFollwing = false;
-                } else {
+            // if (cloneFollowers.length > 0) {
+            //     for (let following of cloneFollowers[i].Follower) {
+            //         if (user.id === following.followingUserId) {
+            //             cloneFollowers[i].isFollowing = true;
+            //             cloneFollowers[i].isFollwing = false;
+            //         } else {
+            //         }
+            //     }
+            // }
+            for (let followingUser of followings) {
+                if (cloneFollowers[i].id === followingUser.id) {
                     cloneFollowers[i].isFollowing = true;
+                } else {
+                    cloneFollowers[i].isFollwing = false;
                 }
             }
         }
-        contents = cloneFollowers;
+        contents = [...cloneFollowers];
         // console.log({ contents });
         // contents = followers;
     } else if (tab === "following") {
@@ -39,7 +49,7 @@ function FollowContainer() {
             el.isFollowing = true;
         }
 
-        contents = cloneFollowings;
+        contents = [...cloneFollowings];
     }
     // console.log({ follower, following, contents });
     // console.log(contents);

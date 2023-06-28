@@ -17,6 +17,21 @@ function FeedContextProvider({ children }) {
     const [followers, setFollowers] = useState([]);
     const [followings, setFollowings] = useState([]);
     const [likes, setLikes] = useState([]);
+    const [postDetail, setPostDetail] = useState({});
+
+    const createReply = async (postId, input) => {
+        await postService.createReply(postId, input);
+        fetchPostDetail(postId);
+        fetchAllFeed();
+        fetchUserProfile();
+        fetchMediaProfile();
+        fetchLikes();
+    };
+
+    const fetchPostDetail = async (postId) => {
+        const res = await postService.fetchPostDetail(postId);
+        setPostDetail(res.data);
+    };
 
     // console.log(feeds);
     const fetchLikes = async () => {
@@ -31,6 +46,7 @@ function FeedContextProvider({ children }) {
     };
     const fetchFollowings = async () => {
         const res = await feedService.fetchUserDetail();
+        console.log(res.data);
         setFollowings(res.data.followings);
     };
 
@@ -101,6 +117,9 @@ function FeedContextProvider({ children }) {
         followings,
         fetchLikes,
         likes,
+        fetchPostDetail,
+        postDetail,
+        createReply,
     };
 
     return (

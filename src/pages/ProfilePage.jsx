@@ -71,16 +71,19 @@ function ProfilePage() {
     const { tab } = useParams();
     let contents = [];
     let isPost = false;
-
     if (tab === "switch") {
+        // console.log(profile);
         contents = profile;
         isPost = true;
     } else if (tab === "media") {
+        // console.log(mediaProfile);
         contents = mediaProfile;
         isPost = true;
     } else if (tab === "like") {
-        contents = likes;
-        isPost = true;
+        if (likes.reslike) {
+            contents = [...likes.reslike];
+            isPost = true;
+        }
     }
 
     // console.log(profile);

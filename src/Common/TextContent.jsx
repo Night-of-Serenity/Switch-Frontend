@@ -7,18 +7,24 @@ import { useNavigate } from "react-router-dom";
 
 function TextContent({ feed }) {
     const navigate = useNavigate();
+
+    // console.log(feed.imgUrl || feed.imageUrl || null);
+
     return (
         <>
             <div>
                 <h2 className="text-lg font-light ">{feed.textcontent}</h2>
-                {feed.imgUrl ? (
-                    <img className="h-80 p-2 " src={feed.imgUrl} />
+                {feed.imgUrl || feed.imageUrl ? (
+                    <img
+                        className="h-80 p-2 "
+                        src={feed.imgUrl || feed.imageUrl}
+                    />
                 ) : null}
             </div>
             <div className="flex gap-20 flex-row mt-2">
                 <FaRegComment
                     className="cursor-pointer"
-                    onClick={() => navigate("/Comment")}
+                    onClick={() => navigate(`/comment/${feed.id}`)}
                 />
                 <FaRetweet className="text-lg cursor-pointer" />
                 <FcLike className="cursor-pointer " />

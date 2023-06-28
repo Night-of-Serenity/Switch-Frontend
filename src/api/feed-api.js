@@ -8,8 +8,10 @@ export const fetchPostsByTag = (tagId) =>
     axios.get(`/feed/fetchpostsbytag/${tagId}`);
 
 export const fetchUserProfile = () => axios.get("/user/fetchuserprofile");
-export const updateFollowing = (followingId) =>
-    axios.post(`/user/togglefollowing/${followingId}`);
+export const updateFollowing = (followingId) => {
+    console.log(followingId);
+    return axios.post(`/user/togglefollowing/${followingId}`);
+};
 
 export const fetchMedia = () => axios.get("/user/fetchMedia");
 

@@ -63,7 +63,7 @@ export default function Router() {
             ),
         },
         {
-            path: "/comment",
+            path: "/comment/:postId",
             element: (
                 <ProtectedRoute>
                     <CommentPage />
