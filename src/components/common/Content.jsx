@@ -6,8 +6,24 @@ import TextContent from "../../Common/TextContent";
 import EditContent from "../../Common/EditContent";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
+import { Navigate,useNavigate } from "react-router-dom";
+import * as postService from "../../api/post-api"
+import { useFeed } from "../../context/FeedContext";
 
-function Content({ feed }) {
+function Content({ feed,postId }) {
+
+    const { post, setPost, file, setFile } = useFeed();
+
+const handleDelete = (e) => {
+        e.preventDefault()    
+        console.log("testtt",post,postId)  
+        postService.deletePost(postId,post)
+         setPost(null);
+        setFile(null);         
+    };
+
+    const navigate = useNavigate();
+    console.log(feed);
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";
@@ -69,13 +85,17 @@ function Content({ feed }) {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a
-                                                    onClick={() =>
-                                                        window.my_modal_Delete.showModal()
-                                                    }
+                                                <div
+                                                id="postId"
+                                                name="postId"
+                                                defaultValue={postId}
+                                                onClick={handleDelete}
+                                                    // onClick={() =>
+                                                    //     window.my_modal_Delete.showModal()                                                       
+                                                    // }
                                                 >
                                                     Delete
-                                                </a>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
@@ -85,7 +105,14 @@ function Content({ feed }) {
                         </div>
 
                         {/* <TextContent /> */}
-                        {isEdit ? <EditContent /> : <TextContent feed={feed} />}
+                        {isEdit ? (
+                            <EditContent
+                                postId={feed.id}
+                                setIsEdit={setIsEdit}
+                            />
+                        ) : (
+                            <TextContent feed={feed} />
+                        )}
                     </div>
                 </div>
             )}

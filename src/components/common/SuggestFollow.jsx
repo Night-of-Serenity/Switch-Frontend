@@ -14,7 +14,7 @@ function SuggestFollow({ userSuggest }) {
         <div>
             <div className=" items-start p-2 mt-2 mb-2 space-x-4 justify-self-center flex ">
                 <img
-                    src={userSuggest?.profileImageUrl}
+                    src={userSuggest?.profileImageUrl?userSuggest.profileImageUrl:"https://source.unsplash.com/100x100/?portrait"}
                     alt=""
                     className="w-10 h-10 object-cover rounded-full dark:bg-gray-500"
                 />
