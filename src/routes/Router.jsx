@@ -63,7 +63,7 @@ export default function Router() {
             ),
         },
         {
-            path: "/comment",
+            path: "/comment/:postId",
             element: (
                 <ProtectedRoute>
                     <CommentPage />
@@ -71,7 +71,7 @@ export default function Router() {
             ),
         },
         {
-            path: "/profile/",
+            path: "/profile/:tab",
             element: (
                 <ProtectedRoute>
                     <ProfilePage />

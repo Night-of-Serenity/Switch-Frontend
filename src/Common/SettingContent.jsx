@@ -10,7 +10,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
     const inputRef = useRef();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
-    const {fetchMe} = useAuth()
+    const { fetchMe } = useAuth();
 
     const [showImage, setShowImage] = useState(null);
     const [image, setImage] = useState(null);
@@ -19,7 +19,6 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
 
     const hdlSubmit = async (e) => {
         e.preventDefault();
- 
 
         const formData = new FormData();
         for (let key in user) {
@@ -31,9 +30,9 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
 
         const res = await userService.editProfile(formData);
         setUser(res.data.user);
-        console.log("testttt");
+        // console.log("testttt");
         navigate("/profile");
-        fetchMe()
+        fetchMe();
     };
 
     return (
@@ -72,7 +71,6 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                                 type="file"
                                 className="hidden"
                                 ref={inputRef}
-                               
                                 onChange={(e) => {
                                     setImage(e.target.files[0]);
                                     setShowImage(
@@ -88,9 +86,6 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                                 Change
                             </button>
                         </div>
-
-
-                      
                     </div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4">

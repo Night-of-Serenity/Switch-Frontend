@@ -4,11 +4,11 @@ import * as postService from "../api/post-api";
 const PostContext = createContext(null);
 
 function PostContextProvider({ children }) {
-    const createPost = async (input) => {
-        const res = await postService.createPost(input);
-    };
+    // const createPost = async (input) => {
+    //     const res = await postService.createPost(input);
+    // };
 
-    const values = { createPost };
+    const values = {};
 
     return (
         <PostContext.Provider value={values}>{children}</PostContext.Provider>

@@ -35,7 +35,7 @@ const handleDelete = (e) => {
     }
 
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
 
     return (
         <>
@@ -63,7 +63,8 @@ const handleDelete = (e) => {
                             </div>
                             <div className="justify-self-end">
                                 {/* **** */}
-                                {location.pathname === "/profile" && (
+                                {(location.pathname === "/profile/switch" ||
+                                    location.pathname === "/profile/media") && (
                                     <div className="dropdown dropdown-end px-4">
                                         <label
                                             tabIndex={0}

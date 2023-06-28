@@ -7,6 +7,7 @@ const AuthContext = createContext(null);
 
 function AuthContextProvider({ children }) {
     const [user, setUser] = useState({});
+    const [userDetail, setUserDetail] = useState({});
 
     useEffect(() => {
         const run = async () => {
@@ -19,6 +20,7 @@ function AuthContextProvider({ children }) {
     const fetchMe = async () => {
         const res = await authService.fetchMe();
         setUser(res.data.user);
+        setUserDetail(res.data);
     };
 
     const onSubmitRegister = async (newUser) => {
@@ -56,7 +58,7 @@ function AuthContextProvider({ children }) {
 
     const onSubmitLogin = async (user, e) => {
         e.preventDefault();
-        console.log(user);
+        // console.log(user);
         const { email, password } = user;
 
         if (!email || !password) {
@@ -90,6 +92,7 @@ function AuthContextProvider({ children }) {
         logout,
         onSubmitRegister,
         onSubmitLogin,
+        userDetail,
     };
 
     return (
