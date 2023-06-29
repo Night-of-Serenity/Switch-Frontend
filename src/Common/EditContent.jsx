@@ -47,9 +47,10 @@ function EditContent({ postId, setIsEdit, imageUrl, textcontent }) {
             />
 
             <div className="mt-2 flex items-center gap-x-3">
-                {imageUrl?(<img className=" w-28 h-28 rounded-full" src={imageUrl}  />):(null)}
+                {imageUrl ? (
+                    <img className=" w-28 h-28 rounded-full" src={imageUrl} />
+                ) : null}
 
-                
                 <input
                     type="file"
                     className="hidden"

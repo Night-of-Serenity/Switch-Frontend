@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import Sidebar from "../components/Sidebar";
 
-import Content from "../components/common/Content";
+// import Content from "../components/common/Content";
+
 import SuggestContent from "../Common/SuggestContent";
 import Search from "../Common/Search";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import { useFeed } from "../context/FeedContext";
 import { useParams } from "react-router-dom";
+import ReplyContent from "../components/common/ReplyContent";
+import Content from "../components/common/Content";
 
 function CommentPage() {
     const [comment, setComment] = useState("");
@@ -157,7 +160,7 @@ function CommentPage() {
                         <div className="m-8">
                             {Object.keys(postDetail).length > 0
                                 ? postDetail.Replies.map((el) => (
-                                      <Content feed={el} />
+                                      <ReplyContent feed={el} />
                                   ))
                                 : null}
                             {/* <Content />

@@ -19,3 +19,13 @@ export const fetchFollowing = () => axios.get("/user/fetchfollowing");
 export const fetchFollower = () => axios.get("/user/fetchfollower");
 export const fetchLike = () => axios.get("/user/fetchuserlikes");
 export const fetchUserDetail = () => axios.get("/user/fetchuserdetail");
+
+export const updateLike = (postId) => axios.post(`/post/postlike/${postId}`);
+export const updateLikeReply = (replyId) =>
+    axios.post(`/post/replylike/${replyId}`);
+
+export const updateReSwitch = (postId) =>
+    axios.post(`/post/togglereswitchpost/${postId}`);
+
+export const updateReSwitchReply = (replyId) =>
+    axios.post(`/post/togglereswitchreply/${replyId}`);

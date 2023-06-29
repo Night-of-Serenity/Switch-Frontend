@@ -6,7 +6,7 @@ function PostContainer({ contents }) {
     return (
         <div>
             {contents.map((el) => (
-                <Content feed={el} />
+                <Content key={el.id} feed={el} />
             ))}
         </div>
     );
