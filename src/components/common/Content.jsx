@@ -12,15 +12,16 @@ import { useFeed } from "../../context/FeedContext";
 function Content({ feed}) {
 
     const { post, setPost, file, setFile,fetchUserProfile } = useFeed();
+    const navigate = useNavigate();
 
 const handleDelete = () => {   
        postService.deletePost(feed.id)
          setPost(null);
         setFile(null); 
-        // fetchUserProfile()     
+        fetchUserProfile()    
+        navigate("/"); 
     };
 
-    const navigate = useNavigate();
 
     const [isEdit, setIsEdit] = useState(false);
 
