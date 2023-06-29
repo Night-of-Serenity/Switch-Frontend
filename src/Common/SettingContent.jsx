@@ -35,8 +35,11 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
         fetchMe();
     };
 
+    const hdlCancel = () => {
+        setFile(null)
+        }
     return (
-        <form onSubmit={hdlSubmit}>
+        <form >
             <div className="space-y-6 p-8 ">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-xl font-semibold leading-7 text-gray-900">
@@ -236,18 +239,20 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
             </div>
             <div className="p-2 pr-8">
                 <div className=" flex items-center justify-end gap-x-6">
-                    <Link to="/">
+                    <button >
                         <span
                             type="button"
                             className="text-sm font-semibold leading-6 text-gray-900"
+                            onClick={hdlCancel}
                         >
                             Cancel
                         </span>
-                    </Link>
+                    </button>
                     <button
                         type="submit"
                         className="rounded-md bg-Primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-Primary"
-                    >
+                        onClick={hdlSubmit}
+                   >
                         Save
                     </button>
                 </div>

@@ -28,6 +28,11 @@ function EditContent({ postId, setIsEdit, imageUrl,feed }) {
         setIsEdit(false);
         fetchUserProfile();
     };
+
+    const hdlCancel = () => {
+    setIsEdit(false);
+    }
+
     return (
         <form onSubmit={hdlSubmit}>
             <input
@@ -74,6 +79,7 @@ function EditContent({ postId, setIsEdit, imageUrl,feed }) {
                     <button
                         type="button"
                         className="text-sm font-semibold leading-6 text-gray-900"
+                        onClick={hdlCancel}
                     >
                         Cancel
                     </button>
