@@ -26,7 +26,6 @@ function Content({ feed, postId }) {
     };
 
     const navigate = useNavigate();
-    console.log(feed);
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";
