@@ -24,20 +24,17 @@ function ProfilePage() {
     const { fetchMe, user, userDetail } = useAuth();
     const nevigate = useNavigate();
 
-    console.log(profile);
-
     const [active, setActive] = useState("switch");
-    // console.log(active);
+   
 
     let dateString = "";
-    // console.log(profile);
-    // console.log(user);
+   
     if (profile) {
         const date = new Date(user.createdAt);
         // {profile[0]?.User?.createdAt}
         dateString = date.toLocaleDateString();
     }
-    // console.log(date);
+   
     const stats = [
         {
             id: 1,
@@ -91,7 +88,7 @@ function ProfilePage() {
         isPost = true;
     }
 
-    // console.log(profile);
+   
     return (
         <div className="h-screen  flex flex-col justify-between">
             <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">

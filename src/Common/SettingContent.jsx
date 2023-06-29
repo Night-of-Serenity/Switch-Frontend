@@ -31,7 +31,6 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
 
         const res = await userService.editProfile(formData);
         setUser(res.data.user);
-        // console.log("testttt");
         navigate("/profile/switch");
         fetchMe();
     };

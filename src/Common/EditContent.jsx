@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as postService from "../api/post-api";
 import { useRef } from "react";
 
-function EditContent({ postId, setIsEdit, imageUrl, textcontent }) {
+function EditContent({ postId, setIsEdit, imageUrl,feed }) {
     const { fetchUserProfile } = useFeed();
     const inputRef = useRef();
 
@@ -34,10 +34,10 @@ function EditContent({ postId, setIsEdit, imageUrl, textcontent }) {
                 name="post"
                 id="post"
                 type="text"
-                // placeholder="Type here"
+                placeholder="Type here"
                 className="input input-bordered w-full "
-                // defaultValue={textcontent}
-                value={textcontent}
+                defaultValue={feed.textcontent}
+               
                 onChange={(e) =>
                     setPost({
                         ...post,
