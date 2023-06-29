@@ -151,6 +151,7 @@ function FeedContextProvider({ children }) {
         updateLikeReply,
         updateReSwitchReply,
         updateReSwitch,
+        fetchAll,
     };
 
     return (

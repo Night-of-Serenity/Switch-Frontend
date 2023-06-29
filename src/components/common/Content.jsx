@@ -4,12 +4,12 @@ import { FcLike } from "react-icons/fc";
 import { SlOptions } from "react-icons/sl";
 import TextContent from "../../Common/TextContent";
 import EditContent from "../../Common/EditContent";
-import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 
+<<<<<<< HEAD
 function Content({ feed, postId }) {
     const { post, setPost, file, setFile } = useFeed();
 
@@ -19,10 +19,22 @@ function Content({ feed, postId }) {
         postService.deletePost(postId, post);
         setPost(null);
         setFile(null);
+=======
+function Content({ feed}) {
+
+    const { post, setPost, file, setFile,fetchUserProfile } = useFeed();
+    const navigate = useNavigate();
+
+const handleDelete = () => {   
+       postService.deletePost(feed.id)
+         setPost(null);
+        setFile(null); 
+        fetchUserProfile()    
+        navigate("/"); 
+>>>>>>> ui
     };
 
-    const navigate = useNavigate();
-    console.log(feed);
+
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";
@@ -86,10 +98,16 @@ function Content({ feed, postId }) {
                                             </li>
                                             <li>
                                                 <div
+<<<<<<< HEAD
                                                     id="postId"
                                                     name="postId"
                                                     defaultValue={postId}
                                                     onClick={handleDelete}
+=======
+                                                id="postId"
+                                                name="postId"
+                                                onClick={handleDelete}
+>>>>>>> ui
                                                     // onClick={() =>
                                                     //     window.my_modal_Delete.showModal()
                                                     // }
@@ -109,6 +127,7 @@ function Content({ feed, postId }) {
                             <EditContent
                                 postId={feed.id}
                                 setIsEdit={setIsEdit}
+                                feed={feed}
                             />
                         ) : (
                             <TextContent feed={feed} />
