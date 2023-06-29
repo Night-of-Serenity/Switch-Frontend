@@ -19,11 +19,8 @@ function TextContent({ feed }) {
         <>
             <div>
                 <h2 className="text-md font-light ">{feed.textcontent}</h2>
-                {feed.imgUrl || feed.imageUrl ? (
-                    <img
-                        className="h-80 p-2 "
-                        src={feed.imgUrl || feed.imageUrl}
-                    />
+                {feed.imageUrl ? (
+                    <img className="h-80 p-2 " src={feed.imageUrl} />
                 ) : null}
             </div>
             <div className="flex gap-20 flex-row mt-2">

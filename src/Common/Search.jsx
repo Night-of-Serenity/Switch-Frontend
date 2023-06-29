@@ -4,8 +4,6 @@
 // import SuggestFollow from '../components/common/SuggestFollow'
 // import { useFeed } from '../context/FeedContext'
 
-
-
 // const people = [
 //   { id: 1, name: 'Wade Cooper' },
 //   { id: 2, name: 'Arlene Mccoy' },
@@ -14,7 +12,6 @@
 //   { id: 5, name: 'Tanya Fox' },
 //   { id: 6, name: 'Hellen Schmidt' },
 // ]
-
 
 // export default function Search() {
 
@@ -30,9 +27,8 @@
 //             .includes(query.toLowerCase().replace(/\s+/g, ''))
 //         )
 
-       
 //   return (
- 
+
 //     <div className="form-control pt-2 pr-2 pl-2">
 //       <Combobox value={selected} onChange={setSelected}>
 //         <div className="relative mt-1">
@@ -100,59 +96,58 @@
 //         </div>
 //       </Combobox>
 //     </div>
-    
-    
+
 //   );
 // }
 
-
- // <div className="form-control pt-2 pr-2 pl-2">
-      {/* <input
+// <div className="form-control pt-2 pr-2 pl-2">
+{
+    /* <input
         type="text"
         placeholder="Search"
         className="input border-2 input-bordered w-full rounded-full md:w-auto"
-      /> */}
-    {/* </div> */}
+      /> */
+}
+{
+    /* </div> */
+}
 
+import { useState } from "react";
+import * as feedService from "../api/feed-api";
 
-    import  { useState } from 'react';
-import * as feedService from "../api/feed-api"
+const Search = ({ username }) => {
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
-const Search = ({username}) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+    const handleInputChange = (e) => {
+        setSearchQuery(e.target.value);
+        // console.log(searchQuery)
+    };
 
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-    console.log(searchQuery)
-  };
+    const handleSearch = () => {
+        const res = feedService.search();
 
-  const handleSearch = () => {
-    const res = feedService.search()
+        setSearchResults(res.data);
+        setSearchQuery("");
+    };
 
-   
-    setSearchResults(res.data)
-    setSearchQuery('');
-  };
+    return (
+        <div>
+            <input
+                type="text"
+                value={searchQuery}
+                onChange={handleInputChange}
+                placeholder="Search"
+            />
+            <button onClick={handleSearch}>Search</button>
 
-  return (
-    <div>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={handleInputChange}
-        placeholder="Search"
-      />
-      <button onClick={handleSearch}>Search</button>
-
-     
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result.id}>{result.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
+            <ul>
+                {searchResults.map((result) => (
+                    <li key={result.id}>{result.title}</li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default Search;

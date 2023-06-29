@@ -11,6 +11,7 @@ import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 
 function Content({ feed, postId }) {
+    // console.log({ feedImage: feed.imageUrl, feedId: feed.id });
     const { post, setPost, file, setFile, fetchUserProfile } = useFeed();
 
     const { user } = useAuth();
@@ -26,7 +27,7 @@ function Content({ feed, postId }) {
     };
 
     const navigate = useNavigate();
-    console.log(feed);
+    // console.log(feed);
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";
