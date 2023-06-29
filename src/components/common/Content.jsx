@@ -11,18 +11,18 @@ import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 
 function Content({ feed, postId }) {
-    const { post, setPost, file, setFile } = useFeed();
+    const { post, setPost, file, setFile, fetchUserProfile } = useFeed();
 
     const { user } = useAuth();
 
     const isMyPost = feed.userId === user.id;
 
-    const handleDelete = (e) => {
-        e.preventDefault();
-
-        postService.deletePost(postId, post);
+    const handleDelete = () => {
+        postService.deletePost(feed.id);
         setPost(null);
         setFile(null);
+        fetchUserProfile();
+        navigate("/");
     };
 
     const navigate = useNavigate();
@@ -114,6 +114,7 @@ function Content({ feed, postId }) {
                             <EditContent
                                 postId={feed.id}
                                 setIsEdit={setIsEdit}
+                                feed={feed}
                             />
                         ) : (
                             <TextContent feed={feed} />
