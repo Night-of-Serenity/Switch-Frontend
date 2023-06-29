@@ -16,14 +16,14 @@ function ReplyContent({ feed, postId }) {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        console.log("testtt", post, postId);
+        // console.log("testtt", post, postId);
         postService.deletePost(postId, post);
         setPost(null);
         setFile(null);
     };
 
     const navigate = useNavigate();
-    console.log(feed);
+    // console.log(feed);
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";

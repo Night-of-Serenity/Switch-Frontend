@@ -9,7 +9,7 @@ export const fetchPostsByTag = (tagId) =>
 
 export const fetchUserProfile = () => axios.get("/user/fetchuserprofile");
 export const updateFollowing = (followingId) => {
-    console.log(followingId);
+    // console.log(followingId);
     return axios.post(`/user/togglefollowing/${followingId}`);
 };
 
