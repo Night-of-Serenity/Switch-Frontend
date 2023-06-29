@@ -20,7 +20,7 @@ function FollowContainer() {
 
     if (tab === "follower") {
         const cloneFollowers = [...followers];
-        console.log(followings);
+        // console.log(followings);
         for (let i = 0; i < cloneFollowers.length; i++) {
             // console.log(cloneFollowers[i]);
             // if (cloneFollowers.length > 0) {

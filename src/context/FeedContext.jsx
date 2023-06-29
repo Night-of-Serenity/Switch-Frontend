@@ -20,7 +20,7 @@ function FeedContextProvider({ children }) {
     const [postDetail, setPostDetail] = useState({});
 
     const updateReSwitch = async (postId) => {
-        console.log(postId);
+        // console.log(postId);
         await feedService.updateReSwitch(postId);
         fetchPostDetail(postId);
         fetchAll();
@@ -68,12 +68,12 @@ function FeedContextProvider({ children }) {
 
     const fetchFollowers = async () => {
         const res = await feedService.fetchUserDetail();
-        console.log(res);
+        // console.log(res);
         setFollowers(res.data.followers);
     };
     const fetchFollowings = async () => {
         const res = await feedService.fetchUserDetail();
-        console.log(res.data);
+        // console.log(res.data);
         setFollowings(res.data.followings);
     };
 

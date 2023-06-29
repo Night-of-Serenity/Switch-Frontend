@@ -23,18 +23,17 @@ function ProfilePage() {
     } = useFeed();
     const { fetchMe, user, userDetail } = useAuth();
     const nevigate = useNavigate();
-
-    const [active, setActive] = useState("switch");
-   
+    const { tab } = useParams();
+    const [active, setActive] = useState(tab);
 
     let dateString = "";
-   
+
     if (profile) {
         const date = new Date(user.createdAt);
         // {profile[0]?.User?.createdAt}
         dateString = date.toLocaleDateString();
     }
-   
+
     const stats = [
         {
             id: 1,
@@ -68,27 +67,20 @@ function ProfilePage() {
         // console.log(likes);
     }, []);
 
-    const { tab } = useParams();
     let contents = [];
     let isPost = false;
     if (tab === "switch") {
-        // console.log(profile);
         contents = profile;
         isPost = true;
     } else if (tab === "media") {
-        // console.log(mediaProfile);
         contents = mediaProfile;
+
         isPost = true;
     } else if (tab === "like") {
-        // if (likes.reslike) {
-        //     contents = [...likes.reslike];
-        //     isPost = true;
-        // }
         contents = likes;
         isPost = true;
     }
 
-   
     return (
         <div className="h-screen  flex flex-col justify-between">
             <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">
