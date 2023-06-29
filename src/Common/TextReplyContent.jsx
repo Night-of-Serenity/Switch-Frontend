@@ -2,18 +2,16 @@ import React from "react";
 import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
 import { FcLike } from "react-icons/fc";
-// import { SlOptions } from "react-icons/sl";
+import { SlOptions } from "react-icons/sl";
 
 import { useNavigate } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
-import { useLocation } from "react-router-dom";
 
-function TextContent({ feed }) {
+function TextReplyContent({ feed }) {
     const navigate = useNavigate();
 
     // console.log(feed.imgUrl || feed.imageUrl || null);
-    const { updateLike, updateReSwitch } = useFeed();
-    // const location = useLocation();
+    const { updateLikeReply, updateReSwitchReply } = useFeed();
 
     return (
         <>
@@ -27,22 +25,21 @@ function TextContent({ feed }) {
                 ) : null}
             </div>
             <div className="flex gap-20 flex-row mt-2">
-                <FaRegComment
+                {/* <FaRegComment
                     className="cursor-pointer"
                     onClick={() => navigate(`/comment/${feed.id}`)}
-                />
-                <span onClick={() => updateReSwitch(feed.id)}>
+                /> */}
+                <span onClick={() => updateReSwitchReply(feed.id, feed.postId)}>
                     <FaRetweet
                         className={`text-lg cursor-pointer ${
-                            feed?.isReswitch ? "text-green-600" : ""
-                        }`}
+                            feed?.isReSwitchReply ? "text-green-600" : ""
+                        } `}
                     />
                 </span>
-                {/* <FaRetweet className="text-lg cursor-pointer  " /> */}
-                <span onClick={() => updateLike(feed.id)}>
+                <span onClick={() => updateLikeReply(feed.id, feed.postId)}>
                     {feed?.isLiked ? (
                         // ********รอชื่อจากBE
-                        <FcLike className="cursor-pointer text-lg font-bold " />
+                        <FcLike className="cursor-pointer text-lg font-bold" />
                     ) : (
                         <GrFavorite className="cursor-pointer  " />
                     )}
@@ -52,4 +49,4 @@ function TextContent({ feed }) {
     );
 }
 
-export default TextContent;
+export default TextReplyContent;
