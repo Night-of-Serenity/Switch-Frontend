@@ -13,9 +13,13 @@ import { useFeed } from "../../context/FeedContext";
 function Content({ feed, postId }) {
     const { post, setPost, file, setFile } = useFeed();
 
+    const { user } = useAuth();
+
+    const isMyPost = feed.userId === user.id;
+
     const handleDelete = (e) => {
         e.preventDefault();
-        console.log("testtt", post, postId);
+
         postService.deletePost(postId, post);
         setPost(null);
         setFile(null);
@@ -63,43 +67,44 @@ function Content({ feed, postId }) {
                             <div className="justify-self-end">
                                 {/* **** */}
                                 {(location.pathname === "/profile/switch" ||
-                                    location.pathname === "/profile/media") && (
-                                    <div className="dropdown dropdown-end px-4">
-                                        <label
-                                            tabIndex={0}
-                                            className="cursor-pointer "
-                                        >
-                                            <SlOptions />
-                                        </label>
-                                        <ul
-                                            tabIndex={0}
-                                            className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-20"
-                                        >
-                                            <li>
-                                                <a
-                                                    onClick={() =>
-                                                        setIsEdit(true)
-                                                    }
-                                                >
-                                                    Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <div
-                                                    id="postId"
-                                                    name="postId"
-                                                    defaultValue={postId}
-                                                    onClick={handleDelete}
-                                                    // onClick={() =>
-                                                    //     window.my_modal_Delete.showModal()
-                                                    // }
-                                                >
-                                                    Delete
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )}
+                                    location.pathname === "/profile/media") &&
+                                    isMyPost && (
+                                        <div className="dropdown dropdown-end px-4">
+                                            <label
+                                                tabIndex={0}
+                                                className="cursor-pointer "
+                                            >
+                                                <SlOptions />
+                                            </label>
+                                            <ul
+                                                tabIndex={0}
+                                                className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-20"
+                                            >
+                                                <li>
+                                                    <a
+                                                        onClick={() =>
+                                                            setIsEdit(true)
+                                                        }
+                                                    >
+                                                        Edit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <div
+                                                        id="postId"
+                                                        name="postId"
+                                                        defaultValue={postId}
+                                                        onClick={handleDelete}
+                                                        // onClick={() =>
+                                                        //     window.my_modal_Delete.showModal()
+                                                        // }
+                                                    >
+                                                        Delete
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    )}
                                 {/* **** */}
                             </div>
                         </div>

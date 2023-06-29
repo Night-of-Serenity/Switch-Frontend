@@ -34,7 +34,7 @@ function TextContent({ feed }) {
                 <span onClick={() => updateReSwitch(feed.id)}>
                     <FaRetweet
                         className={`text-lg cursor-pointer ${
-                            feed?.isReswitch ? "text-green-600" : ""
+                            feed?.isReswitched ? "text-green-600" : ""
                         }`}
                     />
                 </span>
