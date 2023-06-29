@@ -4,26 +4,24 @@ import { FcLike } from "react-icons/fc";
 import { SlOptions } from "react-icons/sl";
 import TextContent from "../../Common/TextContent";
 import EditContent from "../../Common/EditContent";
-import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import { Navigate,useNavigate } from "react-router-dom";
 import * as postService from "../../api/post-api"
 import { useFeed } from "../../context/FeedContext";
 
-function Content({ feed,postId }) {
+function Content({ feed}) {
 
-    const { post, setPost, file, setFile } = useFeed();
+    const { post, setPost, file, setFile,fetchUserProfile } = useFeed();
 
-const handleDelete = (e) => {
-        e.preventDefault()    
-        console.log("testtt",post,postId)  
-        postService.deletePost(postId,post)
+const handleDelete = () => {   
+       postService.deletePost(feed.id)
          setPost(null);
-        setFile(null);         
+        setFile(null); 
+        // fetchUserProfile()     
     };
 
     const navigate = useNavigate();
-    console.log(feed);
+
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";
@@ -89,7 +87,6 @@ const handleDelete = (e) => {
                                                 <div
                                                 id="postId"
                                                 name="postId"
-                                                defaultValue={postId}
                                                 onClick={handleDelete}
                                                     // onClick={() =>
                                                     //     window.my_modal_Delete.showModal()                                                       
@@ -110,6 +107,7 @@ const handleDelete = (e) => {
                             <EditContent
                                 postId={feed.id}
                                 setIsEdit={setIsEdit}
+                                feed={feed}
                             />
                         ) : (
                             <TextContent feed={feed} />
