@@ -19,13 +19,39 @@ function FeedContextProvider({ children }) {
     const [likes, setLikes] = useState([]);
     const [postDetail, setPostDetail] = useState({});
 
-    const createReply = async (postId, input) => {
-        await postService.createReply(postId, input);
+    const updateReSwitch = async (postId) => {
+        console.log(postId);
+        await feedService.updateReSwitch(postId);
         fetchPostDetail(postId);
+        fetchAll();
+    };
+    const updateReSwitchReply = async (replyId, postId) => {
+        await feedService.updateReSwitchReply(replyId);
+        fetchPostDetail(postId);
+        fetchAll();
+    };
+
+    const updateLike = async (postId) => {
+        await feedService.updateLike(postId);
+        fetchPostDetail(postId);
+        fetchAll();
+    };
+    const updateLikeReply = async (replyId, postId) => {
+        await feedService.updateLikeReply(replyId);
+        fetchPostDetail(postId);
+        fetchAll();
+    };
+    const fetchAll = () => {
         fetchAllFeed();
         fetchUserProfile();
         fetchMediaProfile();
         fetchLikes();
+    };
+
+    const createReply = async (postId, input) => {
+        await postService.createReply(postId, input);
+        fetchPostDetail(postId);
+        fetchAll();
     };
 
     const fetchPostDetail = async (postId) => {
@@ -36,6 +62,7 @@ function FeedContextProvider({ children }) {
     // console.log(feeds);
     const fetchLikes = async () => {
         const res = await feedService.fetchLike();
+        // console.log(res.data);
         setLikes(res.data);
     };
 
@@ -120,6 +147,10 @@ function FeedContextProvider({ children }) {
         fetchPostDetail,
         postDetail,
         createReply,
+        updateLike,
+        updateLikeReply,
+        updateReSwitchReply,
+        updateReSwitch,
     };
 
     return (

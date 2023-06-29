@@ -24,6 +24,8 @@ function ProfilePage() {
     const { fetchMe, user, userDetail } = useAuth();
     const nevigate = useNavigate();
 
+    console.log(profile);
+
     const [active, setActive] = useState("switch");
     // console.log(active);
 
@@ -66,6 +68,7 @@ function ProfilePage() {
         fetchUserProfile();
         fetchMediaProfile();
         fetchLikes();
+        // console.log(likes);
     }, []);
 
     const { tab } = useParams();
@@ -80,10 +83,12 @@ function ProfilePage() {
         contents = mediaProfile;
         isPost = true;
     } else if (tab === "like") {
-        if (likes.reslike) {
-            contents = [...likes.reslike];
-            isPost = true;
-        }
+        // if (likes.reslike) {
+        //     contents = [...likes.reslike];
+        //     isPost = true;
+        // }
+        contents = likes;
+        isPost = true;
     }
 
     // console.log(profile);
@@ -135,12 +140,9 @@ function ProfilePage() {
                                         <div className=" lg:max-w-none gap-4">
                                             <div className="flex flex-row justify-start items-center">
                                                 <div className="m-2 p-1 rounded-xl font-extrabold  ">
-                                                    {profile[0]?.User?.username}{" "}
-                                                    said
+                                                    {user.username} said
                                                 </div>
-                                                <div>
-                                                    : {profile[0]?.User?.bio}
-                                                </div>
+                                                <div>: {user.bio}</div>
                                             </div>
                                             <dl className="mt-2 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-3">
                                                 {stats.map((stat) => (

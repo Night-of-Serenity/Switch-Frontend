@@ -5,6 +5,7 @@ import { fetchMe } from "../api/auth-api";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function SettingContent({ profileImageUrl, username, bio }) {
     const inputRef = useRef();
@@ -12,7 +13,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
     const navigate = useNavigate();
     const { fetchMe } = useAuth();
 
-    const [showImage, setShowImage] = useState(null);
+    // const [showImage, setShowImage] = useState(null);
     const [image, setImage] = useState(null);
 
     const [file, setFile] = useState("");
@@ -31,7 +32,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
         const res = await userService.editProfile(formData);
         setUser(res.data.user);
         // console.log("testttt");
-        navigate("/profile");
+        navigate("/profile/switch");
         fetchMe();
     };
 
@@ -58,7 +59,11 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                             {profileImageUrl ? (
                                 <img
                                     className=" w-28 h-28 rounded-full"
-                                    src={profileImageUrl}
+                                    src={
+                                        image
+                                            ? URL.createObjectURL(image)
+                                            : profileImageUrl
+                                    }
                                 />
                             ) : (
                                 <UserCircleIcon
@@ -73,9 +78,9 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                                 ref={inputRef}
                                 onChange={(e) => {
                                     setImage(e.target.files[0]);
-                                    setShowImage(
-                                        URL.createObjectURL(e.target.files[0])
-                                    );
+                                    // setShowImage(
+                                    //     URL.createObjectURL(e.target.files[0])
+                                    // );
                                 }}
                             />
                             <button
@@ -232,12 +237,14 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
             </div>
             <div className="p-2 pr-8">
                 <div className=" flex items-center justify-end gap-x-6">
-                    <button
-                        type="button"
-                        className="text-sm font-semibold leading-6 text-gray-900"
-                    >
-                        Cancel
-                    </button>
+                    <Link to="/">
+                        <span
+                            type="button"
+                            className="text-sm font-semibold leading-6 text-gray-900"
+                        >
+                            Cancel
+                        </span>
+                    </Link>
                     <button
                         type="submit"
                         className="rounded-md bg-Primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-Primary"
