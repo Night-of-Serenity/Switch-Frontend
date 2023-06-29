@@ -6,20 +6,19 @@ import TextContent from "../../Common/TextContent";
 import EditContent from "../../Common/EditContent";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
-import { Navigate,useNavigate } from "react-router-dom";
-import * as postService from "../../api/post-api"
+import { Navigate, useNavigate } from "react-router-dom";
+import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 
-function Content({ feed,postId }) {
-
+function Content({ feed, postId }) {
     const { post, setPost, file, setFile } = useFeed();
 
-const handleDelete = (e) => {
-        e.preventDefault()    
-        console.log("testtt",post,postId)  
-        postService.deletePost(postId,post)
-         setPost(null);
-        setFile(null);         
+    const handleDelete = (e) => {
+        e.preventDefault();
+        console.log("testtt", post, postId);
+        postService.deletePost(postId, post);
+        setPost(null);
+        setFile(null);
     };
 
     const navigate = useNavigate();
@@ -56,7 +55,7 @@ const handleDelete = (e) => {
                                 <h2 className="text-lg font-semibold cursor-pointer ">
                                     {feed.User.username}
                                 </h2>
-                                <h2 className="text-md font-normal pl-2 ">
+                                <h2 className="text-sm flex items-end  font-normal pl-2 ">
                                     {" "}
                                     {dateString}
                                 </h2>
@@ -87,12 +86,12 @@ const handleDelete = (e) => {
                                             </li>
                                             <li>
                                                 <div
-                                                id="postId"
-                                                name="postId"
-                                                defaultValue={postId}
-                                                onClick={handleDelete}
+                                                    id="postId"
+                                                    name="postId"
+                                                    defaultValue={postId}
+                                                    onClick={handleDelete}
                                                     // onClick={() =>
-                                                    //     window.my_modal_Delete.showModal()                                                       
+                                                    //     window.my_modal_Delete.showModal()
                                                     // }
                                                 >
                                                     Delete
