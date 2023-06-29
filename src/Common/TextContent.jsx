@@ -18,7 +18,7 @@ function TextContent({ feed }) {
     return (
         <>
             <div>
-                <h2 className="text-lg font-light ">{feed.textcontent}</h2>
+                <h2 className="text-md font-light ">{feed.textcontent}</h2>
                 {feed.imgUrl || feed.imageUrl ? (
                     <img
                         className="h-80 p-2 "
@@ -34,7 +34,7 @@ function TextContent({ feed }) {
                 <span onClick={() => updateReSwitch(feed.id)}>
                     <FaRetweet
                         className={`text-lg cursor-pointer ${
-                            feed?.isReswitch ? "text-green-600" : ""
+                            feed?.isReswitched ? "text-green-600" : ""
                         }`}
                     />
                 </span>
