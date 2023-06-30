@@ -12,6 +12,7 @@ import { useAuth } from "../context/AuthContext";
 import jwt_decode from "jwt-decode";
 import { useFeed } from "../context/FeedContext";
 
+
 function GuestPage() {
     const [user, setUser] = useState({});
     const { glogin } = useAuth();
@@ -52,10 +53,12 @@ function GuestPage() {
                         </h1>
                     </div>
 
-                    {/* <Content /> */}
-                    {/* {feeds.map((el) => (
-                        <Content feed={el} />
+                    {/* <Content /> 
+                     {feeds.map((el) => (
+                        <Content feed={el}  />
                     ))} */}
+                    
+                
                 </div>
                 <div className="mt-4 ">
                     <div className="border-2 m-6 rounded-xl p-4">

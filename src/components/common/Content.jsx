@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { SlOptions } from "react-icons/sl";
-import TextContent from "../../Common/TextContent";
+import TextContent from "../../Common/TextContent"
 import EditContent from "../../Common/EditContent";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
@@ -17,7 +17,7 @@ function Content({ feed, postId }) {
     const { user } = useAuth();
     // console.log(feed.textcontent, feed.id);
 
-    const isMyPost = feed.userId === user.id;
+    // const isMyPost = feed.userId === user.id;
 
     const handleDelete = () => {
         postService.deletePost(feed.id);
