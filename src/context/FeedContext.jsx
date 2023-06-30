@@ -119,6 +119,11 @@ function FeedContextProvider({ children }) {
         setMediaProfile(res.data);
     };
 
+    const fetchFeedGuest = async () => {
+        const res = await feedService.fetchFeedGuest();
+        setFeeds(res.data);
+    };
+
     const values = {
         fetchAllFeed,
         feeds,
@@ -151,6 +156,7 @@ function FeedContextProvider({ children }) {
         updateLikeReply,
         updateReSwitchReply,
         updateReSwitch,
+        fetchFeedGuest,
         fetchAll,
     };
 

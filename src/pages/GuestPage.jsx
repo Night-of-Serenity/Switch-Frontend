@@ -11,11 +11,13 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import jwt_decode from "jwt-decode";
 import { useFeed } from "../context/FeedContext";
+import ContentGuest from "../components/common/ContentGuest";
+
 
 function GuestPage() {
     const [user, setUser] = useState({});
     const { glogin } = useAuth();
-    const { fetchAllFeed, feeds } = useFeed();
+    const { fetchAllFeed, feeds,fetchFeedGuest } = useFeed();
 
     function hdlCallbackResponse(response) {
         // console.log(response.credential);
@@ -24,7 +26,7 @@ function GuestPage() {
 
     useEffect(() => {
         /* global google */
-
+        fetchFeedGuest();
         window.google?.accounts.id.initialize({
             client_id:
                 "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
@@ -34,6 +36,7 @@ function GuestPage() {
         window.google?.accounts.id.renderButton(
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large" }
+            
         );
     }, []);
 
@@ -51,10 +54,12 @@ function GuestPage() {
                         </h1>
                     </div>
 
-                    {/* <Content /> */}
-                    {/* {feeds.map((el) => (
-                        <Content feed={el} />
-                    ))} */}
+                    
+                     {feeds.map((el) => (
+                        <ContentGuest feed={el}  />
+                    ))}
+                    
+                
                 </div>
                 <div className="mt-4 ">
                     <div className="border-2 m-6 rounded-xl p-4">
