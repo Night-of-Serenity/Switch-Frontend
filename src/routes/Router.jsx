@@ -11,6 +11,7 @@ import RedirectIfAuthenticate from "../pages/RedirectIfAuthenticate";
 import FriendProfilePage from "../pages/FriendProfilePage";
 import CommentPage from "../pages/CommentPage";
 import TrendsByIdPage from "../pages/TrendsByIdPage";
+import SuggestPage from "../pages/SuggestPage";
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -27,6 +28,14 @@ export default function Router() {
             element: (
                 <ProtectedRoute>
                     <HomePage />
+                </ProtectedRoute>
+            ),
+        },
+        {
+            path: "/suggest",
+            element: (
+                <ProtectedRoute>
+                    <SuggestPage />
                 </ProtectedRoute>
             ),
         },
