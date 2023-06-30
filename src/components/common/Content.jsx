@@ -15,6 +15,7 @@ function Content({ feed, postId }) {
     const { post, setPost, file, setFile, fetchUserProfile } = useFeed();
 
     const { user } = useAuth();
+    // console.log(feed.textcontent, feed.id);
 
     const isMyPost = feed.userId === user.id;
 

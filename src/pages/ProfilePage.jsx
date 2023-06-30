@@ -22,7 +22,7 @@ function ProfilePage() {
         fetchLikes,
     } = useFeed();
     const { fetchMe, user, userDetail } = useAuth();
-    const nevigate = useNavigate();
+    const navigate = useNavigate();
     const { tab } = useParams();
     const [active, setActive] = useState(tab);
 
@@ -165,7 +165,7 @@ function ProfilePage() {
                                 <button
                                     className="border-Primary border-2 rounded-full p-1 hover:bg-Primary hover:text-white
                text-Primary  font-medium"
-                                    onClick={() => nevigate("/Setting")}
+                                    onClick={() => navigate("/Setting")}
                                 >
                                     Set up proflie
                                 </button>
