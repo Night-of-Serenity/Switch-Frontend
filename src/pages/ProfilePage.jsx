@@ -20,6 +20,7 @@ function ProfilePage() {
         mediaProfile,
         likes,
         fetchLikes,
+        fetchAll,
     } = useFeed();
     const { fetchMe, user, userDetail } = useAuth();
     const navigate = useNavigate();
@@ -64,8 +65,14 @@ function ProfilePage() {
         fetchUserProfile();
         fetchMediaProfile();
         fetchLikes();
+        // fetchAll();
         // console.log(likes);
     }, []);
+    const handleOnClickMedia = () => {
+        setActive("media");
+        fetchAll();
+        // fetchMe()
+    };
 
     let contents = [];
     let isPost = false;
@@ -197,7 +204,8 @@ function ProfilePage() {
                                         ? "text-Primary  underline"
                                         : ""
                                 }`}
-                                onClick={() => setActive("media")}
+                                // onClick={() => setActive("media")}
+                                onClick={() => handleOnClickMedia()}
                             >
                                 Media
                             </div>

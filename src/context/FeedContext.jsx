@@ -158,7 +158,8 @@ function FeedContextProvider({ children }) {
         updateReSwitchReply,
         updateReSwitch,
         fetchFeedGuest,
-        feedGuest
+        feedGuest,
+        fetchAll,
     };
 
     return (
