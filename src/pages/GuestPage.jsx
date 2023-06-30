@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import jwt_decode from "jwt-decode";
 import { useFeed } from "../context/FeedContext";
+import ContentGuest from "../components/common/ContentGuest";
 
 
 function GuestPage() {
@@ -25,7 +26,7 @@ function GuestPage() {
 
     useEffect(() => {
         /* global google */
-        
+        fetchFeedGuest();
         window.google?.accounts.id.initialize({
             client_id:
                 "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
@@ -53,10 +54,10 @@ function GuestPage() {
                         </h1>
                     </div>
 
-                    {/* <Content /> 
+                    
                      {feeds.map((el) => (
-                        <Content feed={el}  />
-                    ))} */}
+                        <ContentGuest feed={el}  />
+                    ))}
                     
                 
                 </div>

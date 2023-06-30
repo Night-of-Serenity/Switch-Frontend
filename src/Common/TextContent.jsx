@@ -15,6 +15,8 @@ function TextContent({ feed }) {
     const { updateLike, updateReSwitch } = useFeed();
     // const location = useLocation();
 
+    const location = useLocation();
+
     return (
         <>
             <div>
@@ -23,7 +25,32 @@ function TextContent({ feed }) {
                     <img className="h-80 p-2 " src={feed.imageUrl} />
                 ) : null}
             </div>
-            <div className="flex gap-20 flex-row mt-2">
+
+            {location.pathname === "/guest"? (
+                 <div className="flex gap-20 flex-row mt-2">
+                 <FaRegComment
+                     className="cursor-pointer"
+                     onClick={() => window.my_modal_login.showModal()}
+                 />
+                 <span onClick={() => window.my_modal_login.showModal()}>
+                     <FaRetweet
+                         className={`text-lg cursor-pointer ${
+                             feed?.isReswitched ? "text-green-600" : ""
+                         }`}
+                     />
+                 </span>
+                 {/* <FaRetweet className="text-lg cursor-pointer  " /> */}
+                 <span onClick={() => window.my_modal_login.showModal()}>
+                     {feed?.isLiked ? (
+                         // ********รอชื่อจากBE
+                         <FcLike className="cursor-pointer text-lg font-bold " />
+                     ) : (
+                         <GrFavorite className="cursor-pointer  " />
+                     )}
+                 </span>
+             </div>
+            ) : (
+                <div className="flex gap-20 flex-row mt-2">
                 <FaRegComment
                     className="cursor-pointer"
                     onClick={() => navigate(`/comment/${feed.id}`)}
@@ -45,6 +72,10 @@ function TextContent({ feed }) {
                     )}
                 </span>
             </div>
+            )}
+           
+
+           
         </>
     );
 }

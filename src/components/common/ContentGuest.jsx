@@ -10,14 +10,11 @@ import { Navigate, useNavigate } from "react-router-dom";
 import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 
-function Content({ feed, postId }) {
-    // console.log({ feedImage: feed.imageUrl, feedId: feed.id });
+function ContentGuest({ feed, postId }) {
     const { post, setPost, file, setFile, fetchUserProfile } = useFeed();
 
     const { user } = useAuth();
-    // console.log(feed.textcontent, feed.id);
 
-    const isMyPost = feed.userId === user.id;
 
     const handleDelete = () => {
         postService.deletePost(feed.id);
@@ -127,4 +124,4 @@ function Content({ feed, postId }) {
     );
 }
 
-export default Content;
+export default ContentGuest;

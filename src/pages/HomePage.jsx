@@ -11,6 +11,7 @@ function HomePage() {
 
     useEffect(() => {
         fetchAllFeed();
+        
     }, []);
 
     return (
