@@ -51,7 +51,7 @@ function GuestPage() {
                         </h1>
                     </div>
 
-                    <Content />
+                    {/* <Content /> */}
                     {/* {feeds.map((el) => (
                         <Content feed={el} />
                     ))} */}

@@ -14,13 +14,15 @@ function Footer() {
     const values = useAuth();
     const { onSubmitLogin, user: myUser } = values;
     const { onSubmitRegister } = values;
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
         await onSubmitRegister(user);
         // const token = getAccessToken()
 
         if (!myUser) return;
-        window.my_modal_2.showModal();
+        // window.my_modal_2.showModal();
+        navigate("/suggest");
     };
 
     // console.log(user);
@@ -465,7 +467,8 @@ function Footer() {
                                                                         method="dialog"
                                                                         className="modal-box"
                                                                     >
-                                                                        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                                                                        {/* ****suggest*** */}
+                                                                        {/* <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                                                                             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                                                                                 <img
                                                                                     className="mx-auto h-24 w-auto"
@@ -519,7 +522,7 @@ function Footer() {
                                                                                     Next
                                                                                 </button>
                                                                             </div>
-                                                                        </div>
+                                                                        </div> */}
                                                                     </div>
                                                                     <form
                                                                         method="dialog"
