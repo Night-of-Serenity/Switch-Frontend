@@ -18,6 +18,7 @@ function FeedContextProvider({ children }) {
     const [followings, setFollowings] = useState([]);
     const [likes, setLikes] = useState([]);
     const [postDetail, setPostDetail] = useState({});
+    const [feedGuest,setFeedGuest] = useState([])
 
     const updateReSwitch = async (postId) => {
         // console.log(postId);
@@ -119,6 +120,11 @@ function FeedContextProvider({ children }) {
         setMediaProfile(res.data);
     };
 
+    const fetchFeedGuest = async () => {
+        const res = await feedService.fetchFeedGuest();
+        setFeedGuest(res.data);
+    };
+
     const values = {
         fetchAllFeed,
         feeds,
@@ -151,6 +157,8 @@ function FeedContextProvider({ children }) {
         updateLikeReply,
         updateReSwitchReply,
         updateReSwitch,
+        fetchFeedGuest,
+        feedGuest
     };
 
     return (
