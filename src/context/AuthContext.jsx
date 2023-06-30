@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import * as authService from "../api/auth-api";
 import { setAccessToken, removeAccessToken } from "../utils/localstroge";
 import axios from "axios";
+import {toast } from 'react-toastify';
 
 const AuthContext = createContext(null);
 
@@ -24,6 +25,7 @@ function AuthContextProvider({ children }) {
     };
 
     const onSubmitRegister = async (newUser) => {
+       try {
         const {
             email,
             password,
@@ -51,24 +53,30 @@ function AuthContextProvider({ children }) {
 
         const token = res.data.accessToken;
         setAccessToken(token);
-
+        toast.success('Sign up Success')
         fetchMe();
         window.my_modal_2.showModal();
+       } catch(err) {
+        toast.error('Sign up Fail ')
+       }
     };
 
     const onSubmitLogin = async (user, e) => {
-        e.preventDefault();
-        // console.log(user);
+        try {
+            e.preventDefault();
         const { email, password } = user;
 
         if (!email || !password) {
             return;
         }
         const res = await authService.login(user);
-
         const token = res.data.accessToken;
+        toast.success('Sign in Success')
         setAccessToken(token);
         fetchMe();
+        }catch(err) {
+        toast.error('Sign in Fail ')
+        }
     };
 
     const glogin = async (credential) => {

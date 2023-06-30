@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getAccessToken } from "../utils/localstroge";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Footer() {
     const [user, setUser] = useState(null);
@@ -19,7 +21,6 @@ function Footer() {
     const handleSubmit = async () => {
         await onSubmitRegister(user);
         // const token = getAccessToken()
-
         if (!myUser) return;
         // window.my_modal_2.showModal();
         navigate("/suggest");
