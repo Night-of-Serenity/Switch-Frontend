@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import * as authService from "../api/auth-api";
 import { setAccessToken, removeAccessToken } from "../utils/localstroge";
