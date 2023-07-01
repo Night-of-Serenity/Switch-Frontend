@@ -1,16 +1,19 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import AuthContextProvider from "./context/AuthContext";
+import FeedContextProvider from "./context/FeedContext";
+
+import Router from "./routes/Router";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1 className="bg-red-200">test</h1>
-    </>
-  );
+    return (
+        <>
+            <AuthContextProvider>
+                <FeedContextProvider>
+                    <Router />
+                </FeedContextProvider>
+            </AuthContextProvider>
+        </>
+    );
 }
 
 export default App;

@@ -10,14 +10,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@tailwindcss/forms": "^0.5.3",
+    "axios": "^1.4.0",
+    "jwt-decode": "^3.1.2",
+    "outline": "link:@heroicons/react/24/outline",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
+    "react-router-dom": "^6.13.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "daisyui": "^3.1.1",
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
