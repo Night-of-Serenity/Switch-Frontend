@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 
 function TextContent({ feed }) {
     const navigate = useNavigate();
-    console.log(feed);
+    // console.log(feed);
     // console.log(feed.imgUrl || feed.imageUrl || null);
     const { updateLike, updateReSwitch, postDetail } = useFeed();
     // const location = useLocation();

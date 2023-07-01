@@ -9,10 +9,12 @@ import { useLocation } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
+import { Link } from "react-router-dom";
 
 function Content({ feed, postId }) {
     // console.log({ feedImage: feed.imageUrl, feedId: feed.id });
-    const { post, setPost, file, setFile, fetchUserProfile } = useFeed();
+    const { fetchotheruserdetail, fetchSwitchOtherUser, deleteSwitch } =
+        useFeed();
 
     const { user } = useAuth();
     // console.log(feed.textcontent, feed.id);
@@ -20,14 +22,11 @@ function Content({ feed, postId }) {
     const isMyPost = feed.userId === user.id;
 
     const handleDelete = () => {
-        postService.deletePost(feed.id);
-        setPost(null);
-        setFile(null);
-        fetchUserProfile();
-        navigate("/");
+        deleteSwitch(feed.id);
     };
 
     const navigate = useNavigate();
+
     const [isEdit, setIsEdit] = useState(false);
 
     let dateString = "";
@@ -40,11 +39,21 @@ function Content({ feed, postId }) {
 
     const location = useLocation();
     // console.log(location);
+    const isMe = feed.userId === user.id;
+    // console.log(isMe);
+    const handleClickProfile = async () => {
+        await fetchSwitchOtherUser(feed.userId);
+        await fetchotheruserdetail(feed.userId);
+        navigate(isMe ? "/profile/switch" : `/friend/${feed.userId}`);
+    };
 
     return (
         <>
             {!feed ? null : (
                 <div className="flex items-start p-2  mt-2 mb-2 space-x-4 justify-self-end border-b-2 ">
+                    {/* <Link
+                        to={isMe ? "/profile/switch" : `friend/${feed.userId}`}
+                    > */}
                     <img
                         src={
                             feed.User.profileImageUrl
@@ -53,11 +62,16 @@ function Content({ feed, postId }) {
                         }
                         alt=""
                         className="w-12 h-12 object-cover rounded-full dark:bg-gray-500 cursor-pointer"
+                        onClick={() => handleClickProfile()}
                     />
+                    {/* </Link> */}
                     <div className=" w-11/12 ">
                         <div className="grid grid-cols-2 ">
                             <div className="flex flex-row">
-                                <h2 className="text-lg  font-semibold cursor-pointer ">
+                                <h2
+                                    className="text-lg  font-semibold cursor-pointer "
+                                    onClick={() => handleClickProfile()}
+                                >
                                     {feed.User.username}
                                 </h2>
                                 <h2 className="text-md pt-1 font-normal pl-2 ">

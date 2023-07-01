@@ -10,10 +10,18 @@ import { Navigate, useNavigate } from "react-router-dom";
 import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 import TextReplyContent from "../../Common/TextReplyContent";
+import { useAuth } from "../../context/AuthContext";
 
 function ReplyContent({ feed, postId }) {
-    const { post, setPost, file, setFile } = useFeed();
-
+    const {
+        post,
+        setPost,
+        file,
+        setFile,
+        fetchotheruserdetail,
+        fetchSwitchOtherUser,
+    } = useFeed();
+    const { user } = useAuth();
     const handleDelete = (e) => {
         e.preventDefault();
         // console.log("testtt", post, postId);
@@ -37,6 +45,13 @@ function ReplyContent({ feed, postId }) {
     const location = useLocation();
     // console.log(location);
 
+    const isMe = feed.userId === user.id;
+    // console.log(isMe);
+    const handleClickProfile = async () => {
+        await fetchSwitchOtherUser(feed.userId);
+        await fetchotheruserdetail(feed.userId);
+        navigate(isMe ? "/profile/switch" : `/friend/${feed.userId}`);
+    };
     return (
         <>
             {!feed ? null : (
@@ -49,11 +64,19 @@ function ReplyContent({ feed, postId }) {
                         }
                         alt=""
                         className="w-12 h-12 object-cover rounded-full dark:bg-gray-500 cursor-pointer"
+                        onClick={() => {
+                            handleClickProfile();
+                        }}
                     />
                     <div className=" w-11/12 ">
                         <div className="grid grid-cols-2 ">
                             <div className="flex flex-row">
-                                <h2 className="text-lg font-semibold cursor-pointer ">
+                                <h2
+                                    className="text-lg font-semibold cursor-pointer "
+                                    onClick={() => {
+                                        handleClickProfile();
+                                    }}
+                                >
                                     {feed.User.username}
                                 </h2>
                                 <h2 className="text-md pt-1 font-normal pl-2 ">
