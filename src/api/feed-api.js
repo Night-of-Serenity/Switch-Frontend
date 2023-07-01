@@ -31,3 +31,9 @@ export const updateReSwitch = (postId) =>
 
 export const updateReSwitchReply = (replyId) =>
     axios.post(`/post/togglereswitchreply/${replyId}`);
+
+export const fetchotheruserdetail = (otherUserId) =>
+    axios.get(`/user/fetchotheruserdetail/${otherUserId}`);
+
+export const fetchSwitchOtherUser = (otherUserId) =>
+    axios.get(`/feed/fetchotheruser/${otherUserId}`);
