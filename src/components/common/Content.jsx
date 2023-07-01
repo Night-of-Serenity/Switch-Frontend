@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegComment, FaRetweet } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { SlOptions } from "react-icons/sl";
-import TextContent from "../../Common/TextContent"
+import TextContent from "../../Common/TextContent";
 import EditContent from "../../Common/EditContent";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
@@ -57,10 +57,10 @@ function Content({ feed, postId }) {
                     <div className=" w-11/12 ">
                         <div className="grid grid-cols-2 ">
                             <div className="flex flex-row">
-                                <h2 className="text-lg font-semibold cursor-pointer ">
+                                <h2 className="text-lg  font-semibold cursor-pointer ">
                                     {feed.User.username}
                                 </h2>
-                                <h2 className="text-md font-normal pl-2 ">
+                                <h2 className="text-md pt-1 font-normal pl-2 ">
                                     {" "}
                                     {dateString}
                                 </h2>

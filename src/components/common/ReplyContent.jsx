@@ -56,7 +56,7 @@ function ReplyContent({ feed, postId }) {
                                 <h2 className="text-lg font-semibold cursor-pointer ">
                                     {feed.User.username}
                                 </h2>
-                                <h2 className="text-md font-normal pl-2 ">
+                                <h2 className="text-md pt-1 font-normal pl-2 ">
                                     {" "}
                                     {dateString}
                                 </h2>
