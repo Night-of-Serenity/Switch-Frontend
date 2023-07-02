@@ -1,6 +1,9 @@
-export default function ChatRoomBox() {
+export default function ChatRoomBox({ onClick }) {
     return (
-        <div className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2  ">
+        <div
+            onClick={onClick}
+            className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2  "
+        >
             <img
                 src="https://source.unsplash.com/100x100/?portrait"
                 alt=""
