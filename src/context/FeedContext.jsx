@@ -18,6 +18,26 @@ function FeedContextProvider({ children }) {
     const [followings, setFollowings] = useState([]);
     const [likes, setLikes] = useState([]);
     const [postDetail, setPostDetail] = useState({});
+    const [friendDetail, setFriendDetail] = useState({});
+    const [friendSwitch, setFriendSwitch] = useState([]);
+
+    const fetchSwitchOtherUser = async (otherUserId) => {
+        const res = await feedService.fetchSwitchOtherUser(otherUserId);
+        setFriendSwitch(res.data);
+    };
+
+    const fetchotheruserdetail = async (otherUserId) => {
+        const res = await feedService.fetchotheruserdetail(otherUserId);
+        setFriendDetail(res.data);
+    };
+
+    const deleteSwitch = async (postId) => {
+        await postService.deletePost(postId);
+        setPost(null);
+        setFile(null);
+        fetchAll();
+        fetchPostDetail(postId);
+    };
 
     const updateReSwitch = async (postId) => {
         // console.log(postId);
@@ -158,6 +178,11 @@ function FeedContextProvider({ children }) {
         updateReSwitch,
         fetchFeedGuest,
         fetchAll,
+        deleteSwitch,
+        fetchotheruserdetail,
+        friendDetail,
+        fetchSwitchOtherUser,
+        friendSwitch,
     };
 
     return (
