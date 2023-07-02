@@ -11,7 +11,7 @@ function App() {
             <AuthContextProvider>
                 <FeedContextProvider>
                     <Router />
-                    <ToastContainer position="top-center"  autoClose={1000} />
+                    <ToastContainer position="top-center" className="z-[1000]" autoClose={1000} />
                 </FeedContextProvider>
             </AuthContextProvider>
         </>
