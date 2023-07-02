@@ -1,15 +1,18 @@
+/* eslint-disable react/prop-types */
 import { BarsArrowUpIcon, UsersIcon } from "@heroicons/react/20/solid";
 import { useChat } from "../../context/ChatContext";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
-export default function ChatMessageBar({ user }) {
+export default function ChatMessageBar() {
     // console.log(userId);
-    const { sendMessage } = useChat();
+    const { user } = useAuth();
+    const { sendMessage, selectContactId } = useChat();
     const [message, setMessage] = useState("");
 
     const handleSendMessage = () => {
         console.log(user.id);
-        sendMessage(message, user.id, 5);
+        sendMessage(message, user.id, selectContactId);
         setMessage("");
     };
 
