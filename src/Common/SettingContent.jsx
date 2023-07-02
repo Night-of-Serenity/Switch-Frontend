@@ -6,12 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useFeed } from "../context/FeedContext";
+import Loading from "../components/common/Loading";
 
 export default function SettingContent({ profileImageUrl, username, bio }) {
     const inputRef = useRef();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const { fetchMe } = useAuth();
+    const {loading,setLoading} = useFeed();
 
     // const [showImage, setShowImage] = useState(null);
     const [image, setImage] = useState(null);
@@ -28,18 +31,20 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
         if (image) {
             formData.append("profileImageUrl", image);
         }
-
+        setLoading(true)
         const res = await userService.editProfile(formData);
         setUser(res.data.user);
         navigate("/profile/switch");
         fetchMe();
+        setLoading(false)
     };
 
     const hdlCancel = () => {
         setFile(null)
         }
     return (
-        <form >
+        <>
+       {loading? (<Loading/>): ( <form >
             <div className="space-y-6 p-8 ">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-xl font-semibold leading-7 text-gray-900">
@@ -257,6 +262,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                     </button>
                 </div>
             </div>
-        </form>
+        </form>)}
+        </>
     );
 }

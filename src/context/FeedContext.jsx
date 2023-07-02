@@ -20,6 +20,7 @@ function FeedContextProvider({ children }) {
     const [postDetail, setPostDetail] = useState({});
     const [friendDetail, setFriendDetail] = useState({});
     const [friendSwitch, setFriendSwitch] = useState([]);
+    const [loading,setLoading] = useState(false)
 
     const fetchSwitchOtherUser = async (otherUserId) => {
         const res = await feedService.fetchSwitchOtherUser(otherUserId);
@@ -103,7 +104,9 @@ function FeedContextProvider({ children }) {
     };
 
     const fetchAllFeed = async () => {
+        setLoading(true)
         const res = await feedService.fetchAllFeed();
+        setLoading(false);
         setFeeds(res.data);
         // console.log(res.data);
     };
@@ -114,10 +117,12 @@ function FeedContextProvider({ children }) {
     };
 
     const createPost = async (input) => {
+        setLoading(true)
         await postService.createPost(input);
         fetchAllFeed();
         fetchTrends();
         fetchUserProfile();
+        setLoading(false)
     };
 
     const fetchUserProfile = async () => {
@@ -183,6 +188,8 @@ function FeedContextProvider({ children }) {
         friendDetail,
         fetchSwitchOtherUser,
         friendSwitch,
+        loading,
+        setLoading
     };
 
     return (
