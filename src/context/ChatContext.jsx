@@ -11,9 +11,13 @@ function ChatContextProvider({ children }) {
     console.log("chat context-------->", user);
 
     useEffect(() => {
-        if (user) socket.connect();
+        if (user) {
+            socket.connect();
+        }
     }, [user]);
+
     const values = {};
+
     return (
         <ChatContext.Provider value={values}>{children}</ChatContext.Provider>
     );
