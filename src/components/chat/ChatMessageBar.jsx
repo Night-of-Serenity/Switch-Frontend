@@ -8,6 +8,7 @@ export default function ChatMessageBar({ user }) {
     const [message, setMessage] = useState("");
 
     const handleSendMessage = () => {
+        console.log(user.id);
         sendMessage(message, user.id, 5);
         setMessage("");
     };
