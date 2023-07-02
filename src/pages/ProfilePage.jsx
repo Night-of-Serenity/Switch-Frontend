@@ -70,7 +70,7 @@ function ProfilePage() {
     }, []);
     const handleOnClickMedia = () => {
         setActive("media");
-        fetchAll();
+        // fetchAll();
         // fetchMe()
     };
 
@@ -111,7 +111,7 @@ function ProfilePage() {
                                     src={user.profileImageUrl}
                                     // src={profile[0]?.User?.profileImageUrl}
                                     alt=""
-                                    className="w-36 h-36 rounded-full dark:bg-gray-500  "
+                                    className="w-36 h-36 object-cover rounded-full dark:bg-gray-500  "
                                 />
                             ) : (
                                 <UserCircleIcon

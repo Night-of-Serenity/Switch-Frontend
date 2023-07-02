@@ -88,7 +88,7 @@ export default function Router() {
             ),
         },
         {
-            path: "/friend",
+            path: "/friend/:otherUserId",
             element: (
                 <ProtectedRoute>
                     <FriendProfilePage />
