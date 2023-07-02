@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import logoCover from "../images/Cover.png";
-import { BsFillCalendar2HeartFill } from "react-icons/bs";
+import { BsFillCalendar2HeartFill, BsEnvelopeHeart } from "react-icons/bs";
 import Content from "../components/common/Content";
 import SuggestContent from "../Common/SuggestContent";
 import Search from "../Common/Search";
@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { AiOutlineMessage } from "react-icons/ai";
+
+import { BiMessageDetail } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 
@@ -157,10 +159,12 @@ function FriendProfilePage() {
                             </div>
                             <div>
                                 <button
-                                    className="text-4xl text-Primary pl-2 "
+                                    className="text-3xl font-thin text-Primary pt-1 pl-2 "
                                     onClick={() => navigate("/message")}
                                 >
-                                    <AiOutlineMessage />
+                                    {/* <BsEnvelopeHeart /> */}
+
+                                    <BiMessageDetail />
                                 </button>
                             </div>
                         </div>
