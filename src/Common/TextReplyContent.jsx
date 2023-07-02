@@ -29,20 +29,34 @@ function TextReplyContent({ feed }) {
                     className="cursor-pointer"
                     onClick={() => navigate(`/comment/${feed.id}`)}
                 /> */}
-                <span onClick={() => updateReSwitchReply(feed.id, feed.postId)}>
-                    <FaRetweet
-                        className={`text-lg cursor-pointer ${
-                            feed?.isReswitched ? "text-green-600" : ""
-                        } `}
-                    />
+                <span className="flex flex-row">
+                    <span
+                        onClick={() =>
+                            updateReSwitchReply(feed.id, feed.postId)
+                        }
+                    >
+                        <FaRetweet
+                            className={`text-lg cursor-pointer ${
+                                feed?.isReswitched ? "text-green-600" : ""
+                            } `}
+                        />
+                    </span>
+                    <p className="text-sm ml-1 justify-start items-start">
+                        {feed?.reswitchedCount ? feed.reswitchedCount : null}
+                    </p>
                 </span>
-                <span onClick={() => updateLikeReply(feed.id, feed.postId)}>
-                    {feed?.isLiked ? (
-                        // ********รอชื่อจากBE
-                        <FcLike className="cursor-pointer text-lg font-bold" />
-                    ) : (
-                        <GrFavorite className="cursor-pointer  " />
-                    )}
+                <span className="flex flex-row">
+                    <span onClick={() => updateLikeReply(feed.id, feed.postId)}>
+                        {feed?.isLiked ? (
+                            // ********รอชื่อจากBE
+                            <FcLike className="cursor-pointer text-lg font-bold" />
+                        ) : (
+                            <GrFavorite className="cursor-pointer  " />
+                        )}
+                    </span>
+                    <p className="text-sm ml-1 justify-start items-start">
+                        {feed?.likedCount ? feed.likedCount : null}
+                    </p>
                 </span>
             </div>
         </>
