@@ -1,19 +1,35 @@
 import Sidebar from "../components/Sidebar";
 import ChatRoomBox from "../components/chat/ChatRoomBox";
-import ChatRoomHeader from "../components/chat/ChatRoomHeader";
-import ChatMessageBar from "../components/chat/ChatMessageBar";
-import MessageOtherUser from "../components/chat/MessageOtherUser";
-import MessageUser from "../components/chat/MessageUser";
 import ChatMessageContainer from "../components/chat/ChatMessageContainer";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useChat } from "../context/ChatContext";
 
 function MessagePage() {
-    const [open, setOpen] = useState(false);
-    const hldOpenMessage = () => {
-        setOpen(true);
-    };
+    const [openChatRoom, setOpenChatRoom] = useState(false);
+    const { contacts, fetchContactRooms, fetchMessage } = useChat();
     const { user } = useAuth();
+
+    const getLastMessage = (contact) => {
+        const SenderLastMessage = contact.Sender[contact.Sender.length - 1];
+        const ReceiverLastMessage =
+            contact.Receiver[contact.Receiver.length - 1];
+        const lastMessage =
+            new Date(SenderLastMessage.createdAt) >
+            new Date(ReceiverLastMessage.createdAt)
+                ? SenderLastMessage
+                : ReceiverLastMessage;
+        return lastMessage;
+    };
+
+    const hldOpenMessage = (contactUserId) => {
+        fetchMessage(contactUserId);
+        setOpenChatRoom(true);
+    };
+
+    useEffect(() => {
+        fetchContactRooms();
+    }, [user.id]);
     // console.log(user);
     return (
         <div className="h-screen  flex flex-col justify-between">
@@ -26,10 +42,25 @@ function MessagePage() {
                         <h1 className="text-2xl font-bold">Message</h1>
                     </div>
                     <div className="overflow-scroll">
-                        <ChatRoomBox onClick={hldOpenMessage} />
+                        {contacts.length &&
+                            contacts.map((contact) => (
+                                <ChatRoomBox
+                                    key={contact.id}
+                                    username={contact.username}
+                                    contactUserId={contact.id}
+                                    profileImage={contact.profileImageUrl}
+                                    lastMessage={
+                                        getLastMessage(contact).textcontent
+                                    }
+                                    lastMessageTime={
+                                        getLastMessage(contact).createdAt
+                                    }
+                                    onOpenChat={hldOpenMessage}
+                                />
+                            ))}
                     </div>
                 </div>
-                {open && <ChatMessageContainer user={user} />}
+                {openChatRoom && <ChatMessageContainer />}
             </div>
         </div>
     );
