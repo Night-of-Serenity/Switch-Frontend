@@ -16,15 +16,18 @@ function ChatContextProvider({ children }) {
         socket.on("receiveMessage", (input) => {
             console.log("ค่าที่ได้รับกลับมา:", input);
         });
-        
-    }, [user]);
+
+        return () => {
+            socket.disconnect();
+        };
+    }, [user, socket.id]);
 
     const sendMessage = (message, userId, receiver) => {
         console.log(userId);
         const objMessage = {
             message: message,
-            sender: userId,
-            receiver: receiver,
+            senderId: userId,
+            receiverId: receiver,
         };
         socket.emit("sendMessage", objMessage);
     };
