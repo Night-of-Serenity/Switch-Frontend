@@ -1,7 +1,7 @@
 import "./App.css";
 import AuthContextProvider from "./context/AuthContext";
 import FeedContextProvider from "./context/FeedContext";
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Router from "./routes/Router";
