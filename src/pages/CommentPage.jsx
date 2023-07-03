@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import ReplyContent from "../components/common/ReplyContent";
 import Content from "../components/common/Content";
 import { useAuth } from "../context/AuthContext";
+import SearchBox from "../components/SearchBox";
 
 function CommentPage() {
     const [comment, setComment] = useState("");
@@ -176,7 +177,7 @@ function CommentPage() {
                     </div>
                 </div>
                 <div className="border-l-2">
-                    <Search />
+                    <SearchBox />
                     <SuggestContent />
                 </div>
             </div>

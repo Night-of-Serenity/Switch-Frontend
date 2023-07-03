@@ -5,6 +5,7 @@ import SuggestContent from "../Common/SuggestContent";
 import Search from "../Common/Search";
 import { useFeed } from "../context/FeedContext";
 import { useParams } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
 // import { PaperClipIcon } from "@heroicons/react/20/solid";
 
 function TrendsByIdPage() {
@@ -35,7 +36,7 @@ function TrendsByIdPage() {
                     ))}
                 </div>
                 <div className="border-l-2">
-                    <Search />
+                    <SearchBox />
                     <SuggestContent />
                 </div>
             </div>

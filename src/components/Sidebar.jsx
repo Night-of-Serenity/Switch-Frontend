@@ -9,6 +9,8 @@ import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { useFeed } from "../context/FeedContext";
 import * as postService from "../api/post-api"
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Sidebar() {
     const { logout, user } = useAuth();
@@ -16,6 +18,7 @@ function Sidebar() {
 
     const hdlLogout = () => {
         logout();
+        toast.success('Logout Success')
     };
 
     const handleCancelPost = () => {
