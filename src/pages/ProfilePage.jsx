@@ -102,10 +102,10 @@ function ProfilePage() {
                             {user.username}
                         </h1>
                     </div>
-                    <div className="flex items-center bg-Primary opacity-90 justify-center border-b-2 pb-4">
-                        <img src={logoCover} className="w-2/5  "></img>
+                    <div className="flex items-center bg-Primary  justify-center border-b-2 pb-4">
+                        <img src={logoCover} className="w-2/5   "></img>
                         {/* <img src={user.coverImageUrl} className="w-2/5  "></img> */}
-                        
+
                         {/* {user.coverImageUrl ? (
                                 <img
                                     className=" w-28 h-28 rounded-full"

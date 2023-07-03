@@ -12,9 +12,18 @@ import FriendProfilePage from "../pages/FriendProfilePage";
 import CommentPage from "../pages/CommentPage";
 import TrendsByIdPage from "../pages/TrendsByIdPage";
 import SuggestPage from "../pages/SuggestPage";
+import Welcome from "../pages/Welcome";
 
 export default function Router() {
     const router = createBrowserRouter([
+        {
+            path: "/welcome",
+            element: (
+                <RedirectIfAuthenticate>
+                    <Welcome />
+                </RedirectIfAuthenticate>
+            ),
+        },
         {
             path: "/guest",
             element: (
