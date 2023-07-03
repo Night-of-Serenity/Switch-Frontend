@@ -4,13 +4,14 @@ import logoCover from "../images/Cover.png";
 import { BsFillCalendar2HeartFill } from "react-icons/bs";
 import Content from "../components/common/Content";
 import SuggestContent from "../Common/SuggestContent";
-import Search from "../Common/Search";
+
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import PostContainer from "../components/profile/PostContainer";
 import FollowContainer from "../components/profile/FollowContainer";
+import SearchBox from "../components/SearchBox";
 
 function ProfilePage() {
     const {
@@ -230,7 +231,7 @@ function ProfilePage() {
                     )}
                 </div>
                 <div className="border-l-2">
-                    <Search />
+                    <SearchBox />
                     <SuggestContent />
                 </div>
             </div>

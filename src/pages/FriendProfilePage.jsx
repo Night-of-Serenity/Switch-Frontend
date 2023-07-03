@@ -13,6 +13,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 
 import { BiMessageDetail } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
 
 function FriendProfilePage() {
     const {
@@ -55,7 +56,7 @@ function FriendProfilePage() {
     };
 
     const stats = [
-        { id: 1, name: "Switch", value: friendDetail?.reswitchedCount },
+        { id: 1, name: "Switch", value: friendDetail?.otherUserPostCount },
         {
             id: 2,
             name: "Follower",
@@ -179,7 +180,7 @@ function FriendProfilePage() {
                     </div>
                 </div>
                 <div className="border-l-2">
-                    <Search />
+                    <SearchBox />
                     <SuggestContent />
                 </div>
             </div>

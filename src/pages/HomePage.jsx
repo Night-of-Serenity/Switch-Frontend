@@ -5,13 +5,13 @@ import TrendsForYou from "../components/TrendsForYou";
 import Search from "../Common/Search";
 import { useAuth } from "../context/AuthContext";
 import { useFeed } from "../context/FeedContext";
+import SearchBox from "../components/SearchBox";
 
 function HomePage() {
     const { fetchAllFeed, feeds } = useFeed();
 
     useEffect(() => {
         fetchAllFeed();
-        
     }, []);
 
     return (
@@ -51,7 +51,8 @@ function HomePage() {
               className="input border-2 input-bordered w-full rounded-full md:w-auto"
             />
           </div> */}
-                    <Search />
+                    {/* <Search /> */}
+                    <SearchBox />
 
                     <TrendsForYou />
                 </div>

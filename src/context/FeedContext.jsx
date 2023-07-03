@@ -20,6 +20,12 @@ function FeedContextProvider({ children }) {
     const [postDetail, setPostDetail] = useState({});
     const [friendDetail, setFriendDetail] = useState({});
     const [friendSwitch, setFriendSwitch] = useState([]);
+    const [selected, setSelected] = useState({ username: "search" });
+
+    const handleOnChangeSearch = async (text) => {
+        const res = await feedService.searchByName(text);
+        setSelected(res.data);
+    };
 
     const fetchSwitchOtherUser = async (otherUserId) => {
         const res = await feedService.fetchSwitchOtherUser(otherUserId);
@@ -183,6 +189,9 @@ function FeedContextProvider({ children }) {
         friendDetail,
         fetchSwitchOtherUser,
         friendSwitch,
+        selected,
+        setSelected,
+        handleOnChangeSearch,
     };
 
     return (

@@ -1,5 +1,6 @@
 import React from "react";
 import Content from "../common/Content";
+import ReplyContent from "../common/ReplyContent";
 import { v4 as uuidv4 } from "uuid";
 
 function PostContainer({ contents }) {
