@@ -37,3 +37,6 @@ export const fetchotheruserdetail = (otherUserId) =>
 
 export const fetchSwitchOtherUser = (otherUserId) =>
     axios.get(`/feed/fetchotheruser/${otherUserId}`);
+
+export const searchByName = (text) =>
+    axios.get(`/feed/search?searchinput=${text}`);

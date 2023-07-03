@@ -5,7 +5,7 @@ import * as postService from "../api/post-api";
 import { useRef } from "react";
 
 function EditContent({ postId, setIsEdit, imageUrl,feed }) {
-    const { fetchUserProfile } = useFeed();
+    const { fetchUserProfile,setLoading } = useFeed();
     const inputRef = useRef();
 
     const [post, setPost] = useState([]);
@@ -22,11 +22,12 @@ function EditContent({ postId, setIsEdit, imageUrl,feed }) {
         if (image) {
             formData.append("postImage", image);
         }
-
+        setLoading(true)
         const res = await postService.editPost(formData, postId);
         setPost(res.data.post);
         setIsEdit(false);
         fetchUserProfile();
+        setLoading(false)
     };
 
     const hdlCancel = () => {

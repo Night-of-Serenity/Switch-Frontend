@@ -27,7 +27,7 @@ function SuggestFollow({ userSuggest }) {
                 {/* <div className="flex flex-row"> */}
                 <div className="items-center flex justify-center">
                     <img
-                        src={userSuggest?.profileImageUrl}
+                        src={userSuggest?.profileImageUrl?(userSuggest?.profileImageUrl):("https://tse2.mm.bing.net/th?id=OIP.PJB4lxw88QRaADN8UWxV4AHaHa&pid=Api&P=0&h=180")}
                         alt=""
                         className="w-10 h-10 cursor-pointer object-cover text-center rounded-full dark:bg-gray-500"
                         onClick={() => {

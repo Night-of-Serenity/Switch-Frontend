@@ -7,15 +7,25 @@ import { FcLike } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function TextContent({ feed }) {
     const navigate = useNavigate();
     // console.log(feed);
     // console.log(feed.imgUrl || feed.imageUrl || null);
-    const { updateLike, updateReSwitch, postDetail } = useFeed();
+    const [reSwitch, setReSwitch] = useState(feed.isReswitched);
+    const {
+        updateLike,
+        updateReSwitch,
+        postDetail,
+        updateReSwitchReply,
+        updateLikeReply,
+    } = useFeed();
     // const location = useLocation();
 
     const location = useLocation();
+
+    const isPost = feed.postId ? false : true;
 
     return (
         <>
@@ -75,14 +85,33 @@ function TextContent({ feed }) {
                         /> */}
                         <FaRegComment
                             className="cursor-pointer"
-                            onClick={() => navigate(`/comment/${feed.id}`)}
+                            onClick={() =>
+                                navigate(
+                                    `/comment/${isPost ? feed.id : feed.postId}`
+                                )
+                            }
                         />
                         <p className="text-sm ml-1 justify-start items-start">
                             {feed?.replyCount ? feed.replyCount : null}
                         </p>
                     </span>
                     <span className="flex flex-row">
-                        <span onClick={() => updateReSwitch(feed.id)}>
+                        <span
+                            onClick={
+                                isPost
+                                    ? () => {
+                                          updateReSwitch(feed.id);
+                                          //   setReSwitch(!reSwitch);
+                                      }
+                                    : () => {
+                                          updateReSwitchReply(
+                                              feed.id,
+                                              feed.postid
+                                          );
+                                          //   setReSwitch(!reSwitch);
+                                      }
+                            }
+                        >
                             <FaRetweet
                                 className={`text-lg cursor-pointer ${
                                     feed?.isReswitched ? "text-green-600" : ""
@@ -98,7 +127,13 @@ function TextContent({ feed }) {
 
                     {/* <FaRetweet className="text-lg cursor-pointer  " /> */}
                     <span className="flex flex-row">
-                        <span onClick={() => updateLike(feed.id)}>
+                        <span
+                            onClick={
+                                isPost
+                                    ? () => updateLike(feed.id)
+                                    : () => updateLikeReply(feed.id, postId)
+                            }
+                        >
                             {feed?.isLiked ? (
                                 // ********รอชื่อจากBE
                                 <FcLike className="cursor-pointer text-lg font-bold " />

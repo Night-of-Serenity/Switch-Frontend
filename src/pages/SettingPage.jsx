@@ -6,8 +6,10 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 
+
 function SettingPage() {
     const { user } = useAuth();
+  
 
     return (
         <div className="h-screen  flex flex-col justify-between ">
@@ -21,6 +23,7 @@ function SettingPage() {
                         <SettingContent
                             key={user.id}
                             profileImageUrl={user.profileImageUrl}
+                            coverImageUrl={user.coverImageUrl}
                             username={user.username}
                             bio={user.bio}
                         />

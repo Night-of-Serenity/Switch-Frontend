@@ -4,13 +4,15 @@ import logoCover from "../images/Cover.png";
 import { BsFillCalendar2HeartFill } from "react-icons/bs";
 import Content from "../components/common/Content";
 import SuggestContent from "../Common/SuggestContent";
-import Search from "../Common/Search";
+
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import PostContainer from "../components/profile/PostContainer";
 import FollowContainer from "../components/profile/FollowContainer";
+import SearchBox from "../components/SearchBox";
+
 
 function ProfilePage() {
     const {
@@ -56,9 +58,7 @@ function ProfilePage() {
                 : 0,
         },
     ];
-    // console.log(user?.followings);
-    // console.log(user);
-    // console.log(profile);
+
 
     useEffect(() => {
         fetchMe();
@@ -101,8 +101,22 @@ function ProfilePage() {
                             {user.username}
                         </h1>
                     </div>
-                    <div className="flex items-center bg-Primary opacity-90 justify-center border-b-2 pb-4">
-                        <img src={logoCover} className="w-2/5  "></img>
+                    <div className="flex items-center bg-Primary  justify-center border-b-2 pb-4">
+                        <img src={logoCover} className="w-2/5   "></img>
+                        {/* <img src={user.coverImageUrl} className="w-2/5  "></img> */}
+
+                        {/* {user.coverImageUrl ? (
+                                <img
+                                    className=" w-28 h-28 rounded-full"
+                                    src={
+                                        image
+                                            ? URL.createObjectURL(image)
+                                            : user.coverImageUrl
+                                    }
+                                />
+                            ) : (
+                                {logoCover}
+                            )} */}
                     </div>
                     <div className="grid grid-cols-4 py-2 ">
                         <div className="flex justify-center">
@@ -230,11 +244,12 @@ function ProfilePage() {
                     )}
                 </div>
                 <div className="border-l-2">
-                    <Search />
+                    <SearchBox />
                     <SuggestContent />
                 </div>
             </div>
         </div>
+        
     );
 }
 

@@ -21,6 +21,8 @@ function Content({ feed, postId }) {
 
     const isMyPost = feed.userId === user.id;
 
+    const isPost = feed.postId ? false : true;
+
     const handleDelete = () => {
         deleteSwitch(feed.id);
     };
@@ -83,7 +85,8 @@ function Content({ feed, postId }) {
                                 {/* **** */}
                                 {(location.pathname === "/profile/switch" ||
                                     location.pathname === "/profile/media") &&
-                                    isMyPost && (
+                                    isMyPost &&
+                                    isPost && (
                                         <div className="dropdown dropdown-end px-4">
                                             <label
                                                 tabIndex={0}
