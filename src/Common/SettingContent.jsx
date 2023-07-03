@@ -8,6 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import Loading from "../components/common/Loading";
+import Spinner from "../components/common/Loading";
 
 export default function SettingContent({
     profileImageUrl,
@@ -19,7 +20,7 @@ export default function SettingContent({
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const { fetchMe } = useAuth();
-    const { loading, setLoading } = useFeed();
+    const {setLoading } = useFeed();
 
     // const [showImage, setShowImage] = useState(null);
     const [image, setImage] = useState(null);
@@ -44,7 +45,7 @@ export default function SettingContent({
         const res = await userService.editProfile(formData);
         setUser(res.data.user);
         navigate("/profile/switch");
-        fetchMe();
+         fetchMe();
         setLoading(false);
     };
 
@@ -53,9 +54,6 @@ export default function SettingContent({
     };
     return (
         <>
-            {loading ? (
-                <Loading />
-            ) : (
                 <form>
                     <div className="space-y-6 p-8 ">
                         <div className="border-b border-gray-900/10 pb-12">
@@ -317,7 +315,8 @@ export default function SettingContent({
                         </div>
                     </div>
                 </form>
-            )}
+          
+            
         </>
     );
 }

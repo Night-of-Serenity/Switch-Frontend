@@ -31,17 +31,6 @@ function HomePage() {
                         {feeds.map((el) => (
                             <Content key={el.id} feed={el} />
                         ))}
-
-                        {/* <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content /> */}
                     </div>
                 </div>
                 <div className="border-l-2">

@@ -11,14 +11,11 @@ import { useFeed } from "../context/FeedContext";
 import * as postService from "../api/post-api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRef } from "react";
-import { useState } from "react";
+import Spinner from "./common/Loading";
 
 function Sidebar() {
     const { logout, user } = useAuth();
-    const { post, setPost, file, setFile } = useFeed();
-    const ref = useRef();
-    const [isCreate, setIsCreate] = useState(false);
+    const { post, setPost, file, setFile,loading } = useFeed();
 
     const hdlLogout = () => {
         try {
@@ -82,17 +79,7 @@ function Sidebar() {
                                     <span>Explore</span>
                                 </Link>
                             </li>
-                            {/* <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
-                <Link to = '/notification'
-                  rel="noopener noreferrer"
-                 
-                  className="flex items-center p-2 space-x-3 rounded-md"
-                >
-                  <BsBell className="text-xl" />
 
-                  <span>Notification</span>
-                </Link>
-              </li> */}
                             <li className="rounded-sm text-gray-700 hover:text-Primary hover:bg-gray-50">
                                 <Link
                                     to="/message"
@@ -132,12 +119,7 @@ function Sidebar() {
                                 </Link>
                             </li>
                         </ul>
-                        {/* <div className="w-full h-12 bg-Primary text-white rounded-full text-center flex justify-center items-center my-10">
-              <button>Switch</button>
-            </div> */}
 
-                        {/* *************** */}
-                        {/* You can open the modal using ID.showModal() method */}
                         <button
                             className="w-full h-12 bg-Primary text-white text-lg font-bold rounded-full text-center hover:bg-stone-700  flex justify-center items-center my-10"
                             onClick={() => window.my_modal_switch.showModal()}
@@ -146,15 +128,10 @@ function Sidebar() {
                         </button>
                         <dialog id="my_modal_switch" className="modal">
                             <form method="dialog" className="modal-box">
-                                {/* <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                  ✕
-                </button> */}
-                                {/* *************** */}
-                                {/* Open the modal using ID.showModal() method */}
                                 <button
                                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                                     onClick={() => handleCloseModal()}
-                                    ref={ref}
+                                    // ref={ref}
                                 >
                                     X
                                 </button>
@@ -177,8 +154,6 @@ function Sidebar() {
                                                 onClick={() =>
                                                     handleCancelPost()
                                                 }
-                                                // defaultValue={postId}
-                                                // onClick={handleDelete}
                                             >
                                                 Delete
                                             </button>
@@ -194,17 +169,15 @@ function Sidebar() {
                                         <button>close</button>
                                     </form>
                                 </dialog>
-                                {/* *************** */}
 
                                 <SwitchPost
-                                    handleCloseModal={handleCloseModal}
-                                    setIsCreate={setIsCreate}
-                                    isCreate={isCreate}
-                                    refComponent={ref}
+                                    // handleCloseModal={handleCloseModal}
+                                    // setIsCreate={setIsCreate}
+                                    // isCreate={isCreate}
+                                    // refComponent={ref}
                                 />
                             </form>
                         </dialog>
-                        {/* *************** */}
                     </div>
                 </div>
                 <div className="flex justify-self-end h-full">
@@ -235,6 +208,7 @@ function Sidebar() {
                     </div>
                 </div>
             </div>
+            <Spinner loading={loading} />
         </div>
     );
 }
