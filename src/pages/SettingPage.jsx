@@ -21,6 +21,7 @@ function SettingPage() {
                         <SettingContent
                             key={user.id}
                             profileImageUrl={user.profileImageUrl}
+                            coverImageUrl={user.coverImageUrl}
                             username={user.username}
                             bio={user.bio}
                         />

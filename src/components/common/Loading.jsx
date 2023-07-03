@@ -7,7 +7,7 @@ function Loading() {
         <div >
             <div className='flex justify-center items-center min-h-full'>
             Loading...
-            <Oval/>
+            <Oval height={30} width={30} />
             </div>
         </div>
   
