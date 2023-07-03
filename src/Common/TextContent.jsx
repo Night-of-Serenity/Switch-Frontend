@@ -7,11 +7,13 @@ import { FcLike } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useFeed } from "../context/FeedContext";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 function TextContent({ feed }) {
     const navigate = useNavigate();
     // console.log(feed);
     // console.log(feed.imgUrl || feed.imageUrl || null);
+    const [reSwitch, setReSwitch] = useState(feed.isReswitched);
     const {
         updateLike,
         updateReSwitch,
@@ -97,12 +99,17 @@ function TextContent({ feed }) {
                         <span
                             onClick={
                                 isPost
-                                    ? () => updateReSwitch(feed.id)
-                                    : () =>
+                                    ? () => {
+                                          updateReSwitch(feed.id);
+                                          //   setReSwitch(!reSwitch);
+                                      }
+                                    : () => {
                                           updateReSwitchReply(
                                               feed.id,
                                               feed.postid
-                                          )
+                                          );
+                                          //   setReSwitch(!reSwitch);
+                                      }
                             }
                         >
                             <FaRetweet

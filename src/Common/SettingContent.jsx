@@ -75,7 +75,7 @@ export default function SettingContent({
                                 <div className="mt-2 flex items-center gap-x-3">
                                     {profileImageUrl ? (
                                         <img
-                                            className=" w-28 h-28 rounded-full"
+                                            className=" w-28 object-cover h-28 rounded-full"
                                             src={
                                                 image
                                                     ? URL.createObjectURL(image)

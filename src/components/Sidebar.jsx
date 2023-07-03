@@ -131,6 +131,7 @@ function Sidebar() {
                                 <button
                                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                                     onClick={() => handleCloseModal()}
+                                    // ref={ref}
                                 >
                                     X
                                 </button>
@@ -147,6 +148,8 @@ function Sidebar() {
                                         </p>
                                         <div className="flex justify-end gap-2">
                                             <button
+                                                // id="postId"
+                                                // name="postId"
                                                 className="bg-red-500 hover:font-extrabold rounded-md p-1 px-2 "
                                                 onClick={() =>
                                                     handleCancelPost()
@@ -167,7 +170,12 @@ function Sidebar() {
                                     </form>
                                 </dialog>
 
-                                <SwitchPost />
+                                <SwitchPost
+                                    // handleCloseModal={handleCloseModal}
+                                    // setIsCreate={setIsCreate}
+                                    // isCreate={isCreate}
+                                    // refComponent={ref}
+                                />
                             </form>
                         </dialog>
                     </div>
