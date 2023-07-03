@@ -71,6 +71,7 @@ function ChatContextProvider({ children }) {
                     senderId,
                     receiverId,
                 };
+
                 setDirectMessages((messages) => {
                     console.log("new message", newMessage);
                     const newMessages = [...messages];
