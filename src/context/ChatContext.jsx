@@ -56,6 +56,16 @@ function ChatContextProvider({ children }) {
         console.log("new contact:", contactUser);
     };
 
+    const fetchNewMessageFromOtherUser = async (contactUserId) => {
+        try {
+            const res = await chatApi.fetchNewMessage(contactUserId);
+            console.log("..........res.data.............", res.data);
+            return res.data;
+        } catch (err) {
+            console.log(err.message);
+        }
+    };
+
     useEffect(() => {
         fetchContactRooms();
     }, []);
@@ -65,6 +75,23 @@ function ChatContextProvider({ children }) {
 
         socket.on("receiveMessage", (input) => {
             const { message, senderId, receiverId } = input;
+            const exitContact = contacts.find((contact) => {
+                contact.id === receiverId || contact.id === senderId;
+            });
+
+            if (!exitContact) {
+                const getMessage = async () => {
+                    const newContact = [...contacts];
+                    const result = await fetchNewMessageFromOtherUser(
+                        receiverId
+                    );
+                    newContact.unshift(result);
+                    setContacts(newContact);
+                    console.log("-----------------", newContact);
+                };
+                getMessage();
+            }
+
             if (
                 (senderId === user.id && receiverId === selectContactId) ||
                 (senderId === selectContactId && receiverId === user.id)
@@ -117,6 +144,7 @@ function ChatContextProvider({ children }) {
         setIsCreateNewChat,
         createNewChat,
         newContactUser,
+        fetchNewMessageFromOtherUser,
     };
 
     return (

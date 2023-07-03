@@ -5,3 +5,6 @@ export const fetchContactRooms = () =>
 
 export const fetchChatDirectMessages = (contactUserId) =>
     axios.get(`/chat/fetchdirectmessags/${contactUserId}`);
+
+export const fetchNewMessage = (contactUserId) =>
+    axios.get(`/chat/fetchuserdetial/${contactUserId}`);
