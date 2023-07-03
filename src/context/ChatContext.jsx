@@ -75,22 +75,22 @@ function ChatContextProvider({ children }) {
 
         socket.on("receiveMessage", (input) => {
             const { message, senderId, receiverId } = input;
-            const exitContact = contacts.find((contact) => {
-                contact.id === receiverId || contact.id === senderId;
-            });
+            // const exitContact = contacts.find((contact) => {
+            //     contact.id == receiverId || contact.id == senderId;
+            // });
 
-            if (!exitContact) {
-                const getMessage = async () => {
-                    const newContact = [...contacts];
-                    const result = await fetchNewMessageFromOtherUser(
-                        receiverId
-                    );
-                    newContact.unshift(result);
-                    setContacts(newContact);
-                    console.log("-----------------", newContact);
-                };
-                getMessage();
-            }
+            // if (!exitContact) {
+            //     const getMessage = async () => {
+            //         const newContact = [...contacts];
+            //         const result = await fetchNewMessageFromOtherUser(
+            //             receiverId
+            //         );
+            //         newContact.unshift(result);
+            //         setContacts(newContact);
+            //         console.log("-----------------", newContact);
+            //     };
+            //     getMessage();
+            // }
 
             if (
                 (senderId === user.id && receiverId === selectContactId) ||
