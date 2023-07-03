@@ -8,28 +8,31 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { useFeed } from "../context/FeedContext";
-import * as postService from "../api/post-api"
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import * as postService from "../api/post-api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRef } from "react";
+import { useState } from "react";
 
 function Sidebar() {
     const { logout, user } = useAuth();
     const { post, setPost, file, setFile } = useFeed();
+    const ref = useRef();
+    const [isCreate, setIsCreate] = useState(false);
 
     const hdlLogout = () => {
-       try {
-        logout();
-        toast.success('Logout Success')
-       }catch(err) {
-        toast.error('Logout Fail')
-       }
+        try {
+            logout();
+            toast.success("Logout Success");
+        } catch (err) {
+            toast.error("Logout Fail");
+        }
     };
 
     const handleCancelPost = () => {
         setPost("");
         setFile(null);
     };
-
 
     const handleCloseModal = () => {
         if (post || file) {
@@ -151,6 +154,7 @@ function Sidebar() {
                                 <button
                                     className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                                     onClick={() => handleCloseModal()}
+                                    ref={ref}
                                 >
                                     X
                                 </button>
@@ -167,8 +171,8 @@ function Sidebar() {
                                         </p>
                                         <div className="flex justify-end gap-2">
                                             <button
-                                            // id="postId"
-                                            // name="postId"
+                                                // id="postId"
+                                                // name="postId"
                                                 className="bg-red-500 hover:font-extrabold rounded-md p-1 px-2 "
                                                 onClick={() =>
                                                     handleCancelPost()
@@ -192,7 +196,12 @@ function Sidebar() {
                                 </dialog>
                                 {/* *************** */}
 
-                                <SwitchPost />
+                                <SwitchPost
+                                    handleCloseModal={handleCloseModal}
+                                    setIsCreate={setIsCreate}
+                                    isCreate={isCreate}
+                                    refComponent={ref}
+                                />
                             </form>
                         </dialog>
                         {/* *************** */}

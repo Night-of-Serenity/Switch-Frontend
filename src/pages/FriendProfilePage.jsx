@@ -57,7 +57,11 @@ function FriendProfilePage() {
     };
 
     const stats = [
-        { id: 1, name: "Switch", value: friendDetail?.otherUserPostCount },
+        {
+            id: 1,
+            name: "Switch",
+            value: friendDetail?.otherUserPostCount,
+        },
         {
             id: 2,
             name: "Follower",
@@ -89,8 +93,11 @@ function FriendProfilePage() {
                     <div className="grid grid-cols-4 border-b-2 py-2 ">
                         <div className="flex flex-col items-center justify-center">
                             <img
-                                src={friend?.profileImageUrl?(friend?.profileImageUrl):("https://tse2.mm.bing.net/th?id=OIP.PJB4lxw88QRaADN8UWxV4AHaHa&pid=Api&P=0&h=180"
-                                )}
+                                src={
+                                    friend?.profileImageUrl
+                                        ? friend?.profileImageUrl
+                                        : "https://tse2.mm.bing.net/th?id=OIP.PJB4lxw88QRaADN8UWxV4AHaHa&pid=Api&P=0&h=180"
+                                }
                                 alt=""
                                 className="w-36 h-36 object-cover rounded-full dark:bg-gray-500  "
                             />
