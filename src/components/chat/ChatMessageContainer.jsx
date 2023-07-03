@@ -23,7 +23,7 @@ export default function ChatMessageContainer() {
             <ChatRoomHeader contactUser={contactUser} />
 
             <div className="h-full  overflow-scroll">
-                {directMessages.length &&
+                {directMessages.length > 0 &&
                     directMessages.map((message) =>
                         message.senderId === user.id ? (
                             <MessageUser

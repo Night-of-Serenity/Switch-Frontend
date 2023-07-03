@@ -74,7 +74,7 @@ function MessagePage() {
                             />
                         )}
                         {contacts &&
-                            contacts?.length &&
+                            contacts?.length > 0 &&
                             contacts.map((contact) => (
                                 <ChatRoomBox
                                     key={contact.id}
