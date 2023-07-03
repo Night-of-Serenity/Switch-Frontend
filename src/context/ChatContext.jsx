@@ -137,7 +137,7 @@ function ChatContextProvider({ children }) {
             socket.off("receiveMessage");
             socket.disconnect();
         };
-    }, [user, socket]);
+    }, [user.id, socket.id]);
 
     const values = {
         sendMessage,
