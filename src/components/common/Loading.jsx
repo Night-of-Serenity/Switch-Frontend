@@ -14,7 +14,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 const color = "#A872EE"
 
 function Spinner({ loading } ) {
-  console.log(loading)
   return (
     <Transition
       show={loading}
