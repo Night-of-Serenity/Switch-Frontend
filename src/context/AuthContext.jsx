@@ -80,12 +80,17 @@ function AuthContextProvider({ children }) {
     };
 
     const glogin = async (credential) => {
+       try {
         const res = await axios.post("http://localhost:8000/auth/logingoogle", {
             token: credential,
         });
         const token = res.data.accessToken;
         setAccessToken(token);
         fetchMe();
+        toast.success('Sign in Success')
+       }catch(err) {
+        toast.error('Sign in Fail ')
+       }
     };
 
     const logout = () => {
