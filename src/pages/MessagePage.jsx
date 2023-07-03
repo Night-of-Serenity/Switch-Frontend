@@ -19,9 +19,16 @@ function MessagePage() {
     const { user } = useAuth();
 
     const getLastMessage = (contact) => {
-        const SenderLastMessage = contact.Sender[contact.Sender.length - 1];
+        const SenderLastMessage =
+            contact.Sender && contact.Sender.length > 0
+                ? contact.Sender[contact.Sender.length - 1]
+                : "";
+
         const ReceiverLastMessage =
-            contact.Receiver[contact.Receiver.length - 1];
+            contact.Receiver && contact.Receiver.length > 0
+                ? contact.Receiver[contact.Receiver.length - 1]
+                : "";
+
         const lastMessage =
             new Date(SenderLastMessage.createdAt) >
             new Date(ReceiverLastMessage.createdAt)
@@ -67,7 +74,7 @@ function MessagePage() {
                             />
                         )}
                         {contacts &&
-                            contacts.length &&
+                            contacts?.length &&
                             contacts.map((contact) => (
                                 <ChatRoomBox
                                     key={contact.id}
