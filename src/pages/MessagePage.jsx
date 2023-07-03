@@ -7,7 +7,15 @@ import { useChat } from "../context/ChatContext";
 
 function MessagePage() {
     const [openChatRoom, setOpenChatRoom] = useState(false);
-    const { contacts, fetchContactRooms, fetchMessage } = useChat();
+    const {
+        contacts,
+        fetchContactRooms,
+        fetchMessage,
+        isCreateNewChat,
+        setIsCreateNewChat,
+        newContactUser,
+    } = useChat();
+    // console.log(newContactUser);
     const { user } = useAuth();
 
     const getLastMessage = (contact) => {
@@ -28,6 +36,12 @@ function MessagePage() {
     };
 
     useEffect(() => {
+        return () => {
+            setIsCreateNewChat(false);
+        };
+    }, []);
+
+    useEffect(() => {
         fetchContactRooms();
     }, [user.id]);
     // console.log(user);
@@ -42,7 +56,18 @@ function MessagePage() {
                         <h1 className="text-2xl font-bold">Message</h1>
                     </div>
                     <div className="overflow-scroll">
-                        {contacts.length &&
+                        {isCreateNewChat && (
+                            <ChatRoomBox
+                                key={newContactUser.id}
+                                username={newContactUser.username}
+                                contactUserId={newContactUser.id}
+                                profileImage={newContactUser.profileImageUrl}
+                                lastMessage=""
+                                onOpenChat={hldOpenMessage}
+                            />
+                        )}
+                        {contacts &&
+                            contacts.length &&
                             contacts.map((contact) => (
                                 <ChatRoomBox
                                     key={contact.id}
@@ -60,6 +85,7 @@ function MessagePage() {
                             ))}
                     </div>
                 </div>
+
                 {openChatRoom && <ChatMessageContainer />}
             </div>
         </div>
