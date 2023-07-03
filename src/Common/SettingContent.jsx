@@ -6,15 +6,20 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useFeed } from "../context/FeedContext";
+import Loading from "../components/common/Loading";
 
-export default function SettingContent({ profileImageUrl, username, bio }) {
+export default function SettingContent({ profileImageUrl,coverImageUrl, username, bio }) {
     const inputRef = useRef();
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const { fetchMe } = useAuth();
+    const {loading,setLoading} = useFeed();
 
     // const [showImage, setShowImage] = useState(null);
     const [image, setImage] = useState(null);
+    // const [coverImage, setCoverImage] = useState(null);
+    
 
     const [file, setFile] = useState("");
 
@@ -28,18 +33,23 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
         if (image) {
             formData.append("profileImageUrl", image);
         }
-
+        // if (coverImage) {
+        //     formData.append("coverImageUrl", coverImage);
+        // }
+        setLoading(true)
         const res = await userService.editProfile(formData);
         setUser(res.data.user);
         navigate("/profile/switch");
         fetchMe();
+        setLoading(false)
     };
 
     const hdlCancel = () => {
         setFile(null)
         }
     return (
-        <form >
+        <>
+       {loading? (<Loading/>): ( <form >
             <div className="space-y-6 p-8 ">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-xl font-semibold leading-7 text-gray-900">
@@ -93,6 +103,47 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                                 Change
                             </button>
                         </div>
+
+                        {/* <label
+                            htmlFor="photo"
+                            className="block text-lg font-medium leading-6 text-gray-900"
+                        >
+                            Cover Image
+                        </label>
+                        <div className="mt-2 flex items-center gap-x-3">
+                            {coverImageUrl ? (
+                                <img
+                                    className=" w-28 h-28 "
+                                    src={
+                                        coverImage
+                                            ? URL.createObjectURL(coverImage)
+                                            : coverImageUrl
+                                    }
+                                />
+                            ) : (
+                                <UserCircleIcon
+                                    className="h-28 w-28 text-gray-300"
+                                    aria-hidden="true"
+                                />
+                            )}
+
+                            <input
+                                type="file"
+                                className="hidden"
+                                ref={inputRef}
+                                onChange={(e) => {
+                                    setCoverImage(e.target.files[0]);
+                                 
+                                }}
+                            />
+                            <button
+                                onClick={() => inputRef.current.click()}
+                                type="button"
+                                className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                            >
+                                Change
+                            </button>
+                        </div> */}
                     </div>
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4">
@@ -257,6 +308,7 @@ export default function SettingContent({ profileImageUrl, username, bio }) {
                     </button>
                 </div>
             </div>
-        </form>
+        </form>)}
+        </>
     );
 }

@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { useFeed } from "../context/FeedContext";
 import SearchBox from "../components/SearchBox";
 
+
 function HomePage() {
     const { fetchAllFeed, feeds } = useFeed();
 

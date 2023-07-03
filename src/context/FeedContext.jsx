@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import * as feedService from "../api/feed-api";
 import * as postService from "../api/post-api";
 
+
 const FeedContext = createContext(null);
 
 function FeedContextProvider({ children }) {
@@ -21,6 +22,7 @@ function FeedContextProvider({ children }) {
     const [friendDetail, setFriendDetail] = useState({});
     const [friendSwitch, setFriendSwitch] = useState([]);
     const [selected, setSelected] = useState({ username: "search" });
+    const [loading,setLoading] = useState(false)
 
     const handleOnChangeSearch = async (text) => {
         const res = await feedService.searchByName(text);
@@ -109,7 +111,9 @@ function FeedContextProvider({ children }) {
     };
 
     const fetchAllFeed = async () => {
+        setLoading(true)
         const res = await feedService.fetchAllFeed();
+        setLoading(false);
         setFeeds(res.data);
         // console.log(res.data);
     };
@@ -120,10 +124,12 @@ function FeedContextProvider({ children }) {
     };
 
     const createPost = async (input) => {
+        setLoading(true)
         await postService.createPost(input);
         fetchAllFeed();
         fetchTrends();
         fetchUserProfile();
+        setLoading(false)
     };
 
     const fetchUserProfile = async () => {
@@ -192,6 +198,8 @@ function FeedContextProvider({ children }) {
         selected,
         setSelected,
         handleOnChangeSearch,
+        loading,
+        setLoading
     };
 
     return (

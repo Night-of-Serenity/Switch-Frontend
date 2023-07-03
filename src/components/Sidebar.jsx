@@ -9,28 +9,27 @@ import { useAuth } from "../context/AuthContext";
 import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { useFeed } from "../context/FeedContext";
 import * as postService from "../api/post-api"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Sidebar() {
     const { logout, user } = useAuth();
     const { post, setPost, file, setFile } = useFeed();
 
     const hdlLogout = () => {
+       try {
         logout();
+        toast.success('Logout Success')
+       }catch(err) {
+        toast.error('Logout Fail')
+       }
     };
 
     const handleCancelPost = () => {
         setPost("");
         setFile(null);
     };
-    // const handleDelete = (e) => {
-    //     e.preventDefault()    
-    //     console.log("testtt",post,postId)  
-    //      postService.deletePost(postId,post)
-    //      setPost(null);
-    //     setFile(null);         
-    // };
 
-    
 
     const handleCloseModal = () => {
         if (post || file) {
