@@ -4,6 +4,7 @@ import { useAuth } from "./AuthContext";
 import { socket } from "../config/socketio";
 import { useEffect, useState } from "react";
 import * as chatApi from "../api/chat-api";
+import { getAccessToken } from "../utils/localstroge";
 
 const ChatContext = createContext(null);
 
@@ -71,7 +72,12 @@ function ChatContextProvider({ children }) {
     }, []);
 
     useEffect(() => {
-        if (Object.keys(user).length > 0) socket.connect();
+        const lenght = Object.keys(user).length;
+        if (lenght > 0) {
+            console.log("connect");
+            socket.auth = { accesstoken: getAccessToken() };
+            socket.connect();
+        }
 
         socket.on("receiveMessage", (input) => {
             const { message, senderId, receiverId } = input;
@@ -131,7 +137,7 @@ function ChatContextProvider({ children }) {
             socket.off("receiveMessage");
             socket.disconnect();
         };
-    }, [user.id, socket.id]);
+    }, [user, socket]);
 
     const values = {
         sendMessage,
