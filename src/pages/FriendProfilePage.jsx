@@ -24,7 +24,7 @@ function FriendProfilePage() {
         friendSwitch,
     } = useFeed();
     const { user } = useAuth();
-    const { createNewChat } = useChat();
+    const { createNewChat, contacts } = useChat();
 
     const followings = friendDetail.followers;
 
@@ -54,6 +54,16 @@ function FriendProfilePage() {
     const handleFollow = async () => {
         await updateFollowing(friend.id);
         fetchotheruserdetail(otherUserId);
+    };
+
+    const handleDirectMessage = () => {
+        const existContactUser = contacts.find(
+            (contact) => contact.id == otherUserId
+        );
+        if (!existContactUser) {
+            createNewChat(friendDetail.user);
+        }
+        navigate("/message");
     };
 
     const stats = [
@@ -160,10 +170,7 @@ function FriendProfilePage() {
                             <div>
                                 <button
                                     className="text-3xl font-thin text-Primary pt-1 pl-2 "
-                                    onClick={() => {
-                                        createNewChat(friendDetail.user);
-                                        navigate("/message");
-                                    }}
+                                    onClick={handleDirectMessage}
                                 >
                                     {/* <BsEnvelopeHeart /> */}
 
