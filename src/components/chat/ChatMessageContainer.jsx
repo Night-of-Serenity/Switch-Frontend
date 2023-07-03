@@ -23,19 +23,20 @@ export default function ChatMessageContainer() {
             <ChatRoomHeader contactUser={contactUser} />
 
             <div className="h-full  overflow-scroll">
-                {directMessages.map((message) =>
-                    message.senderId === user.id ? (
-                        <MessageUser
-                            key={message.id}
-                            textcontent={message.textcontent}
-                        />
-                    ) : (
-                        <MessageOtherUser
-                            key={message.id}
-                            textcontent={message.textcontent}
-                        />
-                    )
-                )}
+                {directMessages.length &&
+                    directMessages.map((message) =>
+                        message.senderId === user.id ? (
+                            <MessageUser
+                                key={message.id}
+                                textcontent={message.textcontent}
+                            />
+                        ) : (
+                            <MessageOtherUser
+                                key={message.id}
+                                textcontent={message.textcontent}
+                            />
+                        )
+                    )}
             </div>
             <ChatMessageBar />
         </div>
