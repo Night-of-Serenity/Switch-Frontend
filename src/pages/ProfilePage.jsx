@@ -13,6 +13,7 @@ import PostContainer from "../components/profile/PostContainer";
 import FollowContainer from "../components/profile/FollowContainer";
 import SearchBox from "../components/SearchBox";
 
+
 function ProfilePage() {
     const {
         fetchUserProfile,
@@ -57,9 +58,7 @@ function ProfilePage() {
                 : 0,
         },
     ];
-    // console.log(user?.followings);
-    // console.log(user);
-    // console.log(profile);
+
 
     useEffect(() => {
         fetchMe();
@@ -250,6 +249,7 @@ function ProfilePage() {
                 </div>
             </div>
         </div>
+        
     );
 }
 

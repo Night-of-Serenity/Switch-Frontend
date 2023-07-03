@@ -1,20 +1,15 @@
-// import { Fragment, useState } from "react";
+
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import { useState, useRef } from "react";
 
 import { useFeed } from "../context/FeedContext";
 import { useAuth } from "../context/AuthContext";
 import Loading from "../components/common/Loading";
+import Spinner from "../components/common/Loading";
 
-// import { Listbox, Transition } from "@headlessui/react";
 
 export default function SwitchPost() {
-    //   const [selected, setSelected] = useState(moods[5]);
 
-    // console.log(file);
-
-    // const values = usePost()
-    // const {createPost} = values
 
     const { createPost, file, setFile, post, setPost,loading,setLoading } = useFeed();
     const { user } = useAuth();
@@ -40,7 +35,6 @@ export default function SwitchPost() {
 
     return (
         <>
-        {loading? ( <Loading />) : (
         <div className="flex items-start space-x-4 w-full">
         <div className="flex-shrink-0  m-4">
             <img
@@ -118,7 +112,6 @@ export default function SwitchPost() {
             </div>
         </div>
     </div>
-    )}
         
         
         </>
