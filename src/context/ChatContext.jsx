@@ -57,9 +57,11 @@ function ChatContextProvider({ children }) {
     };
 
     useEffect(() => {
-        if (Object.keys(user).length > 0) socket.connect();
-
         fetchContactRooms();
+    }, []);
+
+    useEffect(() => {
+        if (Object.keys(user).length > 0) socket.connect();
 
         socket.on("receiveMessage", (input) => {
             const { message, senderId, receiverId } = input;
