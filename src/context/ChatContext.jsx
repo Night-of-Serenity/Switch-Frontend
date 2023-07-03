@@ -60,7 +60,25 @@ function ChatContextProvider({ children }) {
         if (Object.keys(user).length > 0) socket.connect();
 
         socket.on("receiveMessage", (input) => {
-            console.log("receive message:", input);
+            const { message, senderId, receiverId } = input;
+            if (
+                (senderId === user.id && receiverId === selectContactId) ||
+                (senderId === selectContactId && receiverId === user.id)
+            ) {
+                console.log("receive message:", input);
+                const newMessage = {
+                    textcontent: message,
+                    senderId,
+                    receiverId,
+                };
+                setDirectMessages((messages) => {
+                    console.log("new message", newMessage);
+                    const newMessages = [...messages];
+                    newMessages.push(newMessage);
+                    // console.log("new messages", newMessage);
+                    return newMessages;
+                });
+            }
         });
 
         return () => {
