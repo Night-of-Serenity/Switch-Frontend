@@ -13,6 +13,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 
 import { BiMessageDetail } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { useChat } from "../context/ChatContext";
 
 function FriendProfilePage() {
     const {
@@ -23,6 +24,7 @@ function FriendProfilePage() {
         friendSwitch,
     } = useFeed();
     const { user } = useAuth();
+    const { createNewChat } = useChat();
 
     const followings = friendDetail.followers;
 
@@ -158,7 +160,10 @@ function FriendProfilePage() {
                             <div>
                                 <button
                                     className="text-3xl font-thin text-Primary pt-1 pl-2 "
-                                    onClick={() => navigate("/message")}
+                                    onClick={() => {
+                                        createNewChat(friendDetail.user);
+                                        navigate("/message");
+                                    }}
                                 >
                                     {/* <BsEnvelopeHeart /> */}
 

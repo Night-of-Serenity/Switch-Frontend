@@ -10,7 +10,7 @@ export default function ChatRoomBox({
     return (
         <div
             onClick={() => onOpenChat(contactUserId)}
-            className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2  "
+            className="flex items-start p-2 mt-2 mb-2 space-x-4 justify-self-end border-b-2 cursor-pointer "
         >
             <img
                 src={profileImage}
@@ -23,8 +23,10 @@ export default function ChatRoomBox({
                         {username} &nbsp;
                     </h2>
                     <h2 className="text-lg font-normal ">
-                        {" "}
-                        : {new Date(lastMessageTime).toLocaleString()}
+                        :
+                        {lastMessageTime
+                            ? new Date(lastMessageTime).toLocaleString()
+                            : ""}
                     </h2>
                 </div>
                 <div>

@@ -13,6 +13,8 @@ function ChatContextProvider({ children }) {
     const [contacts, setContacts] = useState([]);
     const [directMessages, setDirectMessages] = useState([]);
     const [selectContactId, setSelectContactId] = useState(null);
+    const [isCreateNewChat, setIsCreateNewChat] = useState(false);
+    const [newContactUser, setNewContactUser] = useState({});
 
     const sendMessage = (message, senderId, receiverId) => {
         console.log("send messsege sender", senderId);
@@ -48,21 +50,24 @@ function ChatContextProvider({ children }) {
         }
     };
 
-    const receiveMessage = () => {
-        socket.on("receiveMessage", (input) => {
-            console.log("receive message:", input);
-        });
+    const createNewChat = (contactUser) => {
+        setNewContactUser(contactUser);
+        setIsCreateNewChat(true);
+        console.log("new contact:", contactUser);
     };
 
     useEffect(() => {
-        if (user) socket.connect();
+        if (Object.keys(user).length > 0) socket.connect();
 
-        receiveMessage();
+        socket.on("receiveMessage", (input) => {
+            console.log("receive message:", input);
+        });
 
         return () => {
+            socket.off("receiveMessage");
             socket.disconnect();
         };
-    }, [user, socket]);
+    }, [user.id, socket.id]);
 
     const values = {
         sendMessage,
@@ -71,6 +76,10 @@ function ChatContextProvider({ children }) {
         fetchMessage,
         directMessages,
         selectContactId,
+        isCreateNewChat,
+        setIsCreateNewChat,
+        createNewChat,
+        newContactUser,
     };
 
     return (
