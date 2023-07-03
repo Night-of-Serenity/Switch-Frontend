@@ -3,7 +3,7 @@ export default function ChatRoomBox({
     username,
     contactUserId,
     profileImage,
-    lastMessage,
+    // lastMessage,
     lastMessageTime,
     onOpenChat,
 }) {
@@ -30,7 +30,7 @@ export default function ChatRoomBox({
                     </h2>
                 </div>
                 <div>
-                    <h2 className="text-xl font-light ">{lastMessage}</h2>
+                    {/* <h2 className="text-xl font-light ">{lastMessage}</h2> */}
                 </div>
             </div>
         </div>

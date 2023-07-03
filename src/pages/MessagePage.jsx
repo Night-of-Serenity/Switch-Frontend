@@ -69,7 +69,7 @@ function MessagePage() {
                                 username={newContactUser.username}
                                 contactUserId={newContactUser.id}
                                 profileImage={newContactUser.profileImageUrl}
-                                lastMessage=""
+                                // lastMessage=""
                                 onOpenChat={hldOpenMessage}
                             />
                         )}
@@ -81,9 +81,9 @@ function MessagePage() {
                                     username={contact.username}
                                     contactUserId={contact.id}
                                     profileImage={contact.profileImageUrl}
-                                    lastMessage={
-                                        getLastMessage(contact).textcontent
-                                    }
+                                    // lastMessage={
+                                    //     getLastMessage(contact).textcontent
+                                    // }
                                     lastMessageTime={
                                         getLastMessage(contact).createdAt
                                     }
