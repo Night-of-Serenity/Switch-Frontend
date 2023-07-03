@@ -59,6 +59,8 @@ function ChatContextProvider({ children }) {
     useEffect(() => {
         if (Object.keys(user).length > 0) socket.connect();
 
+        fetchContactRooms();
+
         socket.on("receiveMessage", (input) => {
             const { message, senderId, receiverId } = input;
             if (
@@ -71,6 +73,20 @@ function ChatContextProvider({ children }) {
                     senderId,
                     receiverId,
                 };
+
+                if (contacts.length) {
+                    const findExistContact = contacts.find(
+                        (contact) =>
+                            contact.senderId === receiverId ||
+                            contact.receiverId === receiverId
+                    );
+
+                    if (!findExistContact) {
+                        const newContact = [...contacts];
+                        newContact.push(newContactUser);
+                        console.log(newContactUser);
+                    }
+                }
 
                 setDirectMessages((messages) => {
                     console.log("new message", newMessage);
