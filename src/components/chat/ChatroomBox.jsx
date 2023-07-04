@@ -27,7 +27,7 @@ export default function ChatRoomBox({
                     </h2>
                 </div>
                 <div>
-                    <h2 className="text-xl font-light ">
+                    <h2 className="text-base font-light ">
                         {lastMessageText
                             ? lastMessageText?.length > 25
                                 ? lastMessageText.slice(0, 25) + "..."
