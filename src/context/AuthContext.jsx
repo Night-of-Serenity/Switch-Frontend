@@ -58,7 +58,7 @@ function AuthContextProvider({ children }) {
         fetchMe();
         window.my_modal_2.showModal();
        } catch(err) {
-        toast.error('Sign up Fail ')
+        toast.error('Sign up Failed ')
        }
     };
 
@@ -76,7 +76,7 @@ function AuthContextProvider({ children }) {
         setAccessToken(token);
         fetchMe();
         }catch(err) {
-        toast.error('Sign in Fail ')
+        toast.error('Sign in Failed ')
         }
     };
 
@@ -90,7 +90,7 @@ function AuthContextProvider({ children }) {
         fetchMe();
         toast.success('Sign in Success')
        }catch(err) {
-        toast.error('Sign in Fail ')
+        toast.error('Sign in Failed ')
        }
     };
 

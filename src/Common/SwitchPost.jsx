@@ -31,8 +31,6 @@ export default function SwitchPost() {
         setFile(null);
         setPost("");
         // window.my_modal_switch.showModal();
-
-        // setIsCreate(true);
     };
 
     // const handleSet = ()=>{
