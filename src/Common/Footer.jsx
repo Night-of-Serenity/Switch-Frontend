@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getAccessToken } from "../utils/localstroge";
-
+import { useEffect } from "react";
 
 function Footer() {
     const [user, setUser] = useState(null);
@@ -16,7 +16,7 @@ function Footer() {
     const { onSubmitLogin, user: myUser } = values;
     const { onSubmitRegister } = values;
     const navigate = useNavigate();
-
+    const { glogin } = useAuth();
     const handleSubmit = async () => {
         await onSubmitRegister(user);
         // const token = getAccessToken()
@@ -25,6 +25,25 @@ function Footer() {
         navigate("/suggest");
     };
 
+    function hdlCallbackResponse(response) {
+        // console.log(response.credential);
+        glogin(response.credential);
+    }
+
+    useEffect(() => {
+        /* global google */
+        // fetchFeedGuest();
+        window.google?.accounts.id.initialize({
+            client_id:
+                "4895840566-r15u5itchkke59di00k8qk30th35jq2e.apps.googleusercontent.com",
+            callback: hdlCallbackResponse,
+        });
+
+        window.google?.accounts.id.renderButton(
+            document.getElementById("signInDiv2"),
+            { theme: "outline", size: "large" }
+        );
+    }, []);
     // console.log(user);
     return (
         <div>
@@ -78,7 +97,16 @@ function Footer() {
                                     <h2 className="mt-4 mb-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                                         Sign in to your Switch
                                     </h2>
-                                    <div className="flex  gap-4 flex-col justify-center items-center pt-2">
+                                    <div className="flex relative items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-bold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        <FcGoogle className="text-2xl mr-2" />
+                                        Sign in with Google
+                                        <button
+                                            id="signInDiv2"
+                                            className="opacity-0 absolute"
+                                            // className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        ></button>
+                                    </div>
+                                    {/* <div className="flex  gap-4 flex-col justify-center items-center pt-2">
                                         <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                             <FcGoogle className="text-2xl mr-2" />
                                             Log in with Google
@@ -87,7 +115,7 @@ function Footer() {
                                             <FaFacebook className="text-2xl mr-2 text-blue-600" />
                                             Log in with Facebook
                                         </button>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -131,12 +159,12 @@ function Footer() {
                                                     Password
                                                 </label>
                                                 <div className="text-sm">
-                                                    <a
+                                                    {/* <a
                                                         href="#"
                                                         className="font-semibold text-Primary hover:text-indigo-500"
                                                     >
                                                         Forgot password?
-                                                    </a>
+                                                    </a> */}
                                                 </div>
                                             </div>
                                             <div className="mt-2">
@@ -186,6 +214,7 @@ function Footer() {
 
                             {/* ****************************************** */}
                         </form>
+
                         <form method="dialog" className="modal-backdrop">
                             <button>close</button>
                         </form>
@@ -209,17 +238,17 @@ function Footer() {
                                         alt="Your Company"
                                     />
                                     <h2 className="mt-4 mb-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                                        Sign in to your Switch
+                                        Sign up to your Switch
                                     </h2>
                                     <div className="flex  gap-4 flex-col justify-center items-center pt-2">
                                         <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                             <FcGoogle className="text-2xl mr-2" />
                                             Sign up with Google
                                         </button>
-                                        <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        {/* <button className="flex items-center  w-80 shadow-lg justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                             <FaFacebook className="text-2xl mr-2 text-blue-600" />
                                             Sign with Facebook
-                                        </button>
+                                        </button> */}
 
                                         {/* Open the modal using ID.showModal() method */}
                                         <button

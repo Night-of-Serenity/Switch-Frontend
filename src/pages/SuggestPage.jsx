@@ -31,7 +31,7 @@ function SuggestPage() {
                     </div>
                     <SuggestContent />
                     <Link to={"/setting"}>
-                        <div className="justify-center flex ">
+                        <div className="justify-center flex pt-4 ">
                             <button
                                 type="submit"
                                 className="w-8/12 h-12  bg-stone-700 text-white text-lg font-bold rounded-full text-center hover:bg-Primary  flex justify-center items-center "

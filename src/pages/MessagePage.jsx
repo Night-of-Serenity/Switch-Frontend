@@ -54,15 +54,15 @@ function MessagePage() {
     // console.log(user);
     return (
         <div className="h-screen  flex flex-col justify-between">
-            <div className="min-h-full grid grid-cols-4 overflow-y-scroll ">
+            <div className="min-h-full grid grid-cols-4 overflow-y-scroll  ">
                 <div>
                     <Sidebar />
                 </div>
-                <div>
+                <div className="border-r-2 ">
                     <div className="border-b-2 py-8 pl-4">
                         <h1 className="text-2xl font-bold">Message</h1>
                     </div>
-                    <div className="overflow-scroll">
+                    <div className="overflow-scroll ">
                         {isCreateNewChat && (
                             <ChatRoomBox
                                 key={newContactUser.id}
@@ -85,6 +85,7 @@ function MessagePage() {
                                     lastMessageText={contact.lastMessageText}
                                     lastMessageTime={contact.lastMessageTime}
                                     onOpenChat={hldOpenMessage}
+                                    className="bg-black"
                                 />
                             ))}
                     </div>
