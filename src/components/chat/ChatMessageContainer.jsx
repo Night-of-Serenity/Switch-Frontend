@@ -4,6 +4,8 @@ import MessageUser from "./MessageUser";
 import ChatMessageBar from "./ChatMessageBar";
 import { useChat } from "../../context/ChatContext";
 import { useAuth } from "../../context/AuthContext";
+import { useEffect } from "react";
+import { useRef } from "react";
 export default function ChatMessageContainer() {
     const {
         contacts,
@@ -18,11 +20,22 @@ export default function ChatMessageContainer() {
     const { user } = useAuth();
     console.log(contactUser);
     console.log("messages:", directMessages);
+
+    const chatRef = useRef(null);
+
+    useEffect(() => {
+        // chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        chatRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+        });
+    }, [directMessages]);
+
     return (
-        <div className="col-span-2 border-l-2 flex flex-col">
+        <div className="col-span-2 flex h-screen flex-col">
             <ChatRoomHeader contactUser={contactUser} />
 
-            <div className="h-full  overflow-scroll">
+            <div className="h-full  overflow-scroll ">
                 {directMessages.length > 0 &&
                     directMessages.map((message) =>
                         message.senderId === user.id ? (
@@ -37,7 +50,9 @@ export default function ChatMessageContainer() {
                             />
                         )
                     )}
+                <div ref={chatRef}></div>
             </div>
+
             <ChatMessageBar />
         </div>
     );

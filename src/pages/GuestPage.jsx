@@ -13,11 +13,10 @@ import jwt_decode from "jwt-decode";
 import { useFeed } from "../context/FeedContext";
 import ContentGuest from "../components/common/ContentGuest";
 
-
 function GuestPage() {
     const [user, setUser] = useState({});
     const { glogin } = useAuth();
-    const { fetchAllFeed, feeds,fetchFeedGuest } = useFeed();
+    const { fetchAllFeed, feeds, fetchFeedGuest } = useFeed();
 
     function hdlCallbackResponse(response) {
         // console.log(response.credential);
@@ -36,7 +35,6 @@ function GuestPage() {
         window.google?.accounts.id.renderButton(
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large" }
-            
         );
     }, []);
 
@@ -54,12 +52,9 @@ function GuestPage() {
                         </h1>
                     </div>
 
-                    
-                     {feeds.map((el) => (
-                        <ContentGuest feed={el}  />
+                    {feeds.map((el) => (
+                        <ContentGuest feed={el} />
                     ))}
-                    
-                
                 </div>
                 <div className="mt-4 ">
                     <div className="border-2 m-6 rounded-xl p-4">
@@ -69,18 +64,21 @@ function GuestPage() {
                         <h1>
                             Sign up now to get your own personalized timeline!
                         </h1>
+
                         <div className="flex  gap-4 flex-col justify-center items-center p-4 ">
-                            <button
-                                id="signInDiv"
-                                className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
+                            <div className="flex relative items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-bold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <FcGoogle className="text-2xl mr-2" />
                                 Sign up with Google
-                            </button>
-                            <button className="flex  items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                <button
+                                    id="signInDiv"
+                                    className="opacity-0 absolute"
+                                    // className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                ></button>
+                            </div>
+                            {/* <button className="flex  items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-semibold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <FaFacebook className="text-2xl mr-2 text-blue-600" />
                                 Sign up with Facebook
-                            </button>
+                            </button> */}
                             {/* <div id="signInDiv"></div> */}
                             <button
                                 className="flex items-center  w-full shadow-sm justify-center rounded-full px-3 py-1.5 text-sm font-bold leading-6 text-gray-600 border-gray-100 border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

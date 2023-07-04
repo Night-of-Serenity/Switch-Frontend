@@ -41,7 +41,7 @@ function FriendProfilePage() {
     useEffect(() => {
         fetchotheruserdetail(otherUserId);
         fetchSwitchOtherUser(otherUserId);
-    }, []);
+    }, [otherUserId]);
 
     const friend = friendDetail.user;
     // console.log(friend);
