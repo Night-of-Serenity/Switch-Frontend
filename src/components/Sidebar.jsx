@@ -22,7 +22,7 @@ function Sidebar() {
             logout();
             toast.success("Logout Success");
         } catch (err) {
-            toast.error("Logout Fail");
+            toast.error("Logout Failed");
         }
     };
 

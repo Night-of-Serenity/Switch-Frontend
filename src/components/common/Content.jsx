@@ -10,21 +10,26 @@ import { Navigate, useNavigate } from "react-router-dom";
 import * as postService from "../../api/post-api";
 import { useFeed } from "../../context/FeedContext";
 import { Link } from "react-router-dom";
+import {toast } from 'react-toastify';
+
 
 function Content({ feed, postId }) {
-    // console.log({ feedImage: feed.imageUrl, feedId: feed.id });
     const { fetchotheruserdetail, fetchSwitchOtherUser, deleteSwitch } =
         useFeed();
 
     const { user } = useAuth();
-    // console.log(feed.textcontent, feed.id);
 
     const isMyPost = feed.userId === user.id;
 
     const isPost = feed.postId ? false : true;
 
     const handleDelete = () => {
-        deleteSwitch(feed.id);
+        try {
+            deleteSwitch(feed.id);
+            toast.success('Delete Success')
+        }catch(err) {
+            toast.error('Delete Failed')
+        }
     };
 
     const navigate = useNavigate();
