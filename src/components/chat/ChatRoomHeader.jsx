@@ -6,7 +6,7 @@ export default function ChatRoomHeader({ contactUser }) {
             <img
                 src={contactUser?.profileImageUrl}
                 alt="contactUser"
-                className="w-24 h-24 rounded-full dark:bg-gray-500 cursor-pointer"
+                className="w-24 h-24 object-cover rounded-full dark:bg-gray-500 cursor-pointer"
             />
             <h2>Username : {contactUser?.username}</h2>
         </div>
