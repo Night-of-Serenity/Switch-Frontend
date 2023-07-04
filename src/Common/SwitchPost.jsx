@@ -31,12 +31,11 @@ export default function SwitchPost() {
             formData.append("textcontent", post);
         }
         await createPost(formData);
-        setIsCreate(true);
         setFile(null);
         setPost("");
         // window.my_modal_switch.showModal();
 
-        // setIsCreate(true);
+       
     };
 
     // const handleSet = ()=>{

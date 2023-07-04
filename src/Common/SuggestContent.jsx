@@ -8,7 +8,7 @@ function SuggestContent() {
     useEffect(() => {
         fetchUserSuggest();
     }, []);
-    // console.log(userSuggest);
+   
     return (
         <div>
             <div className=" p-2  ">
