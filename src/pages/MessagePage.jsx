@@ -18,24 +18,24 @@ function MessagePage() {
     // console.log(newContactUser);
     const { user } = useAuth();
 
-    const getLastMessage = (contact) => {
-        const SenderLastMessage =
-            contact.Sender && contact.Sender.length > 0
-                ? contact.Sender[contact.Sender.length - 1]
-                : "";
+    // const getLastMessage = (contact) => {
+    //     const SenderLastMessage =
+    //         contact.Sender && contact.Sender.length > 0
+    //             ? contact.Sender[contact.Sender.length - 1]
+    //             : "";
 
-        const ReceiverLastMessage =
-            contact.Receiver && contact.Receiver.length > 0
-                ? contact.Receiver[contact.Receiver.length - 1]
-                : "";
+    //     const ReceiverLastMessage =
+    //         contact.Receiver && contact.Receiver.length > 0
+    //             ? contact.Receiver[contact.Receiver.length - 1]
+    //             : "";
 
-        const lastMessage =
-            new Date(SenderLastMessage.createdAt) >
-            new Date(ReceiverLastMessage.createdAt)
-                ? SenderLastMessage
-                : ReceiverLastMessage;
-        return lastMessage;
-    };
+    //     const lastMessage =
+    //         new Date(SenderLastMessage.createdAt) >
+    //         new Date(ReceiverLastMessage.createdAt)
+    //             ? SenderLastMessage
+    //             : ReceiverLastMessage;
+    //     return lastMessage;
+    // };
 
     const hldOpenMessage = (contactUserId) => {
         fetchMessage(contactUserId);
@@ -69,7 +69,8 @@ function MessagePage() {
                                 username={newContactUser.username}
                                 contactUserId={newContactUser.id}
                                 profileImage={newContactUser.profileImageUrl}
-                                // lastMessage=""
+                                lastMessage=""
+                                lastMessageTime={new Date().toLocaleString}
                                 onOpenChat={hldOpenMessage}
                             />
                         )}
@@ -81,12 +82,8 @@ function MessagePage() {
                                     username={contact.username}
                                     contactUserId={contact.id}
                                     profileImage={contact.profileImageUrl}
-                                    // lastMessage={
-                                    //     getLastMessage(contact).textcontent
-                                    // }
-                                    lastMessageTime={
-                                        getLastMessage(contact).createdAt
-                                    }
+                                    lastMessageText={contact.lastMessageText}
+                                    lastMessageTime={contact.lastMessageTime}
                                     onOpenChat={hldOpenMessage}
                                 />
                             ))}
