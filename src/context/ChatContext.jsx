@@ -16,6 +16,12 @@ function ChatContextProvider({ children }) {
     const [selectContactId, setSelectContactId] = useState(null);
     const [isCreateNewChat, setIsCreateNewChat] = useState(false);
     const [newContactUser, setNewContactUser] = useState({});
+    const [openChatRoom, setOpenChatRoom] = useState(false);
+
+    const hldOpenMessage = (contactUserId) => {
+        fetchMessage(contactUserId);
+        setOpenChatRoom(true);
+    };
 
     const sendMessage = (message, senderId, receiverId) => {
         console.log("send messsege sender", senderId);
@@ -40,21 +46,55 @@ function ChatContextProvider({ children }) {
             console.log(err.message);
         }
     };
+
     const fetchContactRooms = async () => {
         try {
             const res = await chatApi.fetchContactRooms();
             if (res.data) {
-                setContacts(res.data);
-            }
+                if (isCreateNewChat && newContactUser) {
+                    addNewContact(res.data);
+                } else {
+                    setContacts(res.data);
+                }
+            } else throw new Error("no response data from fetching contacts");
         } catch (err) {
             console.log(err.message);
+        }
+    };
+
+    const addNewContact = (fetchedConstacts) => {
+        const newContact = {
+            ...newContactUser,
+            lastMessageText: "",
+            lastMessageTime: new Date().toLocaleString(),
+        };
+        if (fetchedConstacts.length > 0) {
+            // find exist newcontact
+            const existNewcontact = contacts.find(
+                (contact) => contact.id === newContactUser.id
+            );
+
+            // case already exist
+            if (existNewcontact) {
+                fetchMessage(newContactUser.id);
+                setOpenChatRoom(true);
+            } else {
+                // case new contact not exist yet
+                setContacts((prevContacts) => [newContact, ...prevContacts]);
+                fetchMessage(newContactUser.id);
+                setOpenChatRoom(true);
+            }
+        } else {
+            setContacts([newContact]);
+            setSelectContactId(newContactUser.id);
+            setDirectMessages([]);
+            setOpenChatRoom(true);
         }
     };
 
     const createNewChat = (contactUser) => {
         setNewContactUser(contactUser);
         setIsCreateNewChat(true);
-        console.log("new contact:", contactUser);
     };
 
     const fetchNewMessageFromOtherUser = async (contactUserId) => {
@@ -151,6 +191,9 @@ function ChatContextProvider({ children }) {
         createNewChat,
         newContactUser,
         fetchNewMessageFromOtherUser,
+        hldOpenMessage,
+        openChatRoom,
+        setOpenChatRoom,
     };
 
     return (

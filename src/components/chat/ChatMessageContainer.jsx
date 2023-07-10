@@ -7,16 +7,8 @@ import { useAuth } from "../../context/AuthContext";
 import { useEffect } from "react";
 import { useRef } from "react";
 export default function ChatMessageContainer() {
-    const {
-        contacts,
-        selectContactId,
-        directMessages,
-        isCreateNewChat,
-        newContactUser,
-    } = useChat();
-    const contactUser = isCreateNewChat
-        ? newContactUser
-        : contacts.find((user) => user.id === selectContactId);
+    const { contacts, selectContactId, directMessages } = useChat();
+    const contactUser = contacts.find((user) => user.id === selectContactId);
     const { user } = useAuth();
     console.log(contactUser);
     console.log("messages:", directMessages);
@@ -24,7 +16,6 @@ export default function ChatMessageContainer() {
     const chatRef = useRef(null);
 
     useEffect(() => {
-        // chatRef.current.scrollTop = chatRef.current.scrollHeight;
         chatRef.current.scrollIntoView({
             behavior: "smooth",
             block: "nearest",
