@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children }) {
     const token = getAccessToken();
     // Object.keys(user).length > 0
     if (!isAuthenticated && !token) {
-        return <Navigate to="/welcome" />;
+        return <Navigate to="/guest" />;
     }
     return children;
 }

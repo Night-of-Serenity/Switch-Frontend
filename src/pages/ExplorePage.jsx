@@ -11,7 +11,7 @@ function ExplorePage() {
                 <div>
                     <Sidebar />
                 </div>
-                <div className="col-span-2 border-r-2">
+                <div className="col-span-2 border-r-2 overflow-scroll">
                     {/* <div className="text-3xl font-bold my-4 pl-2 pb-2  border-b-2">
                         <div className="form-control pt-2 pr-2 pl-2">
                             <input
