@@ -7,7 +7,6 @@ import { useAuth } from "../context/AuthContext";
 import { useFeed } from "../context/FeedContext";
 import SearchBox from "../components/SearchBox";
 
-
 function HomePage() {
     const { fetchAllFeed, feeds } = useFeed();
 
@@ -33,7 +32,7 @@ function HomePage() {
                         ))}
                     </div>
                 </div>
-                <div className="border-l-2">
+                <div className="border-l-2 overflow-scroll">
                     {/* <div className="form-control pt-2 pr-2 pl-2">
             <input
               type="text"
@@ -42,6 +41,7 @@ function HomePage() {
             />
           </div> */}
                     {/* <Search /> */}
+
                     <SearchBox />
 
                     <TrendsForYou />
