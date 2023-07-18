@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import defaultAvatar from "../../images/defaultAvatarImg.png";
+
 export default function ChatRoomBox({
     username,
     contactUserId,
@@ -13,7 +15,7 @@ export default function ChatRoomBox({
             className="flex items-start p-2 mt-2 mb-2 space-x-4 hover:bg-purple-300 justify-self-end border-b-2 cursor-pointer "
         >
             <img
-                src={profileImage}
+                src={profileImage || defaultAvatar}
                 alt="profileImage"
                 className="w-12 h-12 rounded-full object-cover dark:bg-gray-500 cursor-pointer"
             />
